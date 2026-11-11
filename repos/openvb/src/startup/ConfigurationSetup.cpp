@@ -11,7 +11,7 @@
 
 namespace F3
 {
-	// 0x56B220. See docs/functions/F3-0056b220-SetupConfigFile.md.
+	// 0x56B220.
 	void __cdecl SetupConfigFile()
 	{
 		char szNewFileName[260];

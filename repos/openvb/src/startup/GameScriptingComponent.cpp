@@ -83,8 +83,8 @@ namespace F3
 		va_end(args);
 
 		// Original: [0x70BD90] -> member +0x2C -> member +0x8C.
-		// RTTI identifies 0x70BD90 as the Network singleton; the old HudBase name
-		// is misleading. The first two pointers have no original null guard.
+		// RTTI identifies 0x70BD90 as Network. The first two pointers have no null guard.
+
 		// Capture the current Client after formatting, then its optional window.
 		JE::Client* client = static_cast<JE::Client*>(g_pNetworkInstance->client);
 		JE::DebugWindow* pWindow = client->child0x8C;

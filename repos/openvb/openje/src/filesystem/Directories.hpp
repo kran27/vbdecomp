@@ -7,7 +7,7 @@ namespace JE
 	bool __cdecl DirectoryExists(const char* pszPath);
 
 	// 0x4C5750. Input must fit the original 260-byte buffer and satisfy its
-	// unchecked root/component delimiter scans. See the workspace function record.
+	// unchecked root/component delimiter scans.
 	// The caller's string is never modified; failure keeps prior creations.
 	bool __cdecl CreateDirectories(const char* pszPath);
 }

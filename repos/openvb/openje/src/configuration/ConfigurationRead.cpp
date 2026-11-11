@@ -8,7 +8,7 @@ namespace JE
 {
 	namespace Configuration
 	{
-		// 0x4E0820. See docs/functions/F3-004e0820-ReadConfigurationFile.md.
+		// 0x4E0820.
 		unsigned char __cdecl ReadFile(std::string sFilename, Settings& settings)
 		{
 			settings.clear();

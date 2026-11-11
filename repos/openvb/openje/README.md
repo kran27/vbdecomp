@@ -1,10 +1,7 @@
 # Jefferson engine reconstruction
 
-Engine source derived from [OpenJE/openje](https://github.com/OpenJE/openje).
-Original source copyright notices are retained. The workspace tracks this source
-directly; use its [README](../../../README.md) and
-[build guide](../../../docs/build.md). The baseline is Windows x86, VC7/C++98,
-the real VC7 CRT/STL, November 2001 Platform SDK and DirectX 8.1.
+Engine source derived from [OpenJE/openje](https://github.com/OpenJE/openje),
+with original copyright notices retained. The workspace tracks this source directly.
 
-Publication destination: [kran27/openje](https://github.com/kran27/openje).
-Nothing should be pushed there until explicitly authorized.
+Target: Windows x86, VC7/C++98, November 2001 Platform SDK and DirectX 8.1.
+See the workspace [README](../../../README.md) and [build guide](../../../docs/build.md).

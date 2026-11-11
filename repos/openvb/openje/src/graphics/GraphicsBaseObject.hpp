@@ -18,9 +18,9 @@ public:
 	virtual void SetQuaternionRotation(const D3DXQUATERNION& rotation); // +14 ->0x4245C0.
 	virtual void OnTransformChanged(); // +18 ->0x404B70 in the actual camera/light tables.
 
-	// The original matrix-copy operation writes all64 bytes at+04 through+43.
-	// The old export's0x40 base size omitted its final matrix word. This observed
-	// 68-byte prefix is shared by the real Camera and Light declarations.
+	// The original matrix copy writes 64 bytes at +04 through +43.
+	// Camera and Light share this 68-byte base.
+
 	D3DXMATRIX transform; // +04; position is _41/_42/_43 at+34/+38/+3C.
 };
 

@@ -1,5 +1,5 @@
 {
-  "status": "Existing provisional source adaptation, not an established original WTL dependency and not an exact-match claim.",
+  "status": "Provisional source adaptation; not an exact match.",
   "original_function": "0x4A1610",
   "source_donor": {
     "url": "https://raw.githubusercontent.com/Win32-WTL/WTL/d1cd80e9ce76c4d79da4cf556401ad7a970ce46f/Releases/WTL75_5333_Final.zip",

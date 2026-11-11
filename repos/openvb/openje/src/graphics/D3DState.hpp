@@ -56,7 +56,7 @@ struct Gfx_D3DTextureState
 };
 
 // Descriptive declaration of original global0x7082F8, through known +0x6B8.
-// This is the legacy state ABI, not the historical host D3DContext layout.
+
 // The full object's extent remains unresolved. GraphicsStorage connects the
 // native pre-main Initialize/atexit Shutdown policy; full startup is separate.
 class Gfx_D3D

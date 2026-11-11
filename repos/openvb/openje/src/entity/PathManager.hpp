@@ -6,8 +6,8 @@
 #include <vector>
 #include "MapGrid.hpp"
 
-//The supplied VC7 library supplies the actual hash container. Current modern
-//MSVC removed hash_map; its host lane uses the real standard hash container.
+// VC7 hash container.
+
 #include <hash_map>
 
 namespace JE

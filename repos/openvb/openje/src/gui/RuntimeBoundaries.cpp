@@ -1,5 +1,5 @@
-//Linkable addressed virtual leaves for the normal GUI graph. These replace
-//test-fixture-only departures, never invent successful unsupported behavior.
+
+
 #include "Window.hpp"
 #include "Fragment.hpp"
 #include "Interface.hpp"

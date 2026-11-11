@@ -14,7 +14,7 @@
 namespace Granny21
 {
 	// F3's4F497E pushes a hidden return buffer for this sixteen-byte POD result.
-	// The old export's @0 excludes that hidden argument. Reuse the shipped DLL.
+	// The export's @0 decoration excludes the hidden return argument.
 	struct SystemClockSnapshot { DWORD words[4]; };
 	extern "C" __declspec(dllimport) SystemClockSnapshot __stdcall GrannyGetSystemSeconds();
 }

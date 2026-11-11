@@ -4,7 +4,7 @@
 
 namespace F3
 {
-	// 0x48CCC0. Evidence: docs/functions/F3-0048ccc0-RandomNext.md.
+	// 0x48CCC0.
 	unsigned int __cdecl RandomNext()
 	{
 		typedef char RandomStateWidthsRequired[(sizeof(g_nRandomState) == 4

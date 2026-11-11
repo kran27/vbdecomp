@@ -31,7 +31,7 @@ namespace F3
 		return g_szCurrentWorkingDirectory;
 	}
 
-	// 0x56B000. Evidence: docs/functions/F3-0056b000-SetupSaveDirectory.md.
+	// 0x56B000.
 	void __cdecl SetupSaveDirectory(char* pszModulePath)
 	{
 		char szPersonalPath[260];

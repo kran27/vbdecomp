@@ -31,7 +31,7 @@ namespace JE
 			BOOL requested); // +10,0x59B120; base does nothing beyond string destruction.
 		virtual void BeforeStartup(); // +14, shared404B70.
 		virtual void BeforeShutdown(); // +18, shared404B70.
-		// Historical fixture names are ordinary wrappers, not component slots.
+		// Nonvirtual lifecycle wrappers.
 		void Startup() { Initialize(); }
 		void Shutdown() { Cleanup(); }
 

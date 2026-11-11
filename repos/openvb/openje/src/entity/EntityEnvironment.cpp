@@ -18,8 +18,8 @@ namespace JE
 	EntityEnvironment* g_EntityEnvironment = NULL;
 	namespace
 	{
-		//This is a source API boundary, not an additional original game owner.
-		//Explicit workspace/test environments still take precedence below.
+		// Default environment; SetEntityEnvironment can override it.
+
 		class NativeEntityEnvironment : public EntityEnvironment
 		{
 		public:

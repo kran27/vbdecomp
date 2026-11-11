@@ -67,8 +67,8 @@ namespace F3
 					float(-double(savedRotation.y)*0.01745329238474369f),
 					float(-double(savedRotation.z)*0.01745329238474369f));
 				D3DXVec3TransformCoord(&delta,&delta,&inverseRotation);
-				//The real stdcall math children restore ESP; stale IDA stack labels
-				//previously made these transformed delta words look like rotation.
+
+
 				double angle=std::atan2(double(delta.z),double(delta.x));
 				if ((angle<0.0 && angle>=-180.0) || (angle>=180.0 && angle<360.0))
 				{

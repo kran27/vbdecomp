@@ -41,8 +41,8 @@ namespace JE
 	class SoundSystem;
 	namespace Resources { class ResourceSystem; }
 
-	//Borrowed sound-system APIs. Production binds the actual SoundSystem;
-	//explicit historical nonplaying fixtures retain their separate provider.
+	// Borrowed sound-system APIs; defaults to SoundSystem.
+
 	class SoundInstanceExternalServices
 	{
 	public:

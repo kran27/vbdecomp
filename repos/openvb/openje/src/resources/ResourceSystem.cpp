@@ -55,7 +55,7 @@ namespace JE
 
 		void InitializeIndex(ResourceIndex& index, Net::UInt32 buckets)
         {
-            // Historical source adapter; the actual producer uses the member directly.
+
             index.Initialize(buckets);
         }
 	}

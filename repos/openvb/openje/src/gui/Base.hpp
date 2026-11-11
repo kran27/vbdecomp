@@ -35,5 +35,5 @@ namespace GUI
 	};
 }
 
-// Compatibility spelling for the historical host lane; the real RTTI name is GUI::Base.
+// Namespace alias for GUI::Base.
 namespace JE { namespace GUI { using ::GUI::Base; } }

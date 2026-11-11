@@ -104,8 +104,8 @@ namespace GUI
 		Window* capturedWindow; // +B8; canonical legacy capture member.
 	};
 
-	// Original static object0x707E48. Declaration only: no second capture owner
-	// or successful partial lifetime. Historical host g_PointerCapture remains
-	// its sole live capture state until the actual Window/Manager join replaces it.
+	// Original static object at 0x707E48.
+
+
 	extern Manager g_Manager;
 }

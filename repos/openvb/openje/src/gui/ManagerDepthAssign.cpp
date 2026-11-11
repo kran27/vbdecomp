@@ -1,10 +1,10 @@
-// Original4B35F0. Ordinary owner traversal; no historical comparison fixture.
+// 0x4B35F0.
 #include "gui/Manager.hpp"
 #include "gui/Interface.hpp"
 
-// This arithmetic observes the caller's floating-point environment. The old
-// analysis candidate folded the subtraction using the compiler's rounding
-// environment, contrary to the original live FSUB/FSTP32 sequence.
+// The original subtraction and float store use the caller's rounding mode.
+
+
 
 namespace GUI
 {

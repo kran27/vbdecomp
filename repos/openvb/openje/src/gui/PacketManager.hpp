@@ -9,8 +9,8 @@ class Gfx_UIPacketBuffer;
 
 namespace GUI
 {
-	// Original RTTI .?AVCPktManager@GUI@@, table0x66F7B4. These are borrowed
-	// mesh-instance packets, not copies of the historical preview UIMesh type.
+	// Original RTTI .?AVCPktManager@GUI@@, table 0x66F7B4. Borrows mesh-instance packets.
+
 	class CPktManager
 	{
 	public:

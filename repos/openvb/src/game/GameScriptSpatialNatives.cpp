@@ -71,7 +71,7 @@ namespace F3
 			return 0;
 		}
 		JE::LogDebugString("Trying to SetPosition on entity.");
-		entity->SetPosition(point); //Actual54A8A0; the old IDA Network label is misleading.
+		entity->SetPosition(point); //0x54A8A0.
 		return 1;
 	}
 

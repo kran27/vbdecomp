@@ -19,7 +19,7 @@ namespace F3
 		return g_nElapsedTimeMS;
 	}
 
-	// 0x56AF60; evidence: docs/functions/F3-0056af60-ProcessMessagesAndUpdateTime.md.
+	// 0x56AF60.
 	bool ProcessMessagesAndUpdateTime()
 	{
 		MSG message;

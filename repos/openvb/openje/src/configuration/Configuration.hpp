@@ -21,13 +21,13 @@ namespace JE
 			Net::UInt32 nLength);
 
 		// 0x4E0820. Clears settings before fopen. Preserves failed-read leaks and
-		// close-before-parse ordering; no old FILE/STL storage is used.
+		// close-before-parse ordering.
 		unsigned char __cdecl ReadFile(std::string sFilename, Settings& settings);
 
 		// 0x4DF1C0. Text output in map order. Exact fputs EOF fails; fclose is ignored.
 		unsigned char __cdecl WriteFile(std::string sFilename, const Settings& settings);
 
-		// Thin library boundaries, replaced only by the reader comparison runner.
+
 		// Production Allocate reserves an extra unwritten byte for the parser's
 		// end+1 store; the original logical allocation request remains unchanged.
 		namespace FileServices

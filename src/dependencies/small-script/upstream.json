@@ -1,7 +1,7 @@
 {
   "repository": "https://github.com/kran27/small-script",
-  "commit": "17ff8e4447c728dfbc44ff6a5b2ae7631d551e8d",
-  "scope": "Verbatim public fork tree with exact source bytes. F3 runtime and console adaptations are owned by this revision; no workspace overlay or source generation. Decompiler development is excluded.",
+  "commit": "e346fb3c4b4007cfc672317cd89cb469756ed8e5",
+  "scope": "Vendored fork source with F3 runtime and console adaptations.",
   "files": {
     ".gitattributes": "72caee3dedfb7344e58ee6805044e9a528ed2e819d0d02bd653cb6d374820ca5",
     ".github/workflows/cmake-build-clang.yml": "b3811abee22a27bcaf573323ba2bea4bcc8bf2825ac34909bfd86df1c4a54383",
@@ -9,7 +9,7 @@
     ".gitignore": "319a3b9c55f02677a28e793ec4af10fe4d5fd754de2a6e06a47e2473f8f61bdb",
     "CMakeLists.txt": "63a9c6c4fc308446775966c8d49eb46079cf15f78ddf1723d713de107f93354d",
     "LICENSE": "f455830bc524c0bb4fa112ed1bcfdbecb2e0c9d1dcad4e2d40afc5e2109e2e67",
-    "README.F3.md": "d10586c3b57b382e1d23cca111621cc9faf5d3a15c7d83a87f8a4127aafd243e",
+    "README.F3.md": "56d2df1586c0d2bcd9f7e470543088f3600f1adf6180a9d6e7cb3bf8527e4bfd",
     "README.md": "3c243b358bb1744d56deee6e442a7e29e4366e2b50041b2df29b30200511d109",
     "doc/appimp.tex": "7fbda16fd6398ddac3feb289e78114b57a34711498cb5368bef7b393d20406d1",
     "doc/applang.tex": "62347851fd3a193faef960ff61f892d9253ef99e59c8916c6f69a93a3da60aed",

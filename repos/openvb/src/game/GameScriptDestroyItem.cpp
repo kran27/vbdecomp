@@ -36,6 +36,6 @@ namespace F3
 		}
 		static_cast<JE::Server*>(g_pNetworkInstance->server)->RemoveItemFromInventory(owner, item);
 		item->Destroy(); //Deferred state2; original does not directly delete the item.
-		return 1; //5C9755 explicitly writes EAX1, despite the old void annotation.
+		return 1; //5C9755 writes EAX=1.
 	}
 }

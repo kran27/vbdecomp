@@ -37,8 +37,8 @@ struct OctreeSpatialObject
 	DWORD references;
 };
 
-// Descriptive map-stream identity. The old provisional CNode spelling
-// collides with the real D3DX effect compiler private class; it was not RTTI.
+// Descriptive name for the map vertex streams; original class name unknown.
+
 class OctreeVertexStreams
 {
 public:

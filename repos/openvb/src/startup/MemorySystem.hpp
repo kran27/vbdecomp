@@ -54,8 +54,8 @@ namespace F3
 
 	extern MemorySystem* g_pMemorySystem; // 0x70C950, distinct from registry allocation
 	GameComponent* CreateMemorySystem(); // 0x5B3270
-	//Compatibility facades for earlier workspace callers. Original direct
-	//calls use the member APIs and their callee-cleaned arguments.
+	// Free-function wrappers for the member allocation APIs.
+
 	void* AllocateMemory(int nSelector);
 	void ReleaseMemory(int nSelector, void* pData);
 

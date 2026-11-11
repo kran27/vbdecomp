@@ -47,14 +47,11 @@ binary equality. See [build details](docs/build.md).
   [kran27/small-script](https://github.com/kran27/small-script), including the F3
   runtime and console adaptations in the fork itself.
 - Resource zlib: unmodified 1.1.4 source under `src/dependencies/zlib-1.1.4`.
-- [Dependency evidence and remaining questions](docs/dependency-fidelity.md).
+- [Dependency versions and match status](docs/dependency-fidelity.md).
 - [Source control and upstream attribution](docs/source-control.md).
 - [Matching policy](docs/matching-policy.md) and [progress reporting](docs/reporting.md).
 
-Accuracy work is paused during repository cleanup. Historical analysis, receipts,
-generated reports and retired workflows remain local and are not prerequisites
-to building a public checkout. Modern ports and replacement libraries are later
-work and are outside this baseline.
+Accuracy work is currently paused.
 
 ## Attribution
 

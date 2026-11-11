@@ -20,7 +20,7 @@ namespace JE
 				}
 			}
 
-			// 0x4E0540. See docs/functions/F3-004e0540-ParseConfigurationBuffer.md.
+			// 0x4E0540.
 			static unsigned char ParseBuffer(char* pBuffer, Settings& settings,
 				Net::UInt32 nLength)
 			{

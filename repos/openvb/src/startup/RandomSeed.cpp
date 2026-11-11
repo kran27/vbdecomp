@@ -7,7 +7,7 @@ namespace F3
 	unsigned long g_nRandomState = 0;
 	bool g_bIsRandomStateInitialized = false;
 
-	// 0x48CCA0; evidence: docs/functions/F3-0048cca0-SetStartupTime.md.
+	// 0x48CCA0.
 	int SetStartupTime(int nSeed)
 	{
 		g_nRandomState = static_cast<unsigned long>(nSeed);

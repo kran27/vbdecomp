@@ -4,7 +4,7 @@
 
 namespace F3
 {
-	// 0x4C58A0. See docs/functions/F3-004c58a0-PathConcat.md in the workspace.
+	// 0x4C58A0.
 	void __cdecl PathConcat(char* pszDestination, const char* pszSuffix)
 	{
 		unsigned int nLength = std::strlen(pszDestination);

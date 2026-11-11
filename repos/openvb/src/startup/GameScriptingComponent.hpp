@@ -41,7 +41,7 @@ namespace F3
 		void* Allocate(std::size_t nBytes);
 		void Free(void* pBlock);
 
-		// Historical controlled-provider fixture retains its own opaque boundary.
+
 		typedef JE::DebugWindow DebugWindow;
 		DebugWindow* GetDebugWindow();
 		void WriteToDebugWindow(DebugWindow* pWindow, const std::string& sText,

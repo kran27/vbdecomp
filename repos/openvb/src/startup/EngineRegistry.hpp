@@ -6,7 +6,7 @@
 namespace F3
 {
 	// All eight original owners share this actual offset-zero IComponent base.
-	// Retain the earlier spelling for callers; this alias creates no second class.
+
 	typedef JE::IComponent GameComponent;
 
 	typedef GameComponent* (*ComponentFactory)();

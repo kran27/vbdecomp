@@ -10,7 +10,7 @@ namespace JE
 	typedef char FindDataAttributesRequired[
 		(offsetof(LegacyFilesystem::FindData32, attrib) == 0) ? 1 : -1];
 
-	// 0x4C56B0. See docs/functions/F3-004c56b0-DirectoryExists.md in the workspace.
+	// 0x4C56B0.
 	bool __cdecl DirectoryExists(const char* pszPath)
 	{
 		LegacyFilesystem::FindData32 data;
@@ -33,7 +33,7 @@ namespace JE
 		return false;
 	}
 
-	// 0x4C5750. See docs/functions/F3-004c5750-CreateDirectories.md in the workspace.
+	// 0x4C5750.
 	bool __cdecl CreateDirectories(const char* pszPath)
 	{
 		char szPath[260];

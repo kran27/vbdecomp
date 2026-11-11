@@ -1,5 +1,5 @@
-// Retained original count policy. ManagerDepthAssign.cpp supplies the connected
-// modern AssignDepth; the older hardware/matching claim is not reinstated.
+
+
 #include "gui/Manager.hpp"
 #include "gui/Interface.hpp"
 #include "gui/Window.hpp"

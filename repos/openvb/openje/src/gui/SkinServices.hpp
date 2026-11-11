@@ -7,8 +7,8 @@ namespace JE { namespace Resources { struct ResourceData; } }
 
 namespace GUI
 {
-	// Explicit source boundary to existing reader/resource implementations whose
-	// headers still need legacy migration. No old object storage is overlaid.
+	// Configuration and resource access for skins.
+
 	namespace SkinServices
 	{
 		BYTE ReadFile(const std::string& name, JE::Configuration::Settings& settings);

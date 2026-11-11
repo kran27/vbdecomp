@@ -68,7 +68,7 @@ namespace JE
 
 		extern ResourceSystem* g_pResourceSystem; // original 0x707DA8
 
-		// Historical source adapter; ordinary ResourceIndex::Initialize owns native setup.
+
 		void InitializeIndex(ResourceIndex& index, Net::UInt32 buckets);
 	}
 }

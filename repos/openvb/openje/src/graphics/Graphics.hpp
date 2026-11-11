@@ -12,9 +12,9 @@ class Gfx_Light;
 struct Gfx_D3DMode;
 namespace JE { namespace Input { struct InputEvent; } }
 
-//Original global RTTI/vtable identity Graphics, not the historical upstream
-//F3 namespace hypothesis. These are the actual frontend's sole member owners;
-//configuration/scene factors are not embedded or copied into this object.
+// Original global RTTI identity: Graphics.
+
+
 struct Graphics
 {
 public:
