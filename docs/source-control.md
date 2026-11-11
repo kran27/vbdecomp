@@ -28,5 +28,5 @@ configuration, databases, game files, SDKs, compiler outputs and archives are
 ignored. Never remove those local files as part of publication cleanup.
 
 The workspace Git history retains the historical material even after it leaves
-the current index. Publication should use the prepared parentless public snapshot
+the current index. Publication should use the prepared clean public snapshot
 branch or source archive, rather than the private workspace history.

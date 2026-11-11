@@ -4,6 +4,8 @@
 /deps/
 /matching/
 /standalone/
+/patches/
+/privatebuild/
 /improvements/
 /.local-history/
 /.source-history/
@@ -73,6 +75,7 @@
 /repos/openvb/.cppcheck-suppress
 /repos/openvb/tracing/
 /repos/openvb/openje/docs/
+/repos/openvb/openje/tests/
 /repos/openvb/openje/Makefile
 /repos/openvb/openje/.clangd
 /repos/openvb/openje/.clang-tidy
