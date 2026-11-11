@@ -1,0 +1,2 @@
+# Compiler-input fingerprints use exact file bytes. Preserve existing line endings.
+* -text

@@ -1,0 +1,22 @@
+{
+  "status": "Existing provisional source adaptation, not an established original WTL dependency and not an exact-match claim.",
+  "original_function": "0x4A1610",
+  "source_donor": {
+    "url": "https://raw.githubusercontent.com/Win32-WTL/WTL/d1cd80e9ce76c4d79da4cf556401ad7a970ce46f/Releases/WTL75_5333_Final.zip",
+    "archive_sha256": "a88ef1a4fc40777d4ea1b96e462b6af80a4cd2e2d72d345a083e47fb3d26ef3f",
+    "member": "include/atlmisc.h",
+    "member_sha256": "2c86d8a5e8299216c96b206a12b75f66095a09e0bb511f95a9f2abb1d72716f1",
+    "function": "CString::FormatV"
+  },
+  "adaptations": [
+    "Use the observed MBCS CRT character/conversion APIs instead of later WTL helpers.",
+    "Apply string precision before minimum width, as in the original instructions.",
+    "Retain original e/g/G cases without the donor uppercase-E case.",
+    "The game-owned allocation, vsprintf, std::string assignment and deletion remain in StringFormat.cpp."
+  ],
+  "origin_limit": "Distinctive scanner structure supports Microsoft CString lineage. Whether the game copied source, adapted it independently, or included an earlier header is unresolved.",
+  "files": {
+    "FormatScanner.inl": "47ac2050205dab933471e4531d5f2c9e9637229620c075252b79157b75741f56",
+    "FormatScanner.LICENSE": "17e786ec099f2b24cd312394ffa5feab15780a88d81686241d6ee2962ab0d528"
+  }
+}

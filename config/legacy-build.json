@@ -1,0 +1,1641 @@
+{
+  "schemaVersion": 1,
+  "defaultTarget": "openvb",
+  "outputDirectory": "build/legacy-vc7",
+  "toolchain": {
+    "compiler": "deps/msvc70/bin/CL.EXE",
+    "librarian": "deps/msvc70/bin/LIB.EXE",
+    "linker": "deps/msvc70/bin/LINK.EXE",
+    "identityManifest": "config/toolchain.json",
+    "expectedSha256": {
+      "compiler": "05be307f04d8c3a9c211b77e85a63992be4642f14b4de31c04f9bb3d7bb1d65f",
+      "librarian": "8973d6e9643ea23e1815623252ee30cecc64dd1ed2071003e889ec2ca3013dca",
+      "linker": "1560d85164dfb763dd13f90f33ff9c6f1cd80f2afada03eed8d0a314593581f1"
+    },
+    "includeDirectories": [
+      "deps/msvc70/include",
+      "deps/psdk2001/include",
+      "deps/dx81/include"
+    ],
+    "libraryDirectories": [
+      "deps/psdk2001/Lib",
+      "deps/msvc70/lib",
+      "deps/dx81/lib",
+      "deps/imports"
+    ],
+    "platformSdkRoot": "deps/psdk2001",
+    "platformSdkVersion": "5.1.3590.2"
+  },
+  "compileOptions": [
+    "/nologo",
+    "/W3",
+    "/EHsc",
+    "/GR",
+    "/Z7",
+    "/showIncludes",
+    "/DWIN32",
+    "/D_WINDOWS",
+    "/DWINVER=0x0400",
+    "/D_WIN32_WINNT=0x0400",
+    "/D_WIN32_WINDOWS=0x0410"
+  ],
+  "configurations": {
+    "Debug": {
+      "compileOptions": [
+        "/MTd",
+        "/Od",
+        "/Ob0",
+        "/RTC1",
+        "/D_DEBUG"
+      ],
+      "linkOptions": [
+        "/DEBUG"
+      ]
+    },
+    "Release": {
+      "compileOptions": [
+        "/MT",
+        "/O2",
+        "/DNDEBUG"
+      ],
+      "linkOptions": []
+    }
+  },
+  "officialDirectXInclude": "deps/dx81/include",
+  "sourceTargets": {
+    "resource-decode": {
+      "sources": [
+        "repos/openvb/openje/src/resources/ResourceDecode.cpp"
+      ],
+      "compileOnly": true,
+      "target": "openvb"
+    },
+    "startup-core": {
+      "sources": [
+        "repos/openvb/src/main.cpp",
+        "repos/openvb/src/F3.cpp",
+        "repos/openvb/src/startup/EngineRegistry.cpp",
+        "repos/openvb/src/startup/EngineComponents.cpp",
+        "repos/openvb/src/startup/ResourcesComponent.cpp",
+        "repos/openvb/src/startup/StringsComponent.cpp",
+        "repos/openvb/src/startup/EngineStringSystem.cpp",
+        "repos/openvb/src/startup/EngineStringTokenResolver.cpp",
+        "repos/openvb/src/startup/NetworkSettings.cpp",
+        "repos/openvb/src/startup/FrameLookupCaches.cpp",
+        "repos/openvb/src/startup/EngineSettings.cpp",
+        "repos/openvb/src/startup/MemorySystem.cpp",
+        "repos/openvb/src/startup/ConsoleCommands.cpp",
+        "repos/openvb/src/startup/Path.cpp",
+        "repos/openvb/src/startup/MessageLoop.cpp",
+        "repos/openvb/src/startup/RandomSeed.cpp",
+        "repos/openvb/src/startup/Random.cpp",
+        "repos/openvb/src/startup/Time32.cpp",
+        "repos/openvb/src/startup/SaveDirectory.cpp",
+        "repos/openvb/src/startup/ConfigurationObject.cpp",
+        "repos/openvb/src/startup/ConfigurationSetup.cpp",
+        "repos/openvb/src/startup/ConfigurationSave.cpp",
+        "repos/openvb/src/startup/LogFileSetup.cpp",
+        "repos/openvb/src/startup/Window.cpp",
+        "repos/openvb/src/startup/Win32InputWindow.cpp",
+        "repos/openvb/src/startup/WindowCallback.cpp",
+        "repos/openvb/src/startup/GameScriptingComponent.cpp",
+        "repos/openvb/src/startup/GraphicsStorage.cpp",
+        "repos/openvb/src/startup/ConsoleCommandDispatch.cpp",
+        "repos/openvb/src/startup/ClientCameraCommands.cpp",
+        "repos/openvb/src/startup/ClientLightingCommands.cpp",
+        "repos/openvb/src/startup/ClientScriptCommands.cpp"
+      ],
+      "compileOnly": true,
+      "target": "openvb"
+    },
+    "game-interfaces": {
+      "sources": [
+        "repos/openvb/src/game/GameInterfaces.cpp"
+      ],
+      "compileOnly": true,
+      "target": "vb-game-entity"
+    },
+    "network-core": {
+      "sources": [
+        "repos/openvb/openje/src/network/Base.cpp",
+        "repos/openvb/openje/src/network/Socket.cpp",
+        "repos/openvb/openje/src/network/Address.cpp",
+        "repos/openvb/openje/src/network/Buffer.cpp",
+        "repos/openvb/openje/src/network/Packet.cpp",
+        "repos/openvb/openje/src/network/Connection.cpp",
+        "repos/openvb/openje/src/network/ConnectionFactory.cpp",
+        "repos/openvb/openje/src/network/NetworkRuntime.cpp"
+      ],
+      "compileOnly": true,
+      "target": "openvb"
+    },
+    "d3d-context": {
+      "sources": [
+        "repos/openvb/openje/src/graphics/D3DContext.cpp",
+        "repos/openvb/openje/src/graphics/D3DServices.cpp"
+      ],
+      "compileOnly": false,
+      "target": "vb-d3d-context"
+    },
+    "matrix-stack": {
+      "sources": [
+        "repos/openvb/openje/src/graphics/MatrixStackBridge.cpp"
+      ],
+      "compileOnly": false,
+      "target": "vb-matrix-stack"
+    },
+    "network-transport": {
+      "sources": [
+        "repos/openvb/openje/src/network/BasePolling.cpp",
+        "repos/openvb/openje/src/network/BufferSerialization.cpp",
+        "repos/openvb/openje/src/network/PacketSerialization.cpp",
+        "repos/openvb/openje/src/network/SocketPackets.cpp",
+        "repos/openvb/openje/src/network/ConnectionTransport.cpp",
+        "repos/openvb/openje/src/network/PeerKeepalive.cpp",
+        "repos/openvb/openje/src/network/ClientSend.cpp",
+        "repos/openvb/openje/src/network/DebugPrint.cpp",
+        "repos/openvb/openje/src/network/ServerBroadcast.cpp",
+        "repos/openvb/openje/src/network/ConnectionUpdates.cpp"
+      ],
+      "compileOnly": true,
+      "target": "openvb"
+    }
+  },
+  "targetCompileOptions": {
+    "small-amx-reference": {
+      "Release": [
+        "/Ob1",
+        "/GS",
+        "/Gy"
+      ]
+    }
+  },
+  "sourceCompileOptions": {
+    "repos/openvb/src/game/GameCreature.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameWeapon.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/AreaMapWindowGeometry.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/AreaMapWindowHit.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/AreaMapWindowMarkers.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptQueryNatives.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/ClientHotKeysLifetime.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/ActionFloatingSpeechText.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/TextureAnimation.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/AnimationCues.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/StreamBuffers.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/NameAgeSexInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/StoreInventoryScreen.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceInitialization.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceOverrides.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/ConsoleCommands.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceDemand.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceSettings.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceHandle.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceOpen.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceSystem.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceCache.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceIndex.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/RenderManagerLifetime.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/Video.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/audio/Audio.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameInventoryEquipment.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/GameInventory.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/model/ModelInstance.cpp": {
+      "Release": [
+        "/Ob1",
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxTrail.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxSprite.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxEffects.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxParticles.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/model/ModelInfo.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxSound.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxWind.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/entity/Combat.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/startup/ConsoleCommandDispatch.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/audio/OptionalAudio.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/audio/Sound.cpp": {
+      "Release": [
+        "/Ob1",
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/audio/SoundInstance.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/DynamicObject.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/entity/Effect.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/CameraController.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/audio/SoundPlayback.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptPartyTransfers.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/startup/GameClient.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/MiniMapInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/Condition.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/Trigger.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/DialogueWindowParticipants.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/DialogueWindowInput.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/EngineInterfaceButtons.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/AreaMapResources.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/AreaMapIconGeometry.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/Label.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/gui/LineSystemGeometry.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/PacketStorage.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/AreaMapIcon.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ActionbarWeapons.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/ActionbarStats.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/Window.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/LogFileSetup.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/JE.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/audio/Music.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/audio/SoundDevice.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/audio/SoundPreset.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/EngineStringTokenResolver.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameDialogueInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameWorld.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/audio/SoundGroups.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/strings/StringSystemInitialize.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/strings/StringSystemLookup.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/OctreeRender.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/OctreeMaterialStates.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/CharacterGenerationStats.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/Map.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/InventoryDisplay.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/CounterControl.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapTriggers.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/TextureManagerCreate.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapNavigation.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ActionbarInput.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapSounds.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapSound.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapEffect.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/Entity.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptNatives.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptNavigationNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptEquipmentNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptDestroyItem.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptItemNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptGiveItem.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptMapTravelNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptSpawnNatives.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptDeathRecords.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptVfxNatives.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptInventoryQueries.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptInventoryNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/openje/src/network/SocketPackets.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/NetworkSettings.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/GameClientFeedbackCommand.cpp": {
+      "Release": [
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptVariableNatives.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptGlobalQueryNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptDamageText.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptDisplayNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptSpeechNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/TextureFile.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptFunctionQueueNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptDialogueLinkNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptDialogueAuxNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/openje/src/network/DialogueManagerBegin.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptDialogueContextNatives.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptMapSoundNative.cpp": {
+      "Release": [
+        "/GS",
+        "/EHs-c-"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptSoundNatives.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameEntityHealth.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/ClientInventoryRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptWorldProgress.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/LineSystemGeometry.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptAreaNatives.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxVeg.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxVegData.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameJournalTasks.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/GameScriptingComponent.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/Packet.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/DialogueManagerUpdate.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/DialogueManagerReplies.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceFormats.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/DialogueManagerContext.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameFloatingTextInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/DialogueManagerAux.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapMetadata.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/GameServerPackets.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/MainMenuInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/MainMenuServices.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerGlobals.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerDamageText.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerSpeech.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerWorldProgress.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/HotKeysOptionsInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/OptionsLoadInterface.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/HotKeysOptionsInput.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/DialogueWindowText.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/ManagerDepth.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/gui/ManagerLists.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/FeedbackMessages.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/GameServer.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineClientFloatingText.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ClientDialogueActions.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ClientHostileActions.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ClientDoorRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ClientPickupRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ClientAttackRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ClientAttackModeRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ClientInventoryEquipmentRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ClientUseRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameSkillMenu.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/GameEquipmentPackets.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerMapTransfer.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerPlayerSpawn.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerInventory.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/ManagerFont.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/ManagerUpdate.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerTeams.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerTeamCommands.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerFog.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerSounds.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerVfx.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerInventoryRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerInventoryDrop.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/ServerCharacterTemplate.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerParty.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerEntityRetirement.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerCutscene.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/Material.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/entity/WorldInitialize.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/WorldVariables.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineClientPolling.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineClientPacketFilter.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/ParticleSystem.cpp": {
+      "Release": [
+        "/Ob1",
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/ParticleSystemPoint.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/ParticleSystemDraw.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/CharacterGenerationAppearance.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/CharacterGenerationSave.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/Camera.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/SkinMeshPacket.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/strings/TokenTable.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceDecode.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/resources/ResourceFileManager.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxEffectData.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/StringFormat.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/Win32Input.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/VfxParameters.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/audio/CDAudio.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapWaterStitch.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/WaterCreate.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DMaterialTextReaders.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/TextParser.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DMeshReaders.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DRecordReaders.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DModel.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DTexture.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DModelReaders.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DTransform.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/GraphicsMathConstants.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DNode.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DLightAttributes.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/G3DSceneAttributes.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/model/AnimationCache.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/model/ModelCache.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameAnimationCache.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/PipBoyAddNoteInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/PipBoyCompilation.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapFog.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/WorldContainerInterface.cpp": {
+      "Release": [
+        "/Ob1",
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/AddressFormat.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/ConsoleInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/ClientConsoleCommands.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/Socket.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/network/Address.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/network/Client.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/ClientPolling.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/Server.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineClientPackets.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineServerPackets.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/ServerPolling.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/PeerKeepalive.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/ClientSend.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/DebugPrint.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/ServerProtocol.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/FontTestInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/TextEditInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/EditTokenInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/AnimationInstanceCollision.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/ClientDebugReport.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/EditInput.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/Edit.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/EditGeometry.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/FontPage.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/LabelResource.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/WindowHint.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/NameLookup.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/PictureTexture.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/Picture.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/FragmentResource.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/FragmentRender.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/gui/LabelText.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/network/EngineClientConnect.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptSampleNative.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameScriptEditTokenNative.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/scripting/ScriptSmall.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/scripting/ScriptDebugger.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/DebugToolsInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/ClientGraphicsCommands.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/GraphicsCommands.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/gui/RuntimeBoundaries.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/ClientWorldRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/ClientEntityRequests.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapFogIO.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/OptionsControls.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/game/CharacterGenerationChoices.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/LoadMapInterface.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/ClientCursorInventory.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/ClientCursor.cpp": {
+      "Release": [
+        "/GS",
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/entity/EntitySnapshot.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/MapSnapshot.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/game/GameEffectDamage.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/diagnostics/DebugOutput.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/filesystem/FileOperations.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/configuration/ConfigurationWrite.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/ConfigurationSetup.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/src/startup/ConfigurationSave.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/filesystem/Directories.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/diagnostics/LogFile.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/Store.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/entity/WorldMaps.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/entity/WorldMapRead.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/entity/EncyclopediaRead.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/Water.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/ModelDataBuilder.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/ModelInstance.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/openje/src/graphics/CubeTexture.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/NetworkRuntime.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    },
+    "repos/openvb/openje/src/network/ServerBroadcast.cpp": {
+      "Release": [
+        "/Ob1"
+      ]
+    },
+    "repos/openvb/src/startup/SaveDirectory.cpp": {
+      "Release": [
+        "/GS"
+      ]
+    }
+  },
+  "python": ".venv/Scripts/python.exe",
+  "targetManifest": "config/build-targets.json",
+  "generatedDirectory": "build/generated"
+}

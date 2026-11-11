@@ -1,0 +1,4 @@
+build/*
+obj/*
+vc70.pdb
+log.txt

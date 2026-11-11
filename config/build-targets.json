@@ -1,0 +1,5009 @@
+{
+  "schemaVersion": 1,
+  "targets": [
+    {
+      "id": "dx81-sample-font",
+      "name": "dx81-sample-font",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "dx81-sample-font.lib"
+        }
+      ],
+      "dependencies": [],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "deps/dx81-font/include"
+            },
+            {
+              "path": "deps/dx81/include"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "deps/dx81-font/src/d3dfont.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "openvb",
+      "name": "openvb",
+      "type": "EXECUTABLE",
+      "artifacts": [
+        {
+          "path": "F3-openvb.exe"
+        },
+        {
+          "path": "F3-openvb.pdb"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "vb-g3d-render"
+        },
+        {
+          "id": "vb-game-entity"
+        },
+        {
+          "id": "small-amx-reference"
+        },
+        {
+          "id": "small-console-reference"
+        },
+        {
+          "id": "vb-d3d-mode-order"
+        },
+        {
+          "id": "zlibstatic"
+        },
+        {
+          "id": "dx81-sample-font"
+        },
+        {
+          "id": "vb-window"
+        },
+        {
+          "id": "vb-octree"
+        },
+        {
+          "id": "vb-matrix-stack"
+        },
+        {
+          "id": "vb-g3d-model"
+        },
+        {
+          "id": "vb-gui-base"
+        },
+        {
+          "id": "vb-preview-resources"
+        },
+        {
+          "id": "vb-octree-render"
+        },
+        {
+          "id": "vb-audio"
+        }
+      ],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/src"
+            },
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "build/generated/small-amx-host"
+            },
+            {
+              "path": "src/dependencies/small-script/src"
+            },
+            {
+              "path": "deps/dx81/include"
+            },
+            {
+              "path": "src/dependencies/zlib-1.1.4"
+            },
+            {
+              "path": "deps/dx81-font/include"
+            },
+            {
+              "path": "build/generated/small-console"
+            },
+            {
+              "path": "deps/dx81-audio/include"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/src/main.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/F3.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/EngineRegistry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/EngineComponents.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ResourcesComponent.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/StringsComponent.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/EngineStringTokenResolver.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/EngineStringSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/NetworkComponent.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/NetworkSettings.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GameServer.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GameClient.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientCommandExecution.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientScriptCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientConsoleCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientGraphicsCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientWorldCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientWorldRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/FrameLookupCaches.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/EngineSettings.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/MemorySystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ConsoleCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/Path.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/MessageLoop.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/RandomSeed.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/Random.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/RandomFloat.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/RandomInteger.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/Time32.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/SaveDirectory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ConfigurationObject.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ConfigurationSetup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ConfigurationSave.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/LogFileSetup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/Window.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/Win32InputWindow.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/WindowCallback.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GameScriptingComponent.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/JE.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/diagnostics/DebugOutput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/diagnostics/LogFile.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/configuration/ConfigurationParse.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/configuration/ConfigurationRead.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/configuration/ResourceConfigurationRead.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/configuration/ConfigurationWrite.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/configuration/ConfigurationGetters.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceFormats.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceIndex.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceSettings.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceDecode.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceOverrides.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceFileManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceInitialization.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceLock.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceCache.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceOpen.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceHandle.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceDemand.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/StringTable.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/StringSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/StringSystemInitialize.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/StringSystemLookup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/TokenTable.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/NetworkRuntime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/Base.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/Server.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/Client.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClient.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientInitialize.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/Connection.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ConnectionFactory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServer.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/DialogueManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/Address.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/Socket.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/Buffer.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/Packet.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PointerCapture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/Directories.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/FileOperations.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/LegacyFilesystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/CurrentDirectory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/SplitPath.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/BufferSerialization.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/PacketSerialization.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/SocketPackets.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ConnectionTransport.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/PeerKeepalive.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ClientSend.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/DebugPrint.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ServerBroadcast.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/BasePolling.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ConnectionUpdates.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientEntityCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientEntityRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientMediaCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientMemoryCommand.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/Video.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VideoFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GraphicsStorage.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientDialogue.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerPackets.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerUpdates.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientPackets.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientPacketFilter.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientUpdates.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientCameraFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/BufferReaders.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GameClientPackets.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GameClientActionbar.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GameClientFeedbackCommand.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ConsoleCommandDispatch.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientCameraCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientLightingCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GameServerPackets.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameServerWeather.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameServerEquipment.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerPolling.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerScriptStep.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientPipBoyCommand.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientUseSkillCommand.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/CriticalSection.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ClientPolling.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ClientBinding.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ServerPolling.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ServerBinding.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ServerProtocol.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/AddressFormat.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientPolling.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientConnect.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientBinding.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GameClientBinding.cpp",
+          "compileGroupIndex": 0
+        }
+      ],
+      "link": {
+        "commandFragments": [
+          {
+            "fragment": "/subsystem:windows",
+            "role": "flags"
+          },
+          {
+            "fragment": "/NODEFAULTLIB:LIBC",
+            "role": "flags"
+          },
+          {
+            "fragment": "/NODEFAULTLIB:libci",
+            "role": "flags"
+          },
+          {
+            "fragment": "/NODEFAULTLIB:amdmath",
+            "role": "flags"
+          },
+          {
+            "fragment": "user32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "gdi32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "winmm.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "shell32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "ws2_32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "zlibstatic.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-gui-base.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-d3d-mode-order.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "deps/imports/d3d8.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-g3d-render.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-game-entity.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-octree-render.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "deps/imports/binkw32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-audio.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "winmm.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-g3d-render.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-octree-render.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-octree.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-gui-base.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "dx81-sample-font.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "deps/dx81-errors/lib/DxErr8.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-preview-resources.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "zlibstatic.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-matrix-stack.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "deps/dx81/lib/d3dx8.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "advapi32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-window.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "user32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "gdi32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "shell32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "winmm.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "vb-g3d-model.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "granny21/granny21.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "small-console-reference.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "small-amx-reference.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "deps/adecode94/lib/Adecode.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "deps/dx81-audio/lib/dsound.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "deps/dx81-audio/lib/dxguid.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "deps/dx81-audio/lib/strmiids.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "ole32.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "uuid.lib",
+            "role": "libraries"
+          },
+          {
+            "fragment": "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+            "role": "libraries"
+          }
+        ]
+      }
+    },
+    {
+      "id": "small-amx-reference",
+      "name": "small-amx-reference",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "small-amx-reference.lib"
+        }
+      ],
+      "dependencies": [],
+      "compileGroups": [
+        {
+          "language": "C",
+          "defines": [],
+          "includes": [
+            {
+              "path": "build/generated/small-amx-host"
+            },
+            {
+              "path": "src/dependencies/small-script/src"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "build/generated/small-amx-host/amx.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "build/generated/small-amx-host/float.c",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "small-compiler-reference",
+      "name": "small-compiler-reference",
+      "type": "EXECUTABLE",
+      "artifacts": [
+        {
+          "path": "small-compiler-reference.exe"
+        },
+        {
+          "path": "small-compiler-reference.pdb"
+        }
+      ],
+      "dependencies": [],
+      "compileGroups": [
+        {
+          "language": "C",
+          "defines": [],
+          "includes": [],
+          "compileCommandFragments": [
+            {
+              "fragment": "/FIbuild/generated/small-amx-host/amx.h"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/dependencies/small-script/src/sc1.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/small-script/src/sc2.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/small-script/src/sc3.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/small-script/src/sc4.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/small-script/src/sc5.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/small-script/src/sc6.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/small-script/src/sc7.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/small-script/src/scvars.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/small-script/src/sclist.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/small-script/src/scexpand.c",
+          "compileGroupIndex": 0
+        }
+      ],
+      "link": {
+        "commandFragments": [
+          {
+            "fragment": "/subsystem:console",
+            "role": "flags"
+          },
+          {
+            "fragment": "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+            "role": "libraries"
+          }
+        ]
+      }
+    },
+    {
+      "id": "small-console-reference",
+      "name": "small-console-reference",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "small-console-reference.lib"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "small-amx-reference"
+        }
+      ],
+      "compileGroups": [
+        {
+          "language": "C",
+          "defines": [],
+          "includes": [
+            {
+              "path": "build/generated/small-console"
+            },
+            {
+              "path": "build/generated/small-amx-host"
+            },
+            {
+              "path": "src/dependencies/small-script/src"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "build/generated/small-console/small_console.c",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-audio",
+      "name": "vb-audio",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-audio.lib"
+        }
+      ],
+      "dependencies": [],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/src"
+            },
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "deps/dx81-audio/include"
+            },
+            {
+              "path": "deps/dx81/include"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/audio/Audio.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/AudioFactory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/AudioBackend.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundInstanceManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/OptionalAudio.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/CDAudio.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundGroups.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/Music.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundPlayback.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundDevice.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundFile.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundPreset.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/Sound.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundAcm.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundInstance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/audio/SoundInstanceServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GameAudio.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/AudioServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ConfigurationObject.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/EngineSettings.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-d3d-context",
+      "name": "vb-d3d-context",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-d3d-context.lib"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "vb-d3d-mode-order"
+        },
+        {
+          "id": "vb-window"
+        },
+        {
+          "id": "vb-matrix-stack"
+        }
+      ],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "deps/dx81/include"
+            },
+            {
+              "path": "repos/openvb/src"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DContext.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DServices.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-d3d-mode-order",
+      "name": "vb-d3d-mode-order",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-d3d-mode-order.lib"
+        }
+      ],
+      "dependencies": [],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "deps/dx81/include"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DModeOrder.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-g3d-model",
+      "name": "vb-g3d-model",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-g3d-model.lib"
+        }
+      ],
+      "dependencies": [],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "deps/dx81/include"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DModel.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DModelReaders.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DTransform.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DNode.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DLightAttributes.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DSceneAttributes.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DMeshReaders.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DRecordReaders.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DMaterialTextReaders.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DTexture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextParser.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DWaterTile.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-g3d-render",
+      "name": "vb-g3d-render",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-g3d-render.lib"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "small-amx-reference"
+        },
+        {
+          "id": "zlibstatic"
+        },
+        {
+          "id": "dx81-sample-font"
+        },
+        {
+          "id": "vb-window"
+        },
+        {
+          "id": "vb-octree"
+        },
+        {
+          "id": "vb-matrix-stack"
+        },
+        {
+          "id": "vb-g3d-model"
+        },
+        {
+          "id": "vb-gui-base"
+        },
+        {
+          "id": "vb-preview-resources"
+        },
+        {
+          "id": "vb-octree-render"
+        }
+      ],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "deps/dx81-errors/include"
+            },
+            {
+              "path": "deps/dx81-audio/include"
+            },
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "deps/dx81/include"
+            },
+            {
+              "path": "src/dependencies/zlib-1.1.4"
+            },
+            {
+              "path": "deps/dx81-font/include"
+            },
+            {
+              "path": "repos/openvb/src"
+            },
+            {
+              "path": "build/generated/small-amx-host"
+            },
+            {
+              "path": "src/dependencies/small-script/src"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DMeshExport.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/ActionEquipment.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineMapName.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/Water.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/WaterTile.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/WaterTileGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/WaterTileUpdate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DMeshCopy.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/CameraControlDistance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldBucketMutations.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityPacketMutations.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsScene.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsProjectedShadows.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsFogOfWar.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsShadowMode.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsLightingState.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsConfiguration.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsSettings.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsInitialize.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/GraphicsServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsDeviceState.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsFiltering.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsPresentation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/CameraControl.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ClientInput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ClientDebugReport.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ClientHotKeysLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ClientSelectionBinding.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientIdentity.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ClientCursor.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ClientCursorActions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxDamageSocket.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ClientWorldActions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerTeams.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerTeamCommands.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerGlobals.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerSpeech.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerDamageText.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerFog.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerWorldProgress.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineClientFloatingText.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/FloatingTextInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/FloatingTextMessages.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DialogueAppearance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DialogueInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DialogueWindow.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DialogueWindowLayout.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DialogueWindowText.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DialogueWindowParticipants.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DialogueWindowPortrait.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DialogueWindowInput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ReplyLabel.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WorldContainerInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WorldContainerInput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ScrollBar.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/EngineInterfaceButtons.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/ClientInventoryRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerInventoryRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerInventoryDrop.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerPlayerSpawn.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerMapTransfer.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerCutscene.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/DialogueManagerBegin.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/DialogueManagerUpdate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/DialogueManagerContext.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/DialogueManagerReplies.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/DialogueManagerAux.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/DialogueManagerLink.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerVfx.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerEntityRetirement.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerParty.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerClientIDs.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapEntrySpawn.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldVariables.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldGlobals.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapSound.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapSounds.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapMetadata.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapNavigation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Trigger.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EffectTreeTrigger.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EffectTreeTriggers.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapTriggers.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/ModelInstanceAmbient.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelInstanceAmbient.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/InventoryResource.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapHeightInfluence.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ClientPicking.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/Input.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/Win32Input.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/GraphicsInput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsLevelResources.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MapMaskManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MapMaskRaster.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/AutomapDimensions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxParameters.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxFormats.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxEffectData.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxVegData.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxEffects.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxWater.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureResource.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxSprite.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxLight.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxLightWorld.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxTrail.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxModelEffect.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxMotionBlur.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxModelData.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxModel.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxLightningMesh.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxLightningGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxParticles.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxWeatherData.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxWind.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxWeather.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxRainGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxSnowGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ParticleSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ParticleSystemDraw.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxCollision.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxSound.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/VfxVeg.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/VisualEffect.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Effect.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Condition.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldEffects.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityEffects.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityVfxLookup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/G3DLegacyMesh.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GrannyRuntime21.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/AnimationObject.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/AnimationData.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/AnimationCues.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/AnimationInstance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/AnimationInstanceCollision.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/AnimationInstanceSnapshot.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinMesh.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinMeshPacket.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinMeshDraw.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelMesh.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelMeshPacket.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelNode.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelInstance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelInstanceFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelInstanceAfterimages.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelInstanceEffect.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelInstanceLighting.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureAtlas.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/LineSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/LineSystemDraw.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/LineSystemGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/LineSystemSegments.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ParticleSystemRibbon.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ParticleSystemAfterimage.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ParticleSystemPoint.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ParticleSystemModel.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/DynamicObject.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Chunk.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WriteString.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityWrite.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntitySnapshot.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapSnapshot.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldSnapshot.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Entity.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityRender.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityVisibility.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapVisibility.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityMessages.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityClientFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityLighting.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityLifecycle.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/SpatialFootprint.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Gregorian.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Combat.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/PathManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/PathCoordinates.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/PathRequest.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/PathTraversal.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/PathSearch.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/PathRoute.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldCollections.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Store.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldInitialize.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EncyclopediaRead.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldMapRead.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldMaps.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldClientMaps.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldVisible.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldLightScratch.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapGrid.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapGridQueries.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityTraversal.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityMovement.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapGridServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapFog.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapGraphics.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapFogSettings.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapRead.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapEffect.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Action.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/ActionMoveTo.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/ActionWait.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityActions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/ActionMessage.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldMessageGroups.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntitySchedule.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityUpdate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityScript.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/scripting/ScriptSmall.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/scripting/ScriptDebugger.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/scripting/ScriptEnvironment.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityEnvironment.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/World.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityResourceTypes.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Map.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapWater.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapWaterStitch.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Water.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WaterCreate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/WaterTileModelInstance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/Inventory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelData.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelDataBuilder.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelDataRegistration.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ModelDataManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MeshShadowGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/ModelServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/ModelCache.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/ModelInfo.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/ModelInstance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/ModelInstanceLighting.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/ModelInstanceFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/ModelTexture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/model/AnimationCache.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/MapFogIO.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-game-entity",
+      "name": "vb-game-entity",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-game-entity.lib"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "vb-g3d-render"
+        },
+        {
+          "id": "small-amx-reference"
+        },
+        {
+          "id": "small-console-reference"
+        },
+        {
+          "id": "zlibstatic"
+        },
+        {
+          "id": "dx81-sample-font"
+        },
+        {
+          "id": "vb-window"
+        },
+        {
+          "id": "vb-octree"
+        },
+        {
+          "id": "vb-matrix-stack"
+        },
+        {
+          "id": "vb-g3d-model"
+        },
+        {
+          "id": "vb-gui-base"
+        },
+        {
+          "id": "vb-preview-resources"
+        },
+        {
+          "id": "vb-octree-render"
+        }
+      ],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/src"
+            },
+            {
+              "path": "deps/dx81-audio/include"
+            },
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "deps/dx81/include"
+            },
+            {
+              "path": "src/dependencies/zlib-1.1.4"
+            },
+            {
+              "path": "deps/dx81-font/include"
+            },
+            {
+              "path": "build/generated/small-amx-host"
+            },
+            {
+              "path": "src/dependencies/small-script/src"
+            },
+            {
+              "path": "build/generated/small-console"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/src/game/GameEntity.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameProjectile.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntitySelectable.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEquipmentActions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEquipmentPackets.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityEquipmentAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityEffects.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityFootprint.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GamePathManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameWorldCollections.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityActivation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityCrouchAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionIdle.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionMoveTo.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionGive.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionWait.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameDoor.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameContainer.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameDoorFootprint.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameDoorHeights.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameDoorAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionOperateDoor.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionOperateContainer.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityMovementAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameAnimationCache.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptTeamNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptSpatialNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptVariableNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptGlobalQueryNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptValueNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptQueryNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptCalendarNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptNavigationNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptMapContext.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptCellOutput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptWanderNative.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptSpeechNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDamageText.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptStoreNative.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameFloatingTextInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameDialogueInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameDialogueInterfaceFactory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameDialogueInterfaceCursor.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameDialogueWindow.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameDialogueServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameWorldContainerServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/InventoryInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/InventoryModel.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/InventoryInput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/InventoryInputNetwork.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/InventoryPopulation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/InventoryDisplay.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientInventoryEquipmentRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientCursorInventory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarLayout.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarSelection.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarStats.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarParty.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarInput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarPopup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarWeapons.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ActionbarFeedbackMode.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/FeedbackInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/FeedbackMessages.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/FeedbackLayout.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/FeedbackServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/MiniMapInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/MiniMapServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/EscapeMenuInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameClientEscapeMenu.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/OptionsInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/MainMenuInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameInterfaces.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/LoadMapInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/MainMenuServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/CharacterGenerationChoices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/CharacterGenerationInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/CharacterGenerationStats.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/CharacterGenerationAppearance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/CharacterGenerationSave.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/MessageBoxInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/NameAgeSexInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameCharacterWrite.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/LoadingBarInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/PipBoyCompilation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/PipBoyAddNoteInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ClientNewGameCommand.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ServerCharacterTemplate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameWorldReset.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/OptionsServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameHotKeys.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/OptionsControls.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameOptionsInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/HotKeysOptionsInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/HotKeysOptionsInput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/OptionsLoadInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/OptionsMultiplayerInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/OptionsVideoInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameClientOptions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/AreaMapIcon.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/AreaMapIconGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/AreaMapWindow.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/AreaMapWindowHit.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/AreaMapWindowGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/AreaMapWindowMarkers.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/AreaMapWindowCamera.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/AreaMapResources.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/CounterControl.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/POIPicture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/POIWaypoint.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/WorldMapInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/StoreInventoryScreen.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/StoreCatalogueScreen.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/InterfaceMessageScreen.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameAttackModeSelection.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientAttackModeRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameServerReloadRequest.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptJournalNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptPlayerNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptPartyNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptAreaNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptPointNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptMessageNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptParameterValidation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptMessageGroups.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDialogueNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDialogueContextNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDialogueAuxNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDialogueLinkNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientDialogueActions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientHostileActions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptCombatQuery.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDeathRecords.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDialogueAvailability.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptRestStatus.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptWeaponRange.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDisplayNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptFogNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptWorldProgress.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionInitiateDialogue.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionUseSkill.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityUseSkill.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientSkillActions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameSkillMenu.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptFunctionQueueNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptHealthNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptItemNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptEntityActivationNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityHealth.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameCreatureAttackMode.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionAttack.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionAttackSeries.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameCreatureCombat.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionAttackDamage.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEffect.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEffectDamage.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityDamageAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameWorldEffects.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameWeaponTargets.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameWeaponCombat.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameWeaponAmmunition.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionReload.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionDie.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionPickUp.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityPickupAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/ActionPickUp.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptPickupNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDoorNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptKillNative.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptGiveItem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptInventoryNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptInventoryQueries.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptPartyTransfers.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameItemCopy.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityCopy.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerInventory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptSoundNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptMusicNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptMapSoundNative.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptHideInterfacesNative.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptSampleNative.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptEditTokenNative.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDebugNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDebugState.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntitySounds.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerSounds.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityDeathAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/ActionDie.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/WorldTeams.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptReloadNative.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityReloadAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientAttackRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientPickupRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientDoorRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/ClientUseRequests.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptMovementModeNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptEquipmentNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptGameEntityContext.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/EntityContextActions.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameEntityAttackAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptAttackNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptMapTravelNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptCutsceneNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptVfxNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptEntityLifetimeNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptSpawnNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptModelNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptDestroyItem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptObjectSearch.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptAttitudeNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptCreatureNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameCreatureStats.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameScriptSightNatives.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntitySight.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/AreaMapSight.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GamePlayerAppearance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameJournalTasks.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionFloatingSpeechText.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/ActionFloatingSpeechText.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/EngineStringTokenResolver.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/EngineStringSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/StringSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/StringSystemInitialize.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/StringSystemLookup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/StringTable.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/strings/TokenTable.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameActionWander.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/ActionWander.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/GregorianDifferences.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/entity/EntityValues.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameCreature.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/AttackMode.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameCreatureActionPoints.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameCreatureActivation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GamePlayer.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameItem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameArmor.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameWeapon.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameAmmo.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameUsableObject.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/EntityTypes.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameWorld.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameMap.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameInventory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/GameInventoryEquipment.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ConsoleInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DebugWindow.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/DebugToolsInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FontTestInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/TextEditInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/EditTokenInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/LabelAccessors.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/network/EngineServerDebug.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/PipBoyMapBounds.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/game/PipBoyMapPosition.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-gui-base",
+      "name": "vb-gui-base",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-gui-base.lib"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "zlibstatic"
+        },
+        {
+          "id": "dx81-sample-font"
+        },
+        {
+          "id": "vb-matrix-stack"
+        },
+        {
+          "id": "vb-preview-resources"
+        }
+      ],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "deps/dx81/include"
+            },
+            {
+              "path": "repos/openvb/src"
+            },
+            {
+              "path": "deps/dx81-errors/include"
+            },
+            {
+              "path": "deps/dx81-audio/include"
+            },
+            {
+              "path": "src/dependencies/zlib-1.1.4"
+            },
+            {
+              "path": "deps/dx81-font/include"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/gui/Base.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/Interfaces.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ResourceIO.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ResourceString.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowResource.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FragmentResource.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/InterfaceResource.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowFactory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowReadAccessors.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/Button.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/Picture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PictureTexture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowCursorSupport.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/RuntimeBoundaries.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FileString.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/configuration/ConfigurationParse.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/configuration/ConfigurationRead.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/configuration/ResourceConfigurationRead.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/Font.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FontPage.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerFont.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/Label.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/LabelText.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FloatingLabel.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/EngineInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowHint.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/NameLookup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/LabelResource.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/LabelGetLineText.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/LabelMapMetrics.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/LineSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/LineSystemClip.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/LineSystemGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerSkin.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/Skin.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/SkinParse.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/SkinLoad.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/SkinServices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowProfile.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/TextureMaskCacheLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerState.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerLists.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerModal.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerCapture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerWindow.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerInterfaces.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerDepth.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerDepthAssign.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerResolution.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerRender.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerUpdate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerMouse.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerKeyboard.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowRendering.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowOwnership.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowAccessors.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowEvents.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowHitTesting.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowAppearance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowPositionAliases.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowDepth.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/WindowCapture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/InterfaceLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FadeManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/Edit.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/EditInput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/EditGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/InterfaceWindowOwnership.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/InterfaceFrames.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/InterfaceAccessors.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/InterfaceHitTesting.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/InterfaceDepth.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/InterfaceVisibility.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerGlobal.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerHandles.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerRegister.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerRelease.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerLoad.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureLoadBuffer.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureFile.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureAnimation.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureAnimationLines.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerFile.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/CubeTexture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureCreate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureCopy.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerCreate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureFrameClear.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinManagerLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinManagerHandles.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinManagerVisit.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinMeshDevice.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureMetadata.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DTextureFormat.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/BaseResource.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/HeapTracker.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FragmentRender.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PacketFlush.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PacketBatches.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PacketBuffer.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PacketBufferLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PacketStorage.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MeshIndexMetadata.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FragmentMaterial.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FragmentLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FragmentGeometry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FragmentUV.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/FragmentHit.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PacketSubmit.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PacketLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/TextureMaskTest.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/TextureMaskLoad.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/TextureMaskCache.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/ManagerTextureMask.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerLookup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureLock.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/Material.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MaterialColor.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MaterialGetColor.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureParameters.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MaterialSet.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MaterialSetCopy.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MaterialSetColor.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/Primitive.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MeshData.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MeshMetadata.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DMode.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DInitialize.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DStatistics.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DTexture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DStateCache.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DDeviceCreate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DDeviceReset.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MeshInstance.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MeshInstanceCopy.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/StreamBuffers.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/BufferManagerSetup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/BufferManagerLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/BufferDeviceChange.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/BufferManagerGlobal.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderUpload.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderDraw.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderManagerLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/StoredBuffers.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/BufferHandles.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/BufferCleanup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/BufferStoredRelease.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/PacketDataQueries.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/PacketLights.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/PacketObjectLights.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/Camera.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/CameraController.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/CameraLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsBaseObject.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GraphicsMathConstants.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ViewportLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ViewportCameraController.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ViewportConfiguration.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderViewportQuad.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/CameraPrepare.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ViewportRender.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/ViewportState.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureClear.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderSkins.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderClear.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/DebugSphereRecycle.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/DebugSphereLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/DebugSphereReset.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderStyle.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/BuiltinVertexShaders.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderStyleRegistry.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseEmissive.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSExpand.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseHeightFog.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseHeightFogFOW.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseLightmapHeightFog.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseLightmapHeightFogFOW.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSSKBaseLightmapHeightFog.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSSKBaseLightmapHeightFogFOW.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/HeightFog.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderHeightFog.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureDiagnosticName.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseTextureTransform.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/BufferRecord.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DDrawState.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBase.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseFOW.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseLightmapFogOfWar.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSSKBaseLightmapFOW.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/FogOfWarTextureMatrix.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseLightmap.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSBaseLightmapMethods.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSSKBaseLightmap.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RSSKBaseLightmapMethods.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureTransform.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderSubmission.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineQueue.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineViewports.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineTextureLookup.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineTextureOperations.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineQueries.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineRenderSettings.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineGeometryOperations.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineLevelOperations.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineDevice.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineFactory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderProjectedShadows.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/RenderDebugLights.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinningProjectedShadow.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineDiagnostics.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/D3DDeviceModes.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/TextureManagerVideo.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineStatistics.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineFogOfWar.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineProjectedShadows.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineAutomap.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SystemInterface.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineUpdate.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineFrameState.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/EngineClock.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/WaterSampling.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/Skinning.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/SkinningLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/GfxColor4.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/StringFormat.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-matrix-stack",
+      "name": "vb-matrix-stack",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-matrix-stack.lib"
+        }
+      ],
+      "dependencies": [],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "deps/dx81/include"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/graphics/MatrixStackBridge.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-octree",
+      "name": "vb-octree",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-octree.lib"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "zlibstatic"
+        },
+        {
+          "id": "dx81-sample-font"
+        },
+        {
+          "id": "vb-matrix-stack"
+        },
+        {
+          "id": "vb-gui-base"
+        },
+        {
+          "id": "vb-preview-resources"
+        }
+      ],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "deps/dx81/include"
+            },
+            {
+              "path": "src/dependencies/zlib-1.1.4"
+            },
+            {
+              "path": "deps/dx81-font/include"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/graphics/Octree.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeFile.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeResourceInput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeSpatial.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeShape.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeRing.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeWeaponShapes.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeLighting.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeVertices.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeVertexPacking.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeVisibility.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeCamera.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeCameraQueries.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeCulling.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeScene.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeUnresolved.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeQueries.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeRayQueries.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-octree-render",
+      "name": "vb-octree-render",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-octree-render.lib"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "zlibstatic"
+        },
+        {
+          "id": "dx81-sample-font"
+        },
+        {
+          "id": "vb-window"
+        },
+        {
+          "id": "vb-octree"
+        },
+        {
+          "id": "vb-matrix-stack"
+        },
+        {
+          "id": "vb-gui-base"
+        },
+        {
+          "id": "vb-preview-resources"
+        }
+      ],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "deps/dx81/include"
+            },
+            {
+              "path": "deps/dx81-errors/include"
+            },
+            {
+              "path": "src/dependencies/zlib-1.1.4"
+            },
+            {
+              "path": "deps/dx81-font/include"
+            },
+            {
+              "path": "repos/openvb/src"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeRender.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeLights.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeRenderLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeRenderInitialize.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeMaterialStates.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeSubmit.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeFloor.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/OctreeFrame.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/MaterialValues.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/LightLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/graphics/PacketDataLifetime.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceMemoryStream.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-preview-resources",
+      "name": "vb-preview-resources",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-preview-resources.lib"
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "zlibstatic"
+        }
+      ],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/openje/src"
+            },
+            {
+              "path": "src/dependencies/zlib-1.1.4"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceSystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceIndex.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceSettings.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceOverrides.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceFormats.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceLock.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceCache.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceFileManager.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceDecode.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/configuration/ConfigurationGetters.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/Directories.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/FileOperations.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/LegacyFilesystem.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/JE.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/diagnostics/DebugOutput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceWrite.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceInitialization.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceOpen.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceHandle.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/resources/ResourceDemand.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "vb-window",
+      "name": "vb-window",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "vb-window.lib"
+        }
+      ],
+      "dependencies": [],
+      "compileGroups": [
+        {
+          "language": "CXX",
+          "defines": [],
+          "includes": [
+            {
+              "path": "repos/openvb/src"
+            },
+            {
+              "path": "repos/openvb/openje/src"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "repos/openvb/src/startup/Window.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/WindowCallback.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/MessageLoop.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/ConfigurationObject.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/SaveDirectory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/src/startup/Path.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/gui/PointerCapture.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/JE.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/diagnostics/DebugOutput.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/CurrentDirectory.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/SplitPath.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/Directories.cpp",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "repos/openvb/openje/src/filesystem/LegacyFilesystem.cpp",
+          "compileGroupIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "zlibstatic",
+      "name": "zlibstatic",
+      "type": "STATIC_LIBRARY",
+      "artifacts": [
+        {
+          "path": "zlibstatic.lib"
+        }
+      ],
+      "dependencies": [],
+      "compileGroups": [
+        {
+          "language": "C",
+          "defines": [],
+          "includes": [
+            {
+              "path": "src/dependencies/zlib-1.1.4"
+            }
+          ],
+          "compileCommandFragments": []
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/dependencies/zlib-1.1.4/adler32.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/compress.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/crc32.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/deflate.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/gzio.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/infblock.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/infcodes.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/inffast.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/inflate.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/inftrees.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/infutil.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/trees.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/uncompr.c",
+          "compileGroupIndex": 0
+        },
+        {
+          "path": "src/dependencies/zlib-1.1.4/zutil.c",
+          "compileGroupIndex": 0
+        }
+      ]
+    }
+  ]
+}

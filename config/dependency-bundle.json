@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "manifestSha256": "b29aec3a77ede8dcb5cd5f18b1af1b0fec88a18a45200287977f1698a65ce44b",
+  "archive": {
+    "filename": "vbdecomp-dependencies-v3.zip",
+    "url": null,
+    "size": 37982152,
+    "sha256": "e78e0e6f321eb101b6031f9985dac6f44aaa2690d3da1cb14e0a2c4e36fdb600"
+  },
+  "components": {
+    "msvc70": "Microsoft VC7 13.00.9466, LINK/LIB 7.00.9466 and original CRT/STL",
+    "psdk2001": "Microsoft Platform SDK, November 2001, 5.1.3590.2",
+    "dx81": "Microsoft DirectX 8.1 SDK headers and D3DX library",
+    "dx81-audio": "DirectX 8.1 audio declarations and import libraries",
+    "dx81-errors": "DirectX 8.1 error helper",
+    "dx81-font": "DirectX 8.1 font sample",
+    "dx81-samples": "DirectX 8.1 common sample sources",
+    "adecode94": "Retained Interplay ACM decoder archive"
+  },
+  "scope": "Extracted original tools, SDKs and historical libraries; no game files or replacement runtimes. Original notices are retained inside each component."
+}

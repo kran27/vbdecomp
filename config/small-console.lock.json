@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "purpose": "Reuse supplied Small console formatting with original F3 callbacks; no proprietary progress for dependency routines",
+  "source": {
+    "path": "src/amxcons.c",
+    "sha256": "f1c7b2d8e88684ad237edfa51a05be838d39bbb8476389ad2e6f0b19657d2a8d"
+  },
+  "extracted_functions_sha256": "6d818cc7d4c3ce2852c45e1e8c6a0daa3869c9f0e84de9a76e1c1aab74dd0772",
+  "outputs": {
+    "small_console.c": "e79976b3b1fd4c8756e75de78e38b41a212361bb7bcafbc7228e44c7a632463b",
+    "small_console.h": "22f873bbd4231f6cf2e0c04dc226e6b8c4d6b108a0741f148d987fc1d93db051"
+  },
+  "dependency_original_addresses": {
+    "printstring": "0x5c3480",
+    "dochar": "0x5c35a0"
+  },
+  "game_callback_original_addresses": {
+    "F3_DebugPutChar": "0x5c32f0",
+    "F3_DebugPrintf": "0x5c3320"
+  },
+  "adaptations": [
+    "Retain upstream printstring loops and error policy",
+    "Retain only original F3 percent,c,d,f,s cases; omit upstream r alias, fixed-point and x cases",
+    "Route upstream output calls through game VM-aware buffer callbacks"
+  ],
+  "evidence": "analysis/script-debug-natives-v1/original-evidence.json",
+  "compiled_as": "C",
+  "dependency_code_adds_proprietary_progress": false
+}

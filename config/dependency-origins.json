@@ -1,0 +1,73 @@
+{
+  "dx81": {
+    "sdk": "Microsoft DirectX 8.1 SDK",
+    "original_url": "http://download.microsoft.com/download/whistler/dx/8.1/W982KMeXP/EN-US/DX81SDK_FULL.exe",
+    "archive": {
+      "url": "https://web.archive.org/web/20040108202259id_/http://download.microsoft.com/download/whistler/dx/8.1/W982KMeXP/EN-US/DX81SDK_FULL.exe",
+      "size": 173778784,
+      "sha256": "73f6791e0ae7f8a1d74f71d8ebe517a79c0cbf03fd344424696fd7a3816d2d02",
+      "sha1": "61b5733209205e942f37431ee40da712e1f50e6a"
+    }
+  },
+  "dx81-audio": {
+    "sdk": "Microsoft DirectX8.1 SDK DirectSound/DirectShow/DirectMusic declarations and retail x86 libraries",
+    "archive": {
+      "url": "https://web.archive.org/web/20040108202259id_/http://download.microsoft.com/download/whistler/dx/8.1/W982KMeXP/EN-US/DX81SDK_FULL.exe",
+      "size": 173778784,
+      "sha256": "73f6791e0ae7f8a1d74f71d8ebe517a79c0cbf03fd344424696fd7a3816d2d02",
+      "sha1": "61b5733209205e942f37431ee40da712e1f50e6a"
+    }
+  },
+  "dx81-errors": {
+    "sdk": "Microsoft DirectX8.1 SDK error helpers",
+    "archive": {
+      "url": "https://web.archive.org/web/20040108202259id_/http://download.microsoft.com/download/whistler/dx/8.1/W982KMeXP/EN-US/DX81SDK_FULL.exe",
+      "size": 173778784,
+      "sha256": "73f6791e0ae7f8a1d74f71d8ebe517a79c0cbf03fd344424696fd7a3816d2d02",
+      "sha1": "61b5733209205e942f37431ee40da712e1f50e6a"
+    }
+  },
+  "dx81-font": {
+    "sdk": "Microsoft DirectX8.1 SDK CD3DFont sample",
+    "archive": {
+      "url": "https://web.archive.org/web/20040108202259id_/http://download.microsoft.com/download/whistler/dx/8.1/W982KMeXP/EN-US/DX81SDK_FULL.exe",
+      "size": 173778784,
+      "sha256": "73f6791e0ae7f8a1d74f71d8ebe517a79c0cbf03fd344424696fd7a3816d2d02",
+      "sha1": "61b5733209205e942f37431ee40da712e1f50e6a"
+    }
+  },
+  "dx81-samples": {
+    "sdk": "Microsoft DirectX8.1 SDK common sample framework source",
+    "archive": {
+      "url": "https://web.archive.org/web/20040108202259id_/http://download.microsoft.com/download/whistler/dx/8.1/W982KMeXP/EN-US/DX81SDK_FULL.exe",
+      "size": 173778784,
+      "sha256": "73f6791e0ae7f8a1d74f71d8ebe517a79c0cbf03fd344424696fd7a3816d2d02",
+      "sha1": "61b5733209205e942f37431ee40da712e1f50e6a"
+    }
+  },
+  "adecode94": {
+    "name": "Interplay adecode distributed C object",
+    "version": "Physical F3 archive filename and exact release remain unproved",
+    "archive": {
+      "path": "lib/Adecode.lib",
+      "size": 15030,
+      "sha256": "76ba6ee9c811bf29d86137d9e0f225ef6da7972064997f41d13fec7691550f32",
+      "url": "https://raw.githubusercontent.com/DescentDevelopers/Descent3/df209742fcda59d466b849eff9ee0e7b908d7d40/lib/win/Adecode.lib"
+    },
+    "notice": "The archive retains its embedded Interplay copyright notice. No new license or source provenance is inferred."
+  },
+  "psdk2001": {
+    "product": "Core SDK (November 2001) (3590.2)",
+    "version": "5.1.3590.2",
+    "source_iso": {
+      "size": 4232783872,
+      "sha256": "66d13a2b327942620dfa6742dae0a756a41f78a988ba58e259f688ccfcd4bb1b"
+    }
+  },
+  "msvc70": {
+    "compiler": "13.00.9466",
+    "linker": "7.00.9466",
+    "tool_identities": "config/toolchain.json",
+    "input": "Original Visual Studio .NET media, extracted without an installer"
+  }
+}

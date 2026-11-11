@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "archive": {
+    "url": "https://vb.kran.gg/F3_Demo.rar",
+    "filename": "F3_Demo.rar",
+    "size": 253425960,
+    "sha256": "0538266c7e005250675159e169fa4666e0d0d36ef64880c129fed63c657fc930"
+  },
+  "requiredFiles": {
+    "F3.exe": "4652a3d03e7e09facab0ea123568a36c9be3b44ada80c1f60dac0449b3579b87",
+    "granny2.dll": "befa33fb43f03c6d0b9cbb302bfd7eb7efa2ba8ec682f75f63ac5cd03653570d",
+    "binkw32.dll": "d72214fe9de9ba56dd90df903bd9c6e8aaf41d107df976206da785a4bc3dc96d"
+  },
+  "scope": "Original demo assets and runtime DLLs. Kept separate from the build dependency bundle. Never executed by setup."
+}

@@ -1,0 +1,59 @@
+{
+  "repositories": [
+    {
+      "name": "openje-re",
+      "commit": "8ec19deedcc8352e8729c04c0c63aa1d2ee7d3ef"
+    },
+    {
+      "name": "openje-tools",
+      "commit": "4d88970c4616a03d6e9a56a949328c3fc1be14af"
+    },
+    {
+      "name": "openje-ida",
+      "commit": "79a5131f7edae18913b542bf90ef8a43b27c9c28"
+    },
+    {
+      "name": "openje-bs.bsproj",
+      "commit": "285b05fe6af167343a117f5dbec4badb7c0bfcc1"
+    },
+    {
+      "name": "patterns",
+      "commit": "41207a9b93f2f7ff5ba03b49efa68c92dc0575f2"
+    }
+  ],
+  "vendoredDependencies": [
+    {
+      "name": "resource-zlib",
+      "version": "1.1.4",
+      "path": "src/dependencies/zlib-1.1.4",
+      "provenance": "src/dependencies/zlib-1.1.4/upstream.json",
+      "url": "https://zlib.net/fossils/zlib-1.1.4.tar.gz",
+      "archiveSha256": "9e3e973174f9910fd51539ef9ce94c86a3943d4f897fab8e9adf4b19e6a8291e"
+    },
+    {
+      "name": "small-script",
+      "version": "2.3.1",
+      "path": "src/dependencies/small-script",
+      "provenance": "src/dependencies/small-script/upstream.json",
+      "url": "https://github.com/kran27/small-script.git",
+      "commit": "71caa130b79664bba86e05c5232ff3a1f39b3d15"
+    }
+  ],
+  "binsyncReference": "789d1665cccf61a24cbd6c4c85b576b33f2f2ff7",
+  "workspaceSources": [
+    {
+      "path": "repos/openvb",
+      "requiredFile": "src/F3.cpp",
+      "upstream": "https://github.com/OpenJE/openvb.git",
+      "publicationRemote": "https://github.com/kran27/openvb.git",
+      "upstreamCommit": "7c155ed4f3afcaa363e2c67417417b573967cda6"
+    },
+    {
+      "path": "repos/openvb/openje",
+      "requiredFile": "src/JE.cpp",
+      "upstream": "https://github.com/OpenJE/openje.git",
+      "publicationRemote": "https://github.com/kran27/openje.git",
+      "upstreamCommit": "57a9aa812aa18914205d0e008e4b55675422fcc7"
+    }
+  ]
+}
