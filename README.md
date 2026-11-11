@@ -49,7 +49,7 @@ binary equality. See [build details](docs/build.md).
 - Resource zlib: unmodified 1.1.4 source under `src/dependencies/zlib-1.1.4`.
 - [Dependency evidence and remaining questions](docs/dependency-fidelity.md).
 - [Source control and upstream attribution](docs/source-control.md).
-- [Matching policy](docs/matching-policy.md) and [local reporting](docs/reporting.md).
+- [Matching policy](docs/matching-policy.md) and [progress reporting](docs/reporting.md).
 
 Accuracy work is paused during repository cleanup. Historical analysis, receipts,
 generated reports and retired workflows remain local and are not prerequisites

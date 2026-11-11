@@ -1,28 +1,18 @@
 # Upstream and third-party notices
 
-Game and engine reconstruction build on OpenJE/openvb and OpenJE/openje. Original
-copyright comments remain in their source. `repos.lock.json` records origins,
-baseline revisions and publication destinations.
+Game and engine source builds on [OpenJE/openvb](https://github.com/OpenJE/openvb)
+and [OpenJE/openje](https://github.com/OpenJE/openje), with original notices retained.
 
-Vendored Small is from kran27/small-script at the revision in
-`src/dependencies/small-script/upstream.json`; its LICENSE is retained there.
-The F3 runtime and console adaptations live in that fork and retain their source
-notices there. zlib 1.1.4 retains the upstream license text
-in its headers and README, with file/archive provenance in `upstream.json`.
+Small is vendored from [kran27/small-script](https://github.com/kran27/small-script)
+with its LICENSE. zlib 1.1.4 retains its license in the source headers and README.
 
-The SDK/tool bundle retains Microsoft's VC7 EULA/REDIST files, the Platform SDK
-LICENSE/REDIST files and the DirectX SDK EULA. The original font/common sample
-source retains its notices. Adecode.lib is the unmodified precompiled Interplay
-ACM decoder from the [Descent 3 source release](https://github.com/DescentDevelopers/Descent3/blob/df209742fcda59d466b849eff9ee0e7b908d7d40/lib/win/Adecode.lib),
-with its embedded Interplay notice retained. Its download revision and file hash
-are recorded in `config/dependency-origins.json`.
+The SDK/tool bundle includes the VC7, Platform SDK and DirectX license/redistribution
+notices. SDK samples retain their source notices. Adecode.lib, obtained from the
+[Descent 3 source release](https://github.com/DescentDevelopers/Descent3/blob/df209742fcda59d466b849eff9ee0e7b908d7d40/lib/win/Adecode.lib),
+retains its embedded Interplay notice.
 
-The provisional formatting scanner beside engine graphics/StringFormat.cpp is
-derived from the Microsoft CString source retained in WTL 7.5. Its source donor,
-adaptations and limits are recorded in FormatScanner.provenance.json; the
-Microsoft notice and CPL license are retained beside it. This is source lineage,
-not an established original WTL dependency. No WTL package is installed or linked.
+The formatting scanner beside engine graphics/StringFormat.cpp derives from WTL
+7.5's Microsoft CString source. Its Microsoft notice, CPL license and provenance
+are retained beside it.
 
-Game data and runtime DLLs are supplied separately and are not part of tracked
-source or the SDK/tool archive. No consolidated license grant is inferred for
-upstream components; their own notices remain authoritative.
+Individual component licenses and notices apply.
