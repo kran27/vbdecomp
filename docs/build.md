@@ -22,8 +22,9 @@ archive. Game files are never part of the SDK/tool ZIP or tracked source.
 The PowerShell driver reads `config/build-targets.json` for source groups,
 headers, definitions and links. Compiler switches remain explicit in
 `config/legacy-build.json`. Every object/archive/executable is produced by the
-hash-checked VC7 CL/LIB/LINK tools. Generated Small sources live under
-`build/generated`; default outputs are in `build/legacy-vc7/release`.
+hash-checked VC7 CL/LIB/LINK tools. Small runtime, header and console sources are compiled directly from the pinned
+fork under `src/dependencies/small-script/src`; no source adaptation step is run.
+Default outputs are in `build/legacy-vc7/release`.
 
 For an independent build, choose a new output directory:
 

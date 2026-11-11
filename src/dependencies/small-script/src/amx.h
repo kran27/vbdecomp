@@ -17,7 +17,7 @@
 #ifndef __AMX_H
 #define __AMX_H
 
-#if !defined __STDC_VERSION__ || __STDC_VERSION__ < 199901L
+#if (!defined __cplusplus || (defined _MSC_VER && _MSC_VER < 1600)) && (!defined __STDC_VERSION__ || __STDC_VERSION__ < 199901L)
   /* The ISO C99 defines the int16_t and int_32t types. If the compiler got
    * here, these types are probably undefined.
    */
@@ -43,7 +43,9 @@
   #endif
 #endif
 
+#if !defined _MSC_VER || _MSC_VER >= 1600
 #include <stdint.h>
+#endif
 
 #ifdef  __cplusplus
 extern  "C" {
@@ -129,7 +131,7 @@ typedef struct {
   AMX_NATIVE func       PACKED;
 } AMX_NATIVE_INFO       PACKED;
 
-#define AMX_USERNUM     4
+#define AMX_USERNUM     8
 #define sEXPMAX         35
 typedef struct {
   uint32_t address      PACKED;

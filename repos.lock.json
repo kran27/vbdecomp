@@ -36,7 +36,7 @@
       "path": "src/dependencies/small-script",
       "provenance": "src/dependencies/small-script/upstream.json",
       "url": "https://github.com/kran27/small-script.git",
-      "commit": "71caa130b79664bba86e05c5232ff3a1f39b3d15"
+      "commit": "17ff8e4447c728dfbc44ff6a5b2ae7631d551e8d"
     }
   ],
   "binsyncReference": "789d1665cccf61a24cbd6c4c85b576b33f2f2ff7",

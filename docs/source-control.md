@@ -12,9 +12,10 @@ and our recorded upstream baseline have identical file trees.
 
 Small is vendored as the verbatim Git tree of the public `kran27/small-script`
 revision recorded in its `upstream.json`. Its decompiler project and private
-history are excluded. The evidenced F3 runtime adaptations are ordinary source
-under `src/dependencies/small-runtime`; preparation checks their hashes rather
-than applying source patches. zlib 1.1.4 is similarly pinned and vendored.
+history are excluded. The fork owns the F3 runtime and console adaptations; the
+workspace compiles that vendored source directly, without a separate overlay,
+preparation generator or replacement-source lock. zlib 1.1.4 is similarly pinned
+and vendored.
 
 OpenJE's reversal, tooling, IDA, BinSync and format-pattern repositories remain
 optional read-only references at their pinned revisions. They do not need forks

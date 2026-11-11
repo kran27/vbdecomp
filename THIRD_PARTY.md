@@ -6,8 +6,8 @@ baseline revisions and publication destinations.
 
 Vendored Small is from kran27/small-script at the revision in
 `src/dependencies/small-script/upstream.json`; its LICENSE is retained there.
-The F3 runtime adaptations retain their notices under
-`src/dependencies/small-runtime`. zlib 1.1.4 retains the upstream license text
+The F3 runtime and console adaptations live in that fork and retain their source
+notices there. zlib 1.1.4 retains the upstream license text
 in its headers and README, with file/archive provenance in `upstream.json`.
 
 The SDK/tool bundle retains Microsoft's VC7 EULA/REDIST files, the Platform SDK

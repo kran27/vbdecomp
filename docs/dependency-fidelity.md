@@ -12,7 +12,7 @@ proves that an entire reconstructed executable matches F3.
 | DirectX 8.1 / D3DX | Authentic SDK package; retained static linked comparisons cover 141 complete codec/helper procedures and 42,953 original code bytes | The checked scope is not a claim of whole-library equality. |
 | CD3DFont | Authentic SDK sample; original fields/API identified and complete 66-byte constructor matches | Other methods and rendered glyph pixels have separate verification limits. This statistics font is distinct from the game's GUI font. |
 | ACM decoder | Unchanged Adecode.lib; provider code/data and C exports authenticated against F3 | The original physical archive filename, source and exact release label remain unknown. No libacm replacement is used. |
-| Small 2.3.1 | Vendored from the user's fork, with recorded F3 adaptations; retained complete 8,480-byte AMX runtime match | The result does not certify every compiler/debug-format variation or every original vendor change. |
+| Small 2.3.1 | Vendored directly from the user's fork, which owns the F3 runtime/console adaptations; retained complete 8,480-byte AMX runtime match | The result does not certify every compiler/debug-format variation or every original vendor change. |
 | Resource zlib 1.1.4 | Original version banners, initialization calls, 56-byte stream layout and complete function comparisons; source is verbatim upstream | No whole-library/vendor-patch claim. D3DX's internal zlib is a separate implementation. |
 | Game DLLs | Exact CDN archive, F3.exe hash and runtime-DLL hashes; imports checked without loading DLLs | Original game files remain a separate download. Granny 2.8 and replacement Bink/Granny runtimes are not used. |
 

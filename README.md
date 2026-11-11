@@ -44,8 +44,8 @@ binary equality. See [build details](docs/build.md).
 
 - Game: `repos/openvb/src`; engine: `repos/openvb/openje/src`.
 - Vendored Small: `src/dependencies/small-script`, from
-  [kran27/small-script](https://github.com/kran27/small-script), with separately
-  recorded F3 runtime adaptations under `src/dependencies/small-runtime`.
+  [kran27/small-script](https://github.com/kran27/small-script), including the F3
+  runtime and console adaptations in the fork itself.
 - Resource zlib: unmodified 1.1.4 source under `src/dependencies/zlib-1.1.4`.
 - [Dependency evidence and remaining questions](docs/dependency-fidelity.md).
 - [Source control and upstream attribution](docs/source-control.md).

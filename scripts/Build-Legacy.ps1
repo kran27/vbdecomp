@@ -53,15 +53,6 @@ foreach ($node in $manifest.targets) {
     $byID[$node.id] = $node
     $byName[$node.name] = $node
 }
-if (-not $PlanOnly) {
-    $smallSourceRoot = FullPath 'src/dependencies/small-script'
-    foreach ($kind in @('runtime', 'console')) {
-        $destination = if ($kind -eq 'runtime') { 'small-amx-host' } else { 'small-console' }
-        & (FullPath $settings.python) (Join-Path $PSScriptRoot "prepare_small_$kind.py") `
-            --source-root $smallSourceRoot --output (Join-Path $graph $destination)
-        if ($LASTEXITCODE -ne 0) { throw "Pinned Small $kind preparation failed" }
-    }
-}
 $focus = $settings.sourceTargets.PSObject.Properties[$Target]
 if ($focus) {
     $focus = $focus.Value
@@ -146,8 +137,26 @@ if ($LASTEXITCODE -ne 0) { throw 'Dependency bundle verification failed; run scr
 function InvokeLegacyTool([string]$Kind, [string[]]$Arguments, [string]$Prefix) {
     $response = $Prefix + '.rsp'
     [IO.File]::WriteAllLines($response, @($Arguments | ForEach-Object { QuoteArgument $_ }), [Text.Encoding]::Default)
-    & $tools[$Kind] "@$response" *> ($Prefix + '.log')
-    $code = $LASTEXITCODE
+    # Windows PowerShell 5 turns redirected native stderr into ErrorRecords.
+    # Read both streams directly so warnings do not override the real exit code.
+    $process = New-Object System.Diagnostics.Process
+    $process.StartInfo = New-Object System.Diagnostics.ProcessStartInfo
+    $process.StartInfo.FileName = $tools[$Kind]
+    $process.StartInfo.Arguments = QuoteArgument ("@" + $response)
+    $process.StartInfo.WorkingDirectory = $workspace
+    $process.StartInfo.UseShellExecute = $false
+    $process.StartInfo.CreateNoWindow = $true
+    $process.StartInfo.RedirectStandardOutput = $true
+    $process.StartInfo.RedirectStandardError = $true
+    try {
+        if (-not $process.Start()) { throw "Could not start VC7 $Kind" }
+        $stdout = $process.StandardOutput.ReadToEndAsync()
+        $stderr = $process.StandardError.ReadToEndAsync()
+        $process.WaitForExit()
+        $log = $stdout.GetAwaiter().GetResult() + $stderr.GetAwaiter().GetResult()
+        [IO.File]::WriteAllText(($Prefix + '.log'), $log, [Text.Encoding]::Default)
+        $code = $process.ExitCode
+    } finally { $process.Dispose() }
     $operations.Add(@{ tool = $Kind; executable = $tools[$Kind]; arguments = $Arguments; response = $response; log = $Prefix + '.log'; exitCode = $code })
     if ($code -ne 0) {
         Get-Content -LiteralPath ($Prefix + '.log') | Where-Object { $_ -match '(error|fatal error|warning) [CDL][0-9]|LNK[0-9]' } | Select-Object -First 14 | Write-Host

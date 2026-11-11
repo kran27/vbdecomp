@@ -17,8 +17,6 @@
 !/config/legacy-build.json
 !/config/build-targets.json
 !/config/toolchain.json
-!/config/small-runtime.lock.json
-!/config/small-console.lock.json
 !/config/dependency-bundle.json
 !/config/dependency-origins.json
 !/config/game-download.json
@@ -49,8 +47,6 @@
 !/scripts/Get-AnalysisDatabase.ps1
 !/scripts/Generate-ImportLibraries.ps1
 !/scripts/Generate-Granny21ImportLibrary.ps1
-!/scripts/prepare_small_runtime.py
-!/scripts/prepare_small_console.py
 !/scripts/dependency_bundle.py
 !/scripts/setup_inputs.py
 !/scripts/workspace_config.py
@@ -63,6 +59,7 @@
 !/tools/test_setup_inputs.py
 /src/*
 !/src/dependencies/
+/src/dependencies/small-runtime/
 !/src/vc7_sdk_probe.cpp
 !/src/vc7_sdk_probe.rc
 /repos/*

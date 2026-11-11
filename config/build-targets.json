@@ -104,9 +104,6 @@
               "path": "repos/openvb/openje/src"
             },
             {
-              "path": "build/generated/small-amx-host"
-            },
-            {
               "path": "src/dependencies/small-script/src"
             },
             {
@@ -117,9 +114,6 @@
             },
             {
               "path": "deps/dx81-font/include"
-            },
-            {
-              "path": "build/generated/small-console"
             },
             {
               "path": "deps/dx81-audio/include"
@@ -871,9 +865,6 @@
           "defines": [],
           "includes": [
             {
-              "path": "build/generated/small-amx-host"
-            },
-            {
               "path": "src/dependencies/small-script/src"
             }
           ],
@@ -882,11 +873,11 @@
       ],
       "sources": [
         {
-          "path": "build/generated/small-amx-host/amx.c",
+          "path": "src/dependencies/small-script/src/amx.c",
           "compileGroupIndex": 0
         },
         {
-          "path": "build/generated/small-amx-host/float.c",
+          "path": "src/dependencies/small-script/src/float.c",
           "compileGroupIndex": 0
         }
       ]
@@ -911,7 +902,7 @@
           "includes": [],
           "compileCommandFragments": [
             {
-              "fragment": "/FIbuild/generated/small-amx-host/amx.h"
+              "fragment": "/FIsrc/dependencies/small-script/src/amx.h"
             }
           ]
         }
@@ -991,12 +982,6 @@
           "defines": [],
           "includes": [
             {
-              "path": "build/generated/small-console"
-            },
-            {
-              "path": "build/generated/small-amx-host"
-            },
-            {
               "path": "src/dependencies/small-script/src"
             }
           ],
@@ -1005,7 +990,7 @@
       ],
       "sources": [
         {
-          "path": "build/generated/small-console/small_console.c",
+          "path": "src/dependencies/small-script/src/small_console.c",
           "compileGroupIndex": 0
         }
       ]
@@ -1351,9 +1336,6 @@
             },
             {
               "path": "repos/openvb/src"
-            },
-            {
-              "path": "build/generated/small-amx-host"
             },
             {
               "path": "src/dependencies/small-script/src"
@@ -2420,13 +2402,7 @@
               "path": "deps/dx81-font/include"
             },
             {
-              "path": "build/generated/small-amx-host"
-            },
-            {
               "path": "src/dependencies/small-script/src"
-            },
-            {
-              "path": "build/generated/small-console"
             }
           ],
           "compileCommandFragments": []
