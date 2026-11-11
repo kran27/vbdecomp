@@ -46,15 +46,26 @@
     }
   },
   "adecode94": {
-    "name": "Interplay adecode distributed C object",
-    "version": "Physical F3 archive filename and exact release remain unproved",
+    "name": "Interplay ACM decoder (precompiled C library)",
+    "version": "Unknown decoder version",
+    "source": {
+      "repository": "https://github.com/DescentDevelopers/Descent3",
+      "commit": "df209742fcda59d466b849eff9ee0e7b908d7d40",
+      "path": "lib/win/Adecode.lib",
+      "context": "Legacy binary retained in the initial source import. Descent 3's active build uses libacm; the adjacent lib/Adecode.h describes that different C++ interface."
+    },
     "archive": {
       "path": "lib/Adecode.lib",
       "size": 15030,
       "sha256": "76ba6ee9c811bf29d86137d9e0f225ef6da7972064997f41d13fec7691550f32",
       "url": "https://raw.githubusercontent.com/DescentDevelopers/Descent3/df209742fcda59d466b849eff9ee0e7b908d7d40/lib/win/Adecode.lib"
     },
-    "notice": "The archive retains its embedded Interplay copyright notice. No new license or source provenance is inferred."
+    "interface": {
+      "linkage": "C, __cdecl",
+      "used_exports": ["Create_AudioDecoder", "AudioDecoder_Read", "AudioDecoder_Close"],
+      "declarations": "repos/openvb/openje/src/audio/SoundAcm.cpp"
+    },
+    "notice": "Embedded Interplay copyright notice retained. This precompiled library comes from the linked Descent 3 repository; its original adecode.c source is not supplied."
   },
   "psdk2001": {
     "product": "Core SDK (November 2001) (3590.2)",

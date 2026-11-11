@@ -12,8 +12,10 @@ in its headers and README, with file/archive provenance in `upstream.json`.
 
 The SDK/tool bundle retains Microsoft's VC7 EULA/REDIST files, the Platform SDK
 LICENSE/REDIST files and the DirectX SDK EULA. The original font/common sample
-source retains its notices. Adecode.lib retains its embedded Interplay notice;
-its exact source/release packaging is not claimed.
+source retains its notices. Adecode.lib is the unmodified precompiled Interplay
+ACM decoder from the [Descent 3 source release](https://github.com/DescentDevelopers/Descent3/blob/df209742fcda59d466b849eff9ee0e7b908d7d40/lib/win/Adecode.lib),
+with its embedded Interplay notice retained. Its download revision and file hash
+are recorded in `config/dependency-origins.json`.
 
 The provisional formatting scanner beside engine graphics/StringFormat.cpp is
 derived from the Microsoft CString source retained in WTL 7.5. Its source donor,
