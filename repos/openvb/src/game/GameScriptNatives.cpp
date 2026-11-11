@@ -10,6 +10,7 @@
 #include "entity/MapEffect.hpp"
 #include "model/CommonException.hpp"
 #include "scripting/ScriptEnvironment.hpp"
+#include "scripting/ScriptDebugger.hpp"
 #include "../startup/Random.hpp"
 #include "../startup/GameScriptingComponent.hpp"
 #include <stdarg.h>
@@ -283,12 +284,12 @@ namespace F3
 		void* fileData;
 		if (!amx_GetUserData(vm, 0x4C425446, &fileData)) // Original FTBL.
 		{
-			typedef std::map<LONG,const char*> FileMap;
+			typedef JE::ScriptDebug::FileMap FileMap;
 			FileMap* files = static_cast<FileMap*>(fileData);
 			LONG fileIndex=vm->curfile;
-			FileMap::iterator found = files->find(fileIndex); // Real library API56EBE0.
+			FileMap::iterator found = files->find(fileIndex);
 			if (found != files->end())
-				_splitpath(found->second, NULL, NULL, filename, extension);
+				_splitpath(found->second.c_str(), NULL, NULL, filename, extension);
 		}
 		char message[1028];
 		sprintf(message, "!Run-time error in script %s, file %s%s, line %d: ",
