@@ -145,13 +145,8 @@ namespace JE
 		char sectionName[12];
 		_itoa(slot, sectionName, 10);
 		Configuration::Settings::const_iterator section = settings.find(sectionName);
-		if (section == settings.end()) throw std::logic_error("ModelCache: original unchecked missing socket section");
 		Configuration::Values::const_iterator value = section->second.find(key);
-		if (value == section->second.end())
-		{
-			if (required) throw std::logic_error("ModelCache: original unchecked missing socket property");
-			return std::string();
-		}
+		if (value == section->second.end() && !required) return std::string();
 		return value->second;
 	}
 

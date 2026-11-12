@@ -44,8 +44,6 @@ namespace JE
 			virtual JE::Net::UInt8 OnServerDisconnect(Packet& packet); //Original+6C,409BB0.
 			virtual void OnGamePacket(Packet& packet); //Original+70,5A9320 empty.
 			virtual JE::Net::UInt8 OnServerTimeout(JE::Net::UInt32 elapsed); //Original+74,409BB0.
-			typedef void (*GamePacketSink)(Client& client,Packet& packet,void* context);
-			bool DispatchGamePacketSink(Packet& packet); //Explicit external host binding; not an original slot.
 			void DisconnectProtocol(); //Factored59C8E7 prefix for actual default ClientServices.
 			void Send(Packet& packet, JE::Net::UInt32 channel); //59C4F0.
 

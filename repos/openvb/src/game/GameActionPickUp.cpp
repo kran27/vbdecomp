@@ -41,7 +41,6 @@ namespace F3
 		const double z=double(owner->position.z)-target->position.z;
 		if (sqrt(x*x+y*y+z*z)>=3.0)
 		{
-			if (!JE::g_World) throw std::logic_error("GameActionPickUp406FF4: actual World required");
 			JE::ActionMoveTo* move=static_cast<JE::ActionMoveTo*>(JE::g_World->NewAction(2));
 			move->SetTarget(target);
 			move->stopDistance=3;

@@ -109,7 +109,6 @@ namespace F3
 			if (!victim) continue;
 			if (!(JE::GetEntityEnvironment().NetworkMode()&1))
 				throw ::Common::Exception("Invalid attempt to retrieve world server instance.");
-			if (!JE::g_World) throw std::logic_error("GameActionAttack403851: actual server World required");
 			DWORD hits=0;
 			BYTE multiple=0;
 			for (std::list<AttackDamage>::iterator j=i->second.begin();j!=i->second.end();++j)

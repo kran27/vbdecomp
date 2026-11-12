@@ -15,10 +15,8 @@
 
 namespace JE
 {
-	EntityEnvironment* g_EntityEnvironment = NULL;
 	namespace
 	{
-		// Default environment; SetEntityEnvironment can override it.
 
 		class NativeEntityEnvironment : public EntityEnvironment
 		{
@@ -73,33 +71,8 @@ namespace JE
 			}
 		};
 	}
-	MapMaskManager* EntityEnvironment::GetMapMaskManager()
-	{
-		throw std::logic_error("Entity visibility581310: actual Graphics mask-manager binding required");
-	}
-	DWORD EntityEnvironment::LineOfSightMode()
-	{
-		throw std::logic_error("Entity visibility549656: actual Client BYTE+100 binding required");
-	}
-	void EntityEnvironment::ClearClientSelection(DWORD)
-	{
-		throw std::logic_error("Entity551C50: actual Client selection binding required");
-	}
-	Server* EntityEnvironment::GetServer()
-	{
-		throw std::logic_error("Team script natives: actual EngineServer owner binding required");
-	}
-	void EntityEnvironment::SetEntityTeam(Entity*, DWORD)
-	{
-		throw std::logic_error("GameCreature4093C0: actual Server555890 team assignment binding required");
-	}
-	void EntityEnvironment::SetGlobal(const std::string&, LONG)
-	{
-		throw std::logic_error("Script SetGlobal5566B0: actual Server binding required");
-	}
 	EntityEnvironment& GetEntityEnvironment()
 	{
-		if (g_EntityEnvironment) return *g_EntityEnvironment;
 		static NativeEntityEnvironment native;
 		return native;
 	}

@@ -7,20 +7,6 @@ namespace JE
 {
 	class Client;
 
-	// Explicit binding for original outer Client/Graphics/World services. It is
-	// not a substitute Client, Graphics owner or production startup sequence.
-	class CameraControlServices
-	{
-	public:
-		virtual ~CameraControlServices() {}
-		virtual void AttachController(Client* client, Gfx_CamCtrl* controller) = 0; // Client+74 ->581210.
-		virtual DWORD Clock() = 0; //56AF50, shared absolute millisecond clock.
-		virtual const Configuration::Settings& EngineSettings() = 0; //56AF40.
-		virtual BYTE GetCameraBounds(D3DXVECTOR3& minimum, D3DXVECTOR3& maximum) = 0; //IWorld+60 ->Map+24; BYTE is map-presence adapter status.
-		virtual void SetGraphicsFogOfWar(Client* client, BYTE enabled) = 0; //5810F0.
-	};
-	void SetCameraControlServices(CameraControlServices* services);
-
 	class CameraControl
 	{
 	public:

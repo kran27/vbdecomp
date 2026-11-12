@@ -5,8 +5,10 @@ See [dependencies](dependency-fidelity.md) for versions, sources and match statu
 The dependency ZIP contains VC7, the Platform SDK, DirectX SDK files and
 Adecode.lib, with their original notices. Small and zlib are vendored in source.
 
-Pass the ZIP to `scripts/Setup.ps1 -DependencyBundle <path>`. Setup verifies it
+Run `scripts/Setup.ps1` to download the fixed
+[dependency bundle](http://vb.kran.gg/vbdecomp-dependencies.zip). Setup verifies it
 against `config/dependency-bundle.json` and extracts it under untracked `deps/`.
+Use `-DependencyBundle <path>` to supply an already downloaded ZIP.
 
 To check installed dependencies offline:
 

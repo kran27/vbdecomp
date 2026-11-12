@@ -39,16 +39,5 @@ namespace JE
 			return nResult;
 		}
 
-		namespace ResourceConfigurationServices
-		{
-			void* __cdecl Allocate(Net::UInt32 nBytes)
-			{
-				return FileServices::Allocate(nBytes);
-			}
-			void __cdecl Free(void* pBuffer)
-			{
-				FileServices::Free(pBuffer);
-			}
-		}
 	}
 }

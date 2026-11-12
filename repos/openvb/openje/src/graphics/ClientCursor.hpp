@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ClientInput.hpp"
+#include "gui/Win32Input.hpp"
+#include <string>
 #include <list>
 #include <cstddef>
 
@@ -17,11 +18,9 @@ namespace JE
 		virtual void Initialize(); //591780, real cursor Interface/Picture.
 		virtual void ShowSystemCursor(); //5915D0.
 		virtual void UpdateFrame(); //5915E0, original no-argument slot+10.
-		void UpdateFrame(ClientInputState& input, HWND window); //Explicit host snapshot/window adaptation, nonvirtual.
 		virtual void RequestImage(const char* name, LONG x, LONG y, BYTE center); //5919D0.
 		virtual void GetImage(std::string& output); //591B60.
 		virtual BYTE ReleaseInput(const Input::InputEvent& event); //591690, actual event-only slot+1C.
-		BYTE ReleaseInput(ClientInputState& input, const Input::InputEvent& event, HWND window); //Nonvirtual borrowed snapshot dispatch.
 		virtual void OnUnused(); //404B70.
 		void SetVisible(BYTE visible); //591670 ->Picture::SetHidden(!visible).
 		::GUI::Interface* cursorInterface; //+04, GUI hierarchy lifetime.
@@ -33,7 +32,6 @@ namespace JE
 
 namespace F3
 {
-	class GameCursorActionServices;
 	class GameCursorManager : public JE::CursorManager
 	{
 	public:
@@ -43,20 +41,15 @@ namespace F3
 		virtual void ShowSystemCursor(); //4361E0, qualified base forwarding override.
 		void InitializeDefaultCursorState(); //Explicit437BC0 suffix, excludes4364C0 quickslot.
 		virtual void UpdateFrame(); //437BE0, actual live Client/Window owners.
-		void UpdateFrame(JE::ClientInputState& input, HWND window); //Explicit nonvirtual host adaptation.
 		virtual void RequestImage(const char* name, LONG x, LONG y, BYTE center); //437AB0.
 		virtual void GetImage(std::string& output); //437B20.
 		virtual BYTE ReleaseInput(const JE::Input::InputEvent& event); //437D80, actual event-only slot+1C.
-		BYTE ReleaseInput(JE::ClientInputState& input, const JE::Input::InputEvent& event, HWND window); //Explicit nonvirtual borrowed snapshot adaptation.
 		virtual void OnUnused(); //437B40, reset pending/saved/context/drag state.
 		void SetContext(DWORD value); //436AD0, calls actual no-argument virtual+10.
-		void SetContext(DWORD value, JE::ClientInputState& input, HWND window); //Explicit host adaptation.
 		void BeginItemDrag(DWORD item, DWORD owner); //437940, actual no-snapshot route.
-		void BeginItemDrag(DWORD item, DWORD owner, JE::ClientInputState& input, HWND window); //Explicit borrowed host adaptation.
 		void ClearDragChoices(); //436300.
 		void AppendDragChoices(const std::list<DWORD>& source); //437E70.
 		BYTE CancelSpecialContext(); //437B90, refreshes actual cursor only in contexts15/16.
-		BYTE CancelSpecialContext(JE::ClientInputState& input, HWND window); //Explicit borrowed host adaptation.
 		DWORD context, subcontext, draggedItemID, draggedOwnerID; //+30..3C, ownerID unwritten.
 		std::list<DWORD> choices; //+40, real normal nodes.
 		BYTE pendingImage; //+4C; padding4D..4F is constructor-unwritten.
@@ -69,9 +62,7 @@ namespace F3
 		::GUI::Label* tooltipLabel; //+A0; actual quickslot initializer4364C0.
 		BYTE tooltipPending; //+A4; paddingA5..A7 is constructor-unwritten.
 		DWORD tooltipEntityID, tooltipTime; //+A8/+AC.
-		void BindActionServices(GameCursorActionServices* services); //External borrowed host binding, no original member.
 	private:
-		GameCursorActionServices& Actions();
 		void InitializeTooltip(); //4364C0, actual Window/Label children under cursor Picture.
 		void QueueContextImage(DWORD value, LONG x, LONG y); //4361F0.
 		void SetSubcontext(DWORD value); //436210.
@@ -80,7 +71,6 @@ namespace F3
 		BYTE RightPress(LONG x, LONG y); //Same folded436230, separate native press branch.
 		BYTE LeftRelease(LONG x, LONG y); //436B40, captures published Client once.
 		BYTE RightRelease(LONG x, LONG y); //436FC0, reloads published Client for the menu call.
-		BYTE LeftRelease(JE::ClientInputState& input, LONG x, LONG y, HWND window); //Explicit borrowed snapshot adaptation.
 	};
 }
 

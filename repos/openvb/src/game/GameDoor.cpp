@@ -20,24 +20,6 @@
 
 namespace F3
 {
-	namespace
-	{
-		GameDoorFeedbackServices* feedbackServices = NULL;
-
-		GameDoorFeedbackServices& Feedback()
-		{
-			if (!feedbackServices)
-				throw std::logic_error("GameDoor40EE76/40EF91: actual Client interface/feedback binding required");
-			return *feedbackServices;
-		}
-	}
-	GameDoorFeedbackServices* SetGameDoorFeedbackServices(GameDoorFeedbackServices* services)
-	{
-		GameDoorFeedbackServices* previous = feedbackServices;
-		feedbackServices = services;
-		return previous;
-	}
-
 	GameDoor::GameDoor() : open(0), locked(0)
 	{
 		entityClass = 3;
@@ -161,26 +143,14 @@ namespace F3
 			{
 				if (JE::GetEntityEnvironment().IsPartyMember(actor) == 1)
 				{
-					if (feedbackServices)
+					JE::Client* client = static_cast<JE::Client*>(g_pNetworkInstance->client);
+					FeedbackInterface* feedback =
+						static_cast<GameInterfaces*>(client->child0xA0)->feedback;
+					if (feedback)
 					{
-						if (Feedback().HasFeedback())
-						{
-							std::string text;
-							g_EngineStringSystem.GetString(0x513, text);
-							Feedback().Display(text, 255, 0, 0, std::string());
-						}
-					}
-					else
-					{
-						JE::Client* client = static_cast<JE::Client*>(g_pNetworkInstance->client);
-						FeedbackInterface* feedback =
-							static_cast<GameInterfaces*>(client->child0xA0)->feedback;
-						if (feedback)
-						{
-							std::string text;
-							g_EngineStringSystem.GetString(0x513, text);
-							feedback->AddMessage(text, 255, 0, 0, std::string());
-						}
+						std::string text;
+						g_EngineStringSystem.GetString(0x513, text);
+						feedback->AddMessage(text, 255, 0, 0, std::string());
 					}
 				}
 				return;
@@ -191,18 +161,10 @@ namespace F3
 				g_EngineStringSystem.GetString(0x54E, format);
 				char buffer[256];
 				sprintf(buffer, format.c_str(), keyResource.c_str());
-				if (feedbackServices)
-				{
-					if (Feedback().HasFeedback())
-						Feedback().Display(buffer, 0, 255, 0, std::string());
-				}
-				else
-				{
-					JE::Client* client = static_cast<JE::Client*>(g_pNetworkInstance->client);
-					FeedbackInterface* feedback =
-						static_cast<GameInterfaces*>(client->child0xA0)->feedback;
-					if (feedback) feedback->AddMessage(buffer, 0, 255, 0, std::string());
-				}
+				JE::Client* client = static_cast<JE::Client*>(g_pNetworkInstance->client);
+				FeedbackInterface* feedback =
+					static_cast<GameInterfaces*>(client->child0xA0)->feedback;
+				if (feedback) feedback->AddMessage(buffer, 0, 255, 0, std::string());
 			}
 			locked = 0;
 		}

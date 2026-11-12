@@ -19,20 +19,11 @@
 
 namespace
 {
-	AreaMapWindowServices* externalServices = NULL;
 	LONG Truncate(double value)
 	{ return static_cast<LONG>(static_cast<__int64>(value)); }
 }
-AreaMapWindowServices* SetAreaMapWindowServices(AreaMapWindowServices* value)
-{
-	AreaMapWindowServices* previous=externalServices;
-	externalServices=value; return previous;
-}
-//Explicit scene providers remain separate from the original native owner lookup.
 BYTE GetAreaMapVisibleActionbarTop(LONG& top)
 {
-	if (externalServices)
-		return externalServices->GetVisibleActionbarTop(top);
 	F3::GameClient* client = dynamic_cast<F3::GameClient*>(
 		static_cast<JE::Client*>(F3::g_pNetworkInstance->client));
 	F3::ActionbarInterface* actionbar = client->Interfaces()->actionbar;

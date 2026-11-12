@@ -5,7 +5,6 @@
 #include "GameContainer.hpp"
 #include "GameUsableObject.hpp"
 #include "GameItem.hpp"
-#include "GameAttitudes.hpp"
 #include <stdexcept>
 
 namespace F3
@@ -16,19 +15,15 @@ namespace F3
 		if (!visibilityOwnerFlag && actor)
 		{
 			JE::IWorld* world = JE::g_World;
-			if (!world)
-				throw std::logic_error("GameCreature4092F9: original unchecked NULL World team owner");
 			DWORD targetTeam = actor->value368;
 			DWORD sourceTeam = value368;
 			JE::TeamSystem* teams = world->GetTeams();
-			DWORD team = GetTeamAttitude(*teams, sourceTeam, targetTeam);
+			DWORD team = teams->GetAttitude(sourceTeam, targetTeam);
 			world = JE::g_World;
-			if (!world)
-				throw std::logic_error("GameCreature409339: original unchecked NULL World squad owner");
 			DWORD targetSquad = actor->squadID;
 			DWORD sourceSquad = squadID;
 			JE::SquadSystem* squads = world->GetSquads();
-			DWORD squad = GetSquadAttitude(*squads, sourceSquad, targetSquad);
+			DWORD squad = squads->GetAttitude(sourceSquad, targetSquad);
 			if (team==3 || squad==3) action=5;
 			else if (CanTalk()) action=4;
 		}

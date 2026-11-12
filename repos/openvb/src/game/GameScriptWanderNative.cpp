@@ -28,7 +28,6 @@ namespace F3
 			LogScriptError(vm,"A_Wander() was unable to retrieve the lower-right bounds.");
 			return 0;
 		}
-		if (!JE::g_World) throw std::logic_error("A_Wander5C8D40: actual World required");
 		JE::ActionWander* action = static_cast<JE::ActionWander*>(JE::g_World->NewAction(4));
 		action->SetBounds(first,last);
 		action->repetitions = parameters[4];

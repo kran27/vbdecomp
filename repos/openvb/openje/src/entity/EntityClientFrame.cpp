@@ -69,7 +69,6 @@ namespace JE
 			if (!dynamic_cast<Water*>(this) && (sample.x != lastWaterPosition.x
 				|| sample.y != lastWaterPosition.y || sample.z != lastWaterPosition.z))
 			{
-				if (!g_World) throw std::logic_error("Entity550BE9: actual World required");
 				Map* owner = g_World->GetMap(mapHandle);
 				if (owner && owner->GetOctree())
 				{

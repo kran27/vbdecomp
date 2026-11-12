@@ -16,7 +16,6 @@ namespace GUI
 		bool IsHeapAllocated(); // 0x4A75A0; compares this without base adjustment.
 
 	private:
-		friend struct HeapTrackerVerification; // Scoped fixture inspection, no runtime API.
 		static std::list<void*> allocations; // Original object 0x707DF4.
 	};
 }

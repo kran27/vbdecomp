@@ -68,6 +68,3 @@ public:
 	DWORD referenceCount; // +2C; initially1.
 	DWORD value30;
 };
-
-//Compatibility facade for callers whose original source surface is still open.
-std::string Gfx_GetTextureDiagnosticName(const Gfx_Texture* texture);

@@ -42,7 +42,6 @@ namespace JE
 		//557820..55794B: load before replying or moving any client-owned entity.
 		if (!(GetEntityEnvironment().NetworkMode() & 1))
 			throw ::Common::Exception("Invalid attempt to retrieve world server instance.");
-		if (!g_World) throw std::logic_error("Server557820: original unchecked World required");
 		Map* map = g_World->LoadMap(name);
 		if (!map)
 		{

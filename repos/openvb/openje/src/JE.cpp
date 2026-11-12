@@ -12,49 +12,12 @@ namespace JE
 		char szBuffer[1024];
 		va_list arguments;
 		va_start(arguments, pszFormat);
-		DiagnosticsServices::Format(szBuffer, pszFormat, arguments);
+		std::vsprintf(szBuffer, pszFormat, arguments);
 		va_end(arguments);
 		// Deliberately a second format pass: original passes only this buffer.
 		LogDebugString(szBuffer);
-		DiagnosticsServices::Message(NULL, szBuffer, "Fatal Error", MB_SETFOREGROUND | MB_ICONERROR);
-		DiagnosticsServices::Terminate(1);
+		MessageBoxA(NULL, szBuffer, "Fatal Error", MB_SETFOREGROUND | MB_ICONERROR);
+		std::exit(1);
 	}
 
-	namespace DiagnosticsServices
-	{
-		int Format(char* pBuffer, const char* pszFormat, va_list arguments)
-		{
-			return std::vsprintf(pBuffer, pszFormat, arguments);
-		}
-
-		bool IsLogFileOpen()
-		{
-			return g_LogStream.rdbuf()->is_open();
-		}
-
-		void WriteLog(const char* pszText)
-		{
-			g_LogStream << pszText;
-		}
-
-		void FlushLog()
-		{
-			g_LogStream.flush();
-		}
-
-		void Debug(const char* pszText)
-		{
-			OutputDebugStringA(pszText);
-		}
-
-		int Message(HWND hWindow, const char* pszText, const char* pszCaption, UINT nType)
-		{
-			return MessageBoxA(hWindow, pszText, pszCaption, nType);
-		}
-
-		__declspec(noreturn) void Terminate(int nStatus)
-		{
-			std::exit(nStatus);
-		}
-	}
 }

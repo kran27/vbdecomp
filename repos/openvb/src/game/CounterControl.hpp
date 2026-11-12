@@ -29,9 +29,6 @@ namespace F3
 		void Finish(); //431D70, complete a live transition immediately.
 		void SetValue(LONG value, DWORD mode); //4313B0;0 independent,1 relative,2 immediate.
 		void Update(); //4314C0, actual independent/relative rolling digit animation.
-		//Borrowed inspection adapters for explicit host cleanup; not original APIs.
-		const std::vector< ::GUI::Picture*>& PrimaryPictures() const { return primaryPictures; }
-		const std::vector< ::GUI::Picture*>& SecondaryPictures() const { return secondaryPictures; }
 	private:
 		::GUI::Window* incrementButton; //+04, borrowed; no producer used by Actionbar.
 		::GUI::Window* decrementButton; //+08.

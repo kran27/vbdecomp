@@ -22,11 +22,6 @@ namespace F3
 
 	BYTE GameInventory::IsPartyOwner()
 	{
-		if (JE::g_EntityEnvironment)
-		{
-			JE::Entity* owner = JE::GetEntityPtr(ownerEntityID);
-			return JE::GetEntityEnvironment().IsPartyMember(owner);
-		}
 		JE::IWorld* world = JE::g_World;
 		JE::Party* party = world->GetParty();
 		return party->Contains(JE::GetEntityPtr(ownerEntityID));

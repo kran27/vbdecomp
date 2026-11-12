@@ -804,7 +804,7 @@ HRESULT Gfx_RS_SK_B_LM_HFog_FOW::SetMaterial(Gfx_Material* material, DWORD fogBi
 		else
 		{
 			g_D3D.SetTexture(0, NULL);
-			const std::string name = Gfx_GetTextureDiagnosticName(texture); //Original NULL-object copy4AB1C0 remains invalid.
+			const std::string name = texture->GetDiagnosticName(); //Original NULL-object copy4AB1C0 remains invalid.
 			JE::LogDebugString("Gfx_RS_SK_B_LM_HFog_FOW: Cannot find Base Texture %s", name.c_str());
 		}
 	}
@@ -821,7 +821,7 @@ HRESULT Gfx_RS_SK_B_LM_HFog_FOW::SetMaterial(Gfx_Material* material, DWORD fogBi
 		else
 		{
 			g_D3D.SetTexture(1, NULL);
-			const std::string name = Gfx_GetTextureDiagnosticName(texture);
+			const std::string name = texture->GetDiagnosticName();
 			JE::LogDebugString("Gfx_RS_SK_B_LM_HFog_FOW: Cannot find Lightmap %s", name.c_str());
 		}
 	}

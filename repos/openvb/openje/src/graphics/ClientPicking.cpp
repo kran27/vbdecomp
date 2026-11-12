@@ -16,33 +16,6 @@ namespace JE
 {
 	namespace
 	{
-		class BorrowedPickingFields
-		{
-		public:
-			explicit BorrowedPickingFields(ClientInputState& input) : input(input) {}
-			BYTE Enabled() const { return input.enabled; }
-			bool Throttled(BYTE force, ClientPickingServices& services) const
-			{ return !force && DWORD(services.Clock() - input.lastPickingTime) < 100; }
-			void SetLastPickingTime(DWORD value) { input.lastPickingTime = value; }
-			BYTE MouseOverGUI() const { return input.mouseOverGUI; }
-			LONG MouseX() const { return input.mouseX; }
-			LONG MouseY() const { return input.mouseY; }
-			DWORD HoveredEntityID() const { return input.hoveredEntityID; }
-			void SetHoveredEntityID(DWORD value) { input.hoveredEntityID = value; }
-			VisualEffect* HoverEffect() const { return input.hoverEffect; }
-			void SetHoverEffect(VisualEffect* effect) { input.hoverEffect = effect; }
-			VFX_VEGInstance* SelectionEffect() const { return input.selectionEffect; }
-			void ClearGroundHit() { input.groundHit = 0; }
-			void SetGroundPoint(const float* point)
-			{
-				//The explicitly borrowed state retains its existing source policy.
-				input.groundHit = 1;
-				input.groundPosition = D3DXVECTOR3(point);
-			}
-		private:
-			ClientInputState& input;
-		};
-
 		class LivePickingFields
 		{
 		public:
@@ -201,11 +174,6 @@ namespace JE
 		}
 	}
 
-	void PickClientMouse(ClientInputState& state, BYTE force, ClientPickingServices& services)
-	{
-		BorrowedPickingFields fields(state);
-		PickClientMouseFields(fields, force, services);
-	}
 
 	void PickClientMouse(Client& client, BYTE force, ClientPickingServices& services)
 	{

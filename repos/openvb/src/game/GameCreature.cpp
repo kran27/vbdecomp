@@ -68,7 +68,6 @@ namespace F3
 
 	JE::Entity* GameCreature::CreateInventoryItem(const std::string& name)
 	{
-		if (!JE::g_World) throw std::logic_error("GameCreature40B9E0: actual World required");
 		DWORD type = JE::g_World->ClassifyEntity(name, 0);
 		JE::Entity* item = JE::g_World->NewEntity(type);
 		item->Create(name.c_str(), 0, 0);

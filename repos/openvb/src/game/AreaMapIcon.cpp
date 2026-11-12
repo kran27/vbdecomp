@@ -7,13 +7,6 @@
 #include "graphics/StringFormat.hpp"
 #include <cstdio>
 
-namespace { AreaMapIconLabelObserver labelObserver={NULL,NULL}; }
-AreaMapIconLabelObserver SetAreaMapIconLabelObserver(AreaMapIconLabelObserver observer)
-{
-	const AreaMapIconLabelObserver previous=labelObserver;
-	labelObserver=observer;
-	return previous;
-}
 
 AreaMapIcon::AreaMapIcon() //422A20.
 {
@@ -39,14 +32,11 @@ AreaMapIcon::AreaMapIcon() //422A20.
 }
 AreaMapIcon::~AreaMapIcon() //4202E0; deleting entry421690.
 {
-	//Observation does not change the original omission. The explicit scene
-	//adapter releases recorded labels after the actual icon/window lifetimes.
 	if (vertices) delete[] vertices;
 	if (instances) { delete[] instances; instances=NULL; }
 	if (packet) { delete packet; packet=NULL; }
 	if (texture && ownsTexture) g_GfxSystem->DeleteTexture(texture);
-	//Actual original never deletes label+3C. Preserve that omission; an explicit
-	//host cleanup receipt must account for leaked tracked labels separately.
+	//The original never deletes label+3C.
 	//Normal embedded mesh/material-set destruction supplies41F200/41FBD0.
 }
 void AreaMapIcon::SetTexture(DWORD handle,BYTE owns) //41D5B0.

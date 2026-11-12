@@ -12,11 +12,7 @@ class Video;
 namespace JE
 {
 	class Audio;
-	class GraphicsLightingState;
 	struct GraphicsSceneState;
-	struct ClientInputState;
-	class ClientInputServices;
-	namespace GUI { class GraphicsInputServices; }
 	namespace Input { class Win32Input; struct InputEvent; }
 	typedef Audio ClientChild0x70;
 	typedef ::Graphics ClientChild0x74;
@@ -66,10 +62,7 @@ namespace JE
 		void UpdatePolling(); //587EE0; actual Net prefix then required game-frame children.
 		void UpdateCommandCamera(); //587FD0..587FE0, actual queue dispatch before CameraControl update.
 		void UpdateInputFrame(); //587EF6..587FD0, actual child78/80 and virtual input routing.
-		void UpdateBorrowedInputFrame(); //Explicit workspace input projection; not an original entry.
 		void DragInputCamera(LONG x, LONG y); //589130, stores live114 before camera callback.
-		void CaptureInputState(); //Explicit field projection for existing cursor/picking API.
-		void UpdateCursorFade(ClientInputState& input, HWND window); //587FE5..587FF8, explicit existing cursor inputs.
 		void UpdateWorldFrame(); //58801F..588081, state3 update/collection and live108/109 draw guards.
 		void PrepareDisconnect(Net::Packet& packet); //5880A0, required World stop.
 		JE::Net::UInt8 OnServerStart(Net::Packet& packet); //58A620, movies then mode-gated World snapshot/reliable67.
@@ -153,11 +146,7 @@ namespace JE
 		void EditToken(DWORD stringReference, const char* tokenName); //587AB0, actual childB8 modal setup.
 		void RequestInventoryTransfer(DWORD destinationID, DWORD itemID, DWORD sourceID); //58A980 ->58A2D0, reliable49.
 		JE::Net::UInt8 OnServerTimeout(JE::Net::UInt32 elapsed); //588190, actual Disconnect then1.
-		typedef void (*UnconsumedPollingFrame)(Client& client,void* context);
-		typedef void (*UnconsumedInterfaceAction)(Client& client,DWORD originalAddress,void* context);
-		typedef void (*UnconsumedDialogueUpdate)(Client& client,JE::Net::UInt8 count,Net::Packet& packet,void* context);
 		virtual Net::Connection* CreateServerConnection(); // 0x588F50; original slot128.
-		void ReadClientIdentity(Net::Packet& reply); //Explicit58A620 read/log/input-flag prefix; no greeting tail.
 		virtual ClientChild0x70* CreateChild0x70(); // Original slot132.
 		virtual ClientChild0x74* CreateChild0x74(); // Original slot136.
 		virtual ClientChild0x78* CreateChild0x78(); // Original slot140.

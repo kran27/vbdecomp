@@ -4,17 +4,14 @@
 #include "startup/MessageLoop.hpp"
 #include "startup/NetworkComponent.hpp"
 #include "diagnostics/DebugOutput.hpp"
-#include "network/EngineClientBinding.hpp"
 #include "network/Packet.hpp"
 #include "graphics/Graphics.hpp"
 #include "graphics/GraphicsScene.hpp"
 #include "entity/EntityEnvironment.hpp"
 #include "entity/World.hpp"
 #include "graphics/ClientInput.hpp"
-#include "graphics/ClientSelectionBinding.hpp"
 #include "graphics/ClientPicking.hpp"
 #include "graphics/ClientCursor.hpp"
-#include "gui/GraphicsInput.hpp"
 #include "gui/Manager.hpp"
 #include "graphics/Video.hpp"
 #include "gui/FadeManager.hpp"
@@ -45,51 +42,15 @@ namespace JE
 		std::memcpy(&output.z, &field0xF4, sizeof(field0xF4));
 		return 1;
 	}
-	void Client::CaptureInputState()
-	{
-		ClientInputState& input = *JE::GetEngineClientBinding(*this).borrowedInputState;
-		CaptureClientSelectionState(*this, input);
-		input.mouseOverGUI = field0xC0;
-		input.mouseX = static_cast<LONG>(field0xC4);
-		input.mouseY = static_cast<LONG>(field0xC8);
-		input.wheel = static_cast<LONG>(field0xCC);
-		input.left = static_cast<BYTE>(field0xD0);
-		input.middle = static_cast<BYTE>(field0xD0 >> 8);
-		input.right = field0xD2;
-		input.mouseRotate = field0xD4;
-		input.enabled = field0x110;
-		input.keyboardScroll = field0x112;
-		input.dragDelay = static_cast<LONG>(field0x114);
-		//The existing picker owns its effect/ground projection until full Graphics
-		//startup is recovered. Never overwrite those with an invented owner.
-	}
 
 	void Client::PickInputMouse(BYTE force)
 	{
-		EngineClientBinding* binding = FindEngineClientBinding(*this);
-		if (binding && (binding->borrowedInputState || binding->borrowedInputServices))
-		{
-			if (!binding->borrowedInputState || !binding->borrowedInputServices)
-				throw std::logic_error("Client58AB80: incomplete explicit input binding");
-			CaptureInputState();
-			GetEngineClientBinding(*this).borrowedInputServices->PickMouse(
-				*GetEngineClientBinding(*this).borrowedInputState, force);
-			field0xD8 = GetEngineClientBinding(*this).borrowedInputState->lastPickingTime;
-			field0xDC = GetEngineClientBinding(*this).borrowedInputState->hoveredEntityID;
-			return;
-		}
 		ClientPickingOwners owners(*this);
-		PickClientMouse(*this, force, owners); //Live original fields; no final snapshot writeback.
+		PickClientMouse(*this, force, owners);
 	}
 
 	void Client::UpdateInputFrame()
 	{
-		EngineClientBinding* binding = FindEngineClientBinding(*this);
-		if (binding && (binding->borrowedInputState || binding->borrowedInputServices || binding->borrowedGraphicsInput))
-		{
-			UpdateBorrowedInputFrame();
-			return;
-		}
 		Input::InputEvent event;
 		while (child0x78->PopEvent(event)) //587EF6/587FAF, reload after every routed event.
 		{
@@ -109,71 +70,20 @@ namespace JE
 		}
 		if (!::GUI::g_Manager.HasModal()) UpdateInputCursor(); //4B2C10, then virtual+D0.
 	}
-	void Client::UpdateBorrowedInputFrame()
-	{
-		if (!JE::GetEngineClientBinding(*this).borrowedInputState || !JE::GetEngineClientBinding(*this).borrowedInputServices ||
-			(!child0x74 && !JE::GetEngineClientBinding(*this).borrowedGraphicsInput))
-			throw std::logic_error("Client587EF6: actual input/Graphics service binding required");
-		Input::InputEvent event;
-		while (child0x78->PopEvent(event)) //Reload the actual input owner on every pop.
-		{
-			if (event.category == 2)
-			{
-				field0xC4 = event.x;
-				field0xC8 = event.y;
-				field0xCC = event.wheel;
-				field0xD0 = WORD(event.left) | (WORD(event.middle) << 8);
-				field0xC0 = 1;
-				field0xD2 = event.right;
-			}
-			CaptureInputState(); //Graphics callbacks observe the already-published mouse fields.
-			//587F49 dispatches the actual frontend before cursor/hotkey handling.
-			//Only isolated entries without that owner retain the explicit factor.
-			if (child0x74)
-			{
-				if (child0x74->ProcessInput(event)) continue;
-			}
-			else if (GUI::DispatchGraphicsInput(event, *JE::GetEngineClientBinding(*this).borrowedGraphicsInput)) continue;
-			if (event.category == 2) field0xC0 = 0;
-			CaptureInputState();
-			const DWORD selected = JE::GetEngineClientBinding(*this).borrowedInputState->selectedEntityID;
-			const BYTE handled = child0xA4->ReleaseInput(*JE::GetEngineClientBinding(*this).borrowedInputState, event,
-				Input::Win32InputServices::Window());
-			//The cursor can clear E0 when its selected Entity disappeared. Commit
-			//only that observed store, never an old snapshot over a GUI callback.
-			if (selected != JE::GetEngineClientBinding(*this).borrowedInputState->selectedEntityID)
-				field0xE0 = JE::GetEngineClientBinding(*this).borrowedInputState->selectedEntityID;
-			if (!handled && !HandleInputEvent(event) && field0x110)
-				child0x80->Handle(event, *JE::GetEngineClientBinding(*this).borrowedInputServices);
-		}
-		if (!JE::GetEngineClientBinding(*this).borrowedInputServices->HasGUICapture()) UpdateInputCursor();
-		CaptureInputState();
-	}
 
 	void Client::UpdateWorldFrame()
 	{
 		if (state != 3) return; //58801F: the enclosing state gate is read once.
 		World* world = g_World;
-		if (!world) throw std::logic_error("Client588036: actual World client owner required");
 		const DWORD clock = GetEntityEnvironment().FrameClock();
 		world->UpdateClientFrame(clock);
 		world = g_World;
-		if (!world) throw std::logic_error("Client588054: actual World client owner required");
 		world->CollectVisibleEffects();
 		if (field0x108 || field0x109) return; //588059..58806B, live flags after collection.
 		world = g_World;
-		if (!world) throw std::logic_error("Client58807D: actual World client owner required");
-		if (child0x74)
-		{
-			GraphicsSceneState graphics(*child0x74); //Live aliases, no second owner/storage copy.
-			world->DrawVisible(graphics);
-		}
-		else
-		{
-			if (!JE::GetEngineClientBinding(*this).borrowedGraphicsState)
-				throw std::logic_error("World545AB1: actual frontend Graphics renderer required");
-			world->DrawVisible(*JE::GetEngineClientBinding(*this).borrowedGraphicsState);
-		}
+
+		GraphicsSceneState graphics(*child0x74);
+		world->DrawVisible(graphics);
 	}
 
 	void Client::UpdatePolling() //587EE0.

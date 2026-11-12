@@ -20,7 +20,6 @@ namespace F3
 		{
 			JE::Client* client = g_pNetworkInstance ? dynamic_cast<JE::Client*>(g_pNetworkInstance->client) : NULL;
 			GameCursorManager* cursor = client ? dynamic_cast<GameCursorManager*>(client->child0xA4) : NULL;
-			if (!cursor) throw std::logic_error("InventoryInterface43EEA5: actual published GameCursor owner required");
 			return *cursor;
 		}
 
@@ -88,7 +87,6 @@ namespace F3
 					while (!slots.empty())
 					{
 						const DWORD index = slots.front();
-						if (index >= 6) throw std::logic_error("InventoryInterface43EF31: original unchecked equipment slot");
 						if (equipmentSlots[index]) equipmentSlots[index]->Bind(entity->entityID, entity->inventoryOwnerID);
 						slots.pop_front();
 					}
@@ -105,7 +103,6 @@ namespace F3
 				if (!inventory->GetEquippedSlots(entity, slots) && game->value8C != DWORD(-1))
 				{
 					const LONG index = LONG(game->value8C);
-					if (index < 0 || index >= 99) throw std::logic_error("InventoryInterface43F082: original unchecked backpack slot");
 					InventorySlot* slot = backpackSlots[index / 3][index % 3];
 					slot->Bind(entity->entityID, entity->inventoryOwnerID);
 					if (entity->entityID == draggedItem && slot->picture) slot->SetState(1);
@@ -186,11 +183,9 @@ namespace F3
 		std::list<DWORD> available;
 		if (cursor.draggedItemID)
 		{
-			if (!inventory) throw std::logic_error("InventoryInterface43F301: original required inventory");
 			JE::Entity* entity = inventory->FindByID(cursor.draggedItemID);
 			GameEntity* game = dynamic_cast<GameEntity*>(entity);
 			GameItem* item = dynamic_cast<GameItem*>(game);
-			if (!item) throw std::logic_error("InventoryInterface43F32D: original unchecked dragged GameItem");
 			const std::list<DWORD> choices(item->values168);
 			for (std::list<DWORD>::const_iterator it = choices.begin(); it != choices.end(); ++it)
 			{

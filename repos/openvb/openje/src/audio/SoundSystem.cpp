@@ -11,7 +11,6 @@
 #include <cmath>
 #include <cstdlib>
 #include <new>
-#include <stdexcept>
 
 namespace JE
 {
@@ -205,53 +204,4 @@ namespace JE
 	}
 	int SoundSystem::LookupVolume(int volume) const
 	{ return volumeTable[volume<0 ? 0 : volume>100 ? 100 : volume]; }
-	void SoundSystem::SetListenerPosition(float x,float y,float z)
-	{ instanceManager->SetListenerPosition(D3DXVECTOR3(x,y,z)); }
-	Resources::ResourceSystem& SoundSystem::ResourceOwner() { return *resources; }
-	void SoundSystem::RegisterInstance(VfxSoundInstance& instance)
-	{ instanceManager->RegisterInstance(&instance); }
-	void SoundSystem::UnregisterInstance(VfxSoundInstance& instance)
-	{ instanceManager->UnregisterInstance(&instance); }
-	BYTE SoundSystem::HasGroupOwner() { return groups!=NULL; }
-	BYTE SoundSystem::HasPlaybackOwner() { return instanceManager!=NULL; }
-	SoundPlaybackOwner SoundSystem::CapturePlaybackOwner()
-	{
-		SoundInstanceManager* owner=instanceManager;
-		return SoundPlaybackOwner(owner,NULL,owner!=NULL);
-	}
-	SoundGroupOwner SoundSystem::CaptureGroupOwner()
-	{
-		MasterSoundGroups* owner=groups;
-		return SoundGroupOwner(owner,NULL,owner!=NULL);
-	}
-	SoundGroup* SoundSystem::FindGroup(const char* name,BYTE preset)
-	{ return preset ? groups->FindGroup(name) : groups->fallback; }
-	void SoundSystem::ApplyGroup(CSound& sound,SoundGroup& group)
-	{ sound.mixFadeInDuration=group.fadeIn; sound.mixFadeOutDuration=group.fadeOut; }
-	int SoundSystem::RequestPriority(VfxSoundInstance& instance)
-	{ return instanceManager->RequestPriority(instance); }
-	DWORD SoundSystem::Clock() { return now; }
-	void SoundSystem::PlayInstance(VfxSoundInstance& instance,DWORD flags,DWORD delay)
-	{ instance.Play(flags,delay); }
-	void SoundSystem::StopSound(CSound& sound,DWORD first,DWORD) { sound.Stop(first); }
-	void SoundSystem::SetSoundVolume(CSound& sound,int volume,DWORD force)
-	{ sound.SetVolume(volume,BYTE(force)); }
-	int SoundSystem::SoundVolume(CSound& sound) { return sound.GetVolume(); }
-	void SoundSystem::InitializeSound(CSound& sound)
-	{
-		sound.bitsPerSample=bitsPerSample; sound.sampleRate=sampleRate;
-		sound.channels=channels;
-		SoundGuard guard(soundLock);
-		sounds.push_back(&sound);
-	}
-	void SoundSystem::DestroySound(CSound& sound)
-	{ SoundGuard guard(soundLock); sounds.remove(&sound); }
-	void SoundSystem::LoadSound(CSound& sound,const DSBUFFERDESC& description,const BYTE* bytes,DWORD size)
-	{ sound.CreatePlaybackBuffer(*this,description,bytes,size); }
-	int SoundSystem::CountActiveGroup(LONG id)
-	{ return instanceManager->CountActiveGroup(id); }
-	void SoundSystem::EvictOldestGroup(LONG id,VfxSoundInstance& incoming)
-	{ instanceManager->EvictOldestGroup(id,incoming); }
-	int SoundSystem::MixVolume(VfxSoundInstance& incoming)
-	{ return instanceManager->MixVolume(incoming); }
 }

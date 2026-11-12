@@ -16,36 +16,6 @@
 
 namespace
 {
-	JE::CameraControlServices* cameraServices = NULL;
-	class NativeCameraControlServices : public JE::CameraControlServices
-	{
-	public:
-		virtual void AttachController(JE::Client* client, Gfx_CamCtrl* controller)
-		{
-			client->child0x74->AttachCamera(controller); //586F70 constructor's actual virtual+0C.
-		}
-		virtual DWORD Clock() { return F3::g_nElapsedTimeMS; }
-		virtual const JE::Configuration::Settings& EngineSettings() { return *F3::GetEngineSettings(); }
-		virtual BYTE GetCameraBounds(D3DXVECTOR3& minimum, D3DXVECTOR3& maximum)
-		{
-			JE::Map* map = JE::g_World->GetCurrentMap(); //Actual IWorld+60; World is required.
-			if (!map) return 0; //Adapter status only; leave outputs untouched.
-			map->GetCameraBounds(minimum, maximum); //Actual void Map virtual+24.
-			return 1;
-		}
-		virtual void SetGraphicsFogOfWar(JE::Client* client, BYTE enabled)
-		{
-			client->child0x74->SetFogOfWarEnabled(enabled);
-		}
-	};
-
-	JE::CameraControlServices& Services()
-	{
-		if (cameraServices) return *cameraServices;
-		static NativeCameraControlServices native;
-		return native;
-	}
-
 	void ReadFloat(const JE::Configuration::Values& values, const char* name, float& output)
 	{
 		JE::Configuration::Values::const_iterator found = values.find(name);
@@ -62,17 +32,13 @@ namespace
 
 namespace JE
 {
-	void SetCameraControlServices(CameraControlServices* services)
-	{
-		cameraServices = services;
-	}
 
 	CameraControl::CameraControl(Client* owner) : client(owner), transitionFlags(0),
 		movementFlags(0), lastUpdateTime(0), constraints(0)
 	{
 		savedNearPlane = g_GfxSystem->Camera()->nearPlane;
 		savedFarPlane = g_GfxSystem->Camera()->farPlane;
-		Services().AttachController(client, &orbit);
+		client->child0x74->AttachCamera(&orbit);
 		Reset();
 		lastUpdateTime = F3::GetElapsedTimeMS();
 	}
@@ -482,7 +448,7 @@ namespace JE
 		float x = 212.60001f, y = 0.0f, z = 329.20001f;
 		float azimuth = 322.79999f, elevation = 24.200001f, distance = 75.0f;
 		float fov = 45.0f, nearPlane = 10.0f, farPlane = 200.0f;
-		const Configuration::Settings& settings = Services().EngineSettings();
+		const Configuration::Settings& settings = *F3::GetEngineSettings();
 		Configuration::Settings::const_iterator section = settings.find("Mainmenu");
 		if (section != settings.end())
 		{
@@ -499,7 +465,7 @@ namespace JE
 		control.SetFieldOfView(fov);
 		control.SetTarget(D3DXVECTOR3(x, y, z));
 		control.SetProjection(nearPlane, farPlane);
-		Services().SetGraphicsFogOfWar(control.client, 0);
+		control.client->child0x74->SetFogOfWarEnabled(0);
 		g_GfxSystem->SetFlag2194(0);
 	}
 }

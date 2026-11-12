@@ -107,9 +107,4 @@ DWORD Gfx_LoadModelData(const std::string& name, DWORD kind, BYTE textures,
 //529D80, borrowed source; output is published only after a successful Build.
 DWORD Gfx_LoadModelData(G3D_Model* source, DWORD kind, DWORD textures, DWORD shadow,
 	float scale, DWORD fvf, Gfx_ModelData526620** output, BYTE resources);
-//Source compatibility adapters retain explicit borrowed/inspection domains.
-DWORD Gfx_LoadModelData(const char* name, DWORD kind, BYTE textures, BYTE shadow,
-	float scale, DWORD fvf, Gfx_ModelData526620** output);
 void Gfx_DeferModelDataRelease(DWORD handle); // 0x4B86E0; queues an in-use handle.
-Gfx_ModelData526620* Gfx_BuildModelData(G3D_Model* source, DWORD kind, BYTE textures,
-	BYTE shadow, float scale, DWORD fvf, BYTE resources);

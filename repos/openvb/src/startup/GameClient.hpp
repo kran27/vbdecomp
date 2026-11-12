@@ -27,12 +27,6 @@ namespace F3
 		OptionsInterface* Options() const;
 		PipBoyInterface* PipBoy() const;
 		JE::WorldContainerInterface* WorldContainer() const;
-		struct InventoryInspection
-		{
-			DWORD targetID, actorID;
-			LONG x, y;
-		};
-		typedef void (*UnconsumedInventoryInspection)(GameClient&, const InventoryInspection&, void*);
 		void ToggleRain(); //4601F0, original no-payload reliable110.
 		void ToggleSnow(); //4602A0, reliable111.
 		void ToggleWind(); //460350, reliable112.
@@ -41,12 +35,11 @@ namespace F3
 		void ToggleOptionsWindow(); //45EB70.
 		static void __cdecl ToggleOptionsPage(LONG page); //45ED10 and five original wrappers.
 		void ToggleEscapeMenu(); //45EC00, actual cursor cancellation/visibility/modal policy.
-		void ToggleInventoryWindow(); //45EAC0, explicit standalone view of the actual command.
-		void ToggleActionbarWindow(); //45EA50, same explicit standalone boundary.
+		void ToggleInventoryWindow(); //45EAC0.
+		void ToggleActionbarWindow(); //45EA50.
 		void ToggleFeedbackWindow(); //45EE00, actual Actionbar companion-mode cycle.
 		void ToggleWeapon(); //45EED0, active-panel policy, no equip action.
 		void CycleAttackMode(); //45EE60, actual bound Actionbar owner.
-		typedef void (*InventoryInspectionObserver)(GameClient&, const InventoryInspection&, void*);
 		void RequestInventoryInspection(DWORD targetID, DWORD actorID, float screenX, float screenY);
 		explicit GameClient(JE::Net::UInt16 port); // 0x460B30.
 		~GameClient(); //45E6A0; no additional game-owned data.

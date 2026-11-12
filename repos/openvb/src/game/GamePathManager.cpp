@@ -68,7 +68,6 @@ namespace F3
 				float y = static_cast<float>(deltaY * fraction);
 				float z = static_cast<float>(deltaZ * fraction);
 				D3DXVECTOR3 sample(x + from.x, from.y + y, z + from.z);
-				if (!JE::g_World) throw std::logic_error("GamePathManager45BE14: actual World required");
 				JE::Map* map = JE::g_World->GetMap(request->owner->mapHandle);
 				JE::PathPoint unused;
 				JE::WorldToPathCell(&unused, from, map); //Original45BE24 repeats this unused conversion.

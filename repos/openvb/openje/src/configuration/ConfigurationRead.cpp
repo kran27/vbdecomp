@@ -50,11 +50,7 @@ namespace JE
 			}
 			void* __cdecl Allocate(Net::UInt32 nBytes)
 			{
-				// Storage adaptation: the scanner can write a NUL one byte
-				// past its logical LF sentinel. Reserve that byte without seeding it.
-				// Keep the caller's original DWORD allocation request/scan length.
-				const std::size_t nPadding = nBytes == static_cast<Net::UInt32>(-1) ? 0u : 1u;
-				return ::operator new(static_cast<std::size_t>(nBytes) + nPadding);
+				return ::operator new(nBytes);
 			}
 			std::size_t __cdecl Read(void* pBuffer, std::size_t nSize,
 				std::size_t nCount, FILE* pFile)

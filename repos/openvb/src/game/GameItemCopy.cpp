@@ -23,8 +23,6 @@ namespace F3
 					if (original->effectID) continue; //4683B6 copies only unassigned templates.
 					if (!(JE::GetEntityEnvironment().NetworkMode()&1))
 						throw ::Common::Exception("Invalid attempt to retrieve world server instance.");
-					if (!JE::g_World)
-						throw std::logic_error("GameEntity4683E6: actual server World required for template clone");
 					JE::Effect* effect=JE::g_World->NewEffect(original->type);
 					effect->CopyFrom(*original);
 					effects[event].push_back(effect); //Append; no activation/owner change or destination clear.

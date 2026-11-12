@@ -54,7 +54,6 @@ namespace JE
 		//then the graphics owner creates the instance through its normal factory.
 		dataHandle = Gfx_LoadModelData(&source, 1, 1, 0, conversionScale, 338, NULL, 1);
 		Gfx_ModelInstance* result = g_GfxSystem->CreateModelInstance(dataHandle);
-		if (!result) throw std::logic_error("WaterTileModelInstance565C26: original unchecked NULL model instance");
 		std::list<Gfx_ModelNode*> pending;
 		pending.push_back(result->root);
 		while (!pending.empty())
@@ -70,8 +69,6 @@ namespace JE
 					offsetZ = tile->offsetZ;
 					columns = tile->columns;
 					rows = tile->rows;
-					if (!configuration)
-						throw std::logic_error("WaterTileModelInstance565D28: original unchecked NULL water configuration");
 					tile->flag224 = configuration->flag3C;
 					tile->flag225 = configuration->flag3D;
 					tile->flag226 = configuration->flag3E;

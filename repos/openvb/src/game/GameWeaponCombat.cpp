@@ -50,13 +50,11 @@ namespace F3
 	LONG GameWeapon::GetEffectiveRange(AttackModeIterator attack)
 	{
 		if ((attack != AttackModeIterator() ? attack : currentAttackMode) == AttackModeIterator()) return 0;
-		if (attack == AttackModeIterator())
-			throw std::logic_error("GameWeapon412F6A: original dereferences NULL argument after selected-mode check");
 		if (!attack->shots) return LONG(attack->range);
 		if (attack->shots>primaryAmmoLoaded || attack->values18[0]>secondaryAmmoLoaded) return 0;
 		if (!primaryAmmo)
 		{
-			primaryAmmo=ResolveAmmunition(primaryCaliber,primaryModifier);
+			primaryAmmo=FindAmmunition(primaryCaliber,primaryModifier);
 			if (!primaryAmmo)
 				throw std::logic_error("GameWeapon412FBB: original fatal ammo lookup has an unwritten %d argument");
 		}
@@ -73,7 +71,7 @@ namespace F3
 		{
 			if (!primaryAmmo)
 			{
-				primaryAmmo=ResolveAmmunition(primaryCaliber,primaryModifier);
+				primaryAmmo=FindAmmunition(primaryCaliber,primaryModifier);
 				if (!primaryAmmo)
 					JE::FatalError("GameWeapon::CalculateMeleeToHit - Couldn't find ammo: caliber %d, modifier %d",
 						primaryCaliber,primaryModifier);
@@ -108,7 +106,7 @@ namespace F3
 		{
 			if (!primaryAmmo)
 			{
-				primaryAmmo=ResolveAmmunition(primaryCaliber,primaryModifier);
+				primaryAmmo=FindAmmunition(primaryCaliber,primaryModifier);
 				if (!primaryAmmo)
 					JE::FatalError("GameWeapon::CalculateRangedToHit() - Unable to locate ammo. Caliber:%d, modifier:%d",
 						primaryCaliber,primaryModifier);
@@ -121,8 +119,6 @@ namespace F3
 		if (adjusted>=0)
 		{
 			LONG divisor=adjusted/5;
-			if (!divisor)
-				throw std::logic_error("GameWeapon4132A0: original signed range divisor is zero");
 			multiplier=200/divisor;
 		}
 		LONG penalty=LONG(DWORD(-2)-DWORD(static_cast<__int64>(distance*double(-0.2f))));
@@ -152,7 +148,7 @@ namespace F3
 		{
 			if (!primaryAmmo)
 			{
-				primaryAmmo=ResolveAmmunition(primaryCaliber,primaryModifier);
+				primaryAmmo=FindAmmunition(primaryCaliber,primaryModifier);
 				if (!primaryAmmo)
 					JE::FatalError("GameWeapon::CalculateDamage() - Unable to find ammo. Caliber:%d, modifier:%d",
 						primaryCaliber,primaryModifier);

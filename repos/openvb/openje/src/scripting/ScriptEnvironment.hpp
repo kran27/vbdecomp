@@ -18,7 +18,6 @@ namespace JE
 		virtual AMX_NATIVE_INFO* NativeTable(DWORD ordinal) = 0;
 		virtual void DebugOutput(void* window, const char* message, BYTE red, BYTE green, BYTE blue) = 0;
 	};
-	extern ScriptEnvironment* g_ScriptEnvironment;
 	namespace ScriptServices
 	{
 		BYTE ReadNativeFloat(AMX* vm, cell value, float& output); //59AA50, raw cell bits; does not resolve an address.

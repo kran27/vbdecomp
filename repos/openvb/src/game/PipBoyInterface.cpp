@@ -733,9 +733,7 @@ namespace F3
 			(GetAsyncKeyState(VK_MENU) & 0x8000) && !exploreShortcutHeld)
 		{
 			exploreShortcutHeld = 1;
-			if (!JE::g_World) throw std::logic_error("PipBoy45194B: actual World required");
 			JE::Map* map = JE::g_World->GetMap(JE::g_World->valueE0);
-			if (!map) throw std::logic_error("PipBoy451956: original unchecked active Map required");
 			if (map->areaMap)
 			{
 				const LONG width = map->areaMap->width, height = map->areaMap->height;

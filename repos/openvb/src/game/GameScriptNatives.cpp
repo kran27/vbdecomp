@@ -28,7 +28,6 @@ namespace
 	{
 		if(!(JE::GetEntityEnvironment().NetworkMode()&1))
 			throw ::Common::Exception("Invalid attempt to retrieve world server instance.");
-		if(!JE::g_World) throw std::logic_error("Script native401150: actual World required");
 		return *JE::g_World;
 	}
 	template<DWORD Address> cell AMX_NATIVE_CALL UnresolvedNative(AMX*, cell*)
@@ -456,8 +455,6 @@ namespace F3
 			LogScriptError(vm, "PlayAnim() was unable to find the requested entity.");
 			return 0;
 		}
-		if (!JE::g_World)
-			throw std::logic_error("A_PlayAnim5C8FF7: actual World action factory required.");
 		JE::ActionAnim* action = static_cast<JE::ActionAnim*>(JE::g_World->NewAction(6));
 		action->group = parameters[2];
 		action->file = parameters[3];

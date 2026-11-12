@@ -73,8 +73,6 @@ namespace F3
 			JE::Entity* item=source ? source->inventory->FindByID(itemID) : NULL;
 			//The original failure reply dereferences these failed pointers for
 			//IDs. Retain that unsupported boundary rather than inventing a reply.
-			if (!owner || !source || !item)
-				throw std::logic_error("GameServer46E725: original invalid equipment request dereferences failed entity lookup");
 			GameActionEquip* action=static_cast<GameActionEquip*>(JE::g_World->NewAction(9));
 			action->itemID=item->entityID; action->slot=slot; action->value28=30; action->flag2C=1;
 			owner->QueueAction(action);
@@ -86,8 +84,6 @@ namespace F3
 			packet.ReadDword(ownerID); packet.ReadDword(itemID);
 			JE::Entity* owner=JE::GetEntityPtr(ownerID);
 			JE::Entity* item=owner ? owner->inventory->FindByID(itemID) : NULL;
-			if (!owner || !item)
-				throw std::logic_error("GameServer46E7E0: original invalid unequip request dereferences failed entity lookup");
 			GameActionUnequip* action=static_cast<GameActionUnequip*>(JE::g_World->NewAction(10));
 			action->itemID=item->entityID;
 			owner->QueueAction(action);

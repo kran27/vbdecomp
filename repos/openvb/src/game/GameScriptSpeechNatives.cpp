@@ -43,7 +43,6 @@ namespace F3
 		}
 		DWORD stringReference=DWORD(parameters[2]),duration=DWORD(parameters[3]);
 		DWORD red=DWORD(parameters[4]),green=DWORD(parameters[5]),blue=DWORD(parameters[6]);
-		if (!JE::g_World) throw std::logic_error("FloatingSpeechText5C27A9: actual World factory required");
 		JE::ActionFloatingSpeechText* action=static_cast<JE::ActionFloatingSpeechText*>(JE::g_World->NewAction(8));
 		action->stringReference=stringReference;
 		action->duration=duration;

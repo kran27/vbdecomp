@@ -50,10 +50,6 @@ namespace F3
 				if (entityID)
 				{
 					FeedbackInterface* feedback = client->Feedback();
-					if (!feedback)
-					{
-						throw std::logic_error("Feedback434B70: actual client feedback owner required");
-					}
 					feedback->AddMessage(std::string("Reload!"),0,128,0,std::string());
 					client->RequestReload(entityID,weapon->entityID,0);
 					SetAttackMode(index,1);

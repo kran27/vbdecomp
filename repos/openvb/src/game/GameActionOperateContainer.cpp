@@ -52,7 +52,6 @@ namespace F3
 		const double z=double(owner->position.z)-target->position.z;
 		if (sqrt(x*x+y*y+z*z)>=5.0)
 		{
-			if (!JE::g_World) throw std::logic_error("GameActionOperateContainer406B99: actual World required");
 			JE::ActionMoveTo* move=static_cast<JE::ActionMoveTo*>(JE::g_World->NewAction(2));
 			move->SetTarget(target);
 			move->stopDistance=5;
@@ -79,7 +78,6 @@ namespace F3
 		//pre-pushed for the following real matrix getter. Use the SDK math.
 		const D3DXVECTOR3 position=target->position;
 		D3DXMATRIX view,projection,combined;
-		if (!g_GfxSystem) throw std::logic_error("GameActionOperateContainer406CAE: actual graphics camera owner required");
 		g_GfxSystem->Camera()->GetViewMatrix(view);
 		g_GfxSystem->Camera()->GetProjectionMatrix(projection);
 		D3DXMatrixMultiply(&combined,&view,&projection);
@@ -89,11 +87,7 @@ namespace F3
 		const float screenX=float((projected.x*inverseW+1.0)*512.0f);
 		const float screenY=float((2.0-(projected.y*inverseW+1.0))*384.0f);
 		if (container) container->Operate(owner);
-		if (!JE::g_World)
-			throw std::logic_error("GameActionOperateContainer406D68: actual World party owner required");
 		JE::Party* party=JE::g_World->GetParty();
-		if (!party)
-			throw std::logic_error("GameActionOperateContainer406D68: actual World party owner required");
 		//406D7E tests the captured pointer word before reading the live open BYTE.
 		//Its initial container-path contents remain indeterminate, as in the original.
 		if (party->Contains(owner)==1 && (creature!=NULL || container->open==1))
@@ -101,8 +95,6 @@ namespace F3
 			JE::Client* published = g_pNetworkInstance ?
 				dynamic_cast<JE::Client*>(g_pNetworkInstance->client) : NULL;
 			GameClient* client = dynamic_cast<GameClient*>(published);
-			if (!client)
-				throw std::logic_error("GameActionOperateContainer406DB4: original unchecked GameClient required");
 			//Population now precedes original Y/X truncations in the connected
 			//suffix. Keep both saved float inputs until the popup has populated.
 			client->RequestInventoryInspection(target->entityID, owner->entityID, screenX, screenY);

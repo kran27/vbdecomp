@@ -33,8 +33,6 @@ namespace F3
 		JE::Entity* actor = JE::GetEntityPtr(actorID);
 		JE::Entity* target = JE::GetEntityPtr(targetID);
 		JE::DialogueManager* dialogue = static_cast<JE::DialogueManager*>(server.dialogue);
-		if (!dialogue)
-			throw std::logic_error("GameServer46DF71: original unchecked dialogue manager required");
 		//55BDB0 returns the actual entries size, before either entity-pointer test.
 		if (!dialogue->entries.empty() || !actor || !target) return 1;
 		actor->ClearActions();

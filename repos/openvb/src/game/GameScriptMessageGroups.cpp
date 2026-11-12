@@ -42,7 +42,6 @@ namespace F3
 		}
 		JE::World& MessageWorld()
 		{
-			if (!JE::g_World) throw std::logic_error("Message native: actual World required");
 			return *JE::g_World;
 		}
 		cell QueueMessage(AMX* vm, cell* parameters, Destination destination, const char* name)
@@ -102,8 +101,6 @@ namespace F3
 			std::list<DWORD>* members = squad
 				? world->GetSquads()->GetSquadMembers(groupID)
 				: world->GetTeams()->GetTeamMembers(groupID);
-			if (!members)
-				throw std::logic_error("SendMessageToGroup5C58BD/5C5A31: original unchecked NULL member list");
 			cell delivered = 0;
 			for (std::list<DWORD>::iterator i = members->begin(); i != members->end(); ++i)
 			{

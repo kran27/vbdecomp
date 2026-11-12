@@ -33,7 +33,6 @@ namespace F3
 		void Close(); //424A70, hide/finish counters/delete preview character.
 		void Refresh(); //42F5A0, actual complete text/counter/appearance refresh.
 		void SetRace(DWORD race, BYTE resetAppearance); //42E870.
-		GamePlayer* Character() const { return character; } //Borrowed host inspection only.
 
 		GamePlayer* character; //Original+04, owned preview instance, not a World substitute.
 		MessageBoxInterface* messageBox; //+08, allocated/registered helper;dtor omits delete.

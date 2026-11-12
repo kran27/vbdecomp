@@ -7,8 +7,7 @@ namespace JE
 {
     namespace LegacyFilesystem
     {
-        // Compatibility names for existing game callers and comparison fixtures.
-        // This is the compiler's real find-data type, not a recreated CRT object.
+        // Supplied VC7 file enumeration APIs and find-data type.
         typedef _finddata_t FindData32;
         ::intptr_t __cdecl FindFirst(const char*, FindData32*);
         int __cdecl FindNext(::intptr_t, FindData32*);

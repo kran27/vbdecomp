@@ -26,7 +26,6 @@ namespace F3
 				LogScriptError(vm, mapError);
 				return 0;
 			}
-			if (!JE::g_World) throw std::logic_error("Navigation native: actual World required");
 			*output = JE::g_World->GetMap(id);
 			return 1;
 		}
@@ -34,10 +33,6 @@ namespace F3
 		{
 			//56DA40/56DAF0/56DB40 reject index>size, not index>=size.
 			if (index > map.navigation.size()) return NULL;
-			if (index == map.navigation.size())
-				throw std::logic_error("NavPoint56DA71/56DB1C/56DB6C: original end-index out-of-bounds read");
-			if (!map.navigation[index])
-				throw std::logic_error("NavPoint56DA71/56DB1C/56DB6C: original unchecked NULL navigation owner");
 			return map.navigation[index];
 		}
 		BYTE StoreValues(AMX* vm, cell address, const void* values, DWORD count)

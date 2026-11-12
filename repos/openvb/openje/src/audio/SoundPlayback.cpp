@@ -1,6 +1,5 @@
 #include "Sound.hpp"
 #include "SoundSystem.hpp"
-#include "SoundInstanceServices.hpp"
 #include "resources/ResourceSystem.hpp"
 #include "model/CommonException.hpp"
 #include "diagnostics/DebugOutput.hpp"
@@ -56,42 +55,6 @@ namespace JE
 		typedef char ReverbBlockEnd[offsetof(CSound, lastFilledStreamBlock) == 0x4C + sizeof(DSFXWavesReverb) ? 1 : -1];
 #endif
 
-	}
-
-	int CSound::CreatePlaybackBuffer(SoundSystem& system,
-		const DSBUFFERDESC& description, const BYTE* samples, DWORD count)
-	{
-		const DWORD configurationFlags = loadFlags;
-		IDirectSoundBuffer* created = NULL;
-		if (system.device->CreateSoundBuffer(&description, &created, NULL) < 0)
-			return 4;
-		if (soundData->format)
-		{
-			bitsPerSample = soundData->format->wBitsPerSample;
-			sampleRate = soundData->format->nSamplesPerSec;
-			channels = soundData->format->nChannels;
-		}
-		ConfigureBuffer(created, configurationFlags);
-		if (samples)
-		{
-			// Explicit provider seam for already-read sample storage. The real
-			// Load path passes NULL and uses the original virtual reader below.
-			void* destination = NULL;
-			DWORD bytes = 0;
-			if (RestoreBuffer(created, NULL) >= 0 && created->Lock(0,
-				description.dwBufferBytes, &destination, &bytes, NULL, NULL, 0) >= 0)
-			{
-				std::memcpy(destination, samples, count);
-				created->Unlock(destination, bytes, NULL, 0);
-				lastFilledStreamBlock = 7;
-			}
-		}
-		else
-			FillBuffer(created);
-		created->SetCurrentPosition(0);
-		previousPlayCursor = streamWrapCount = 0;
-		buffer = created;
-		return 0;
 	}
 
 	HRESULT CSound::ConfigureBuffer(IDirectSoundBuffer* target, DWORD requestedFlags)

@@ -29,9 +29,7 @@ namespace JE
 		startCell.x = startCell.y = goalCell.x = goalCell.y = 0;
 		start = entity->position;
 		goal = destination;
-		if (!g_World) throw std::logic_error("PathRequest560415: actual World required");
 		Map* map = g_World->GetMap(entity->mapHandle);
-		if (!map) throw std::logic_error("PathRequest56041E: actual map required");
 		terrain = map->terrainGrid;
 		occupancy = map->entityGrid;
 		alternateTerrain = map->alternateTerrain;

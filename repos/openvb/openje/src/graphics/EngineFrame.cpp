@@ -4,12 +4,6 @@
 
 BYTE g_GfxDebugFrames; //Original70C968; canonical static-zero global, shared by real Engines.
 
-Gfx_EngineFrameView Gfx_Engine::FrameView()
-{
-	return Gfx_EngineFrameView(value04, currentViewport, defaultViewport, postViewport,
-		additionalViewports, window, automapRequested, automapReady, projectedShadows,
-		statistics, fogOfWar, g_GfxDebugFrames);
-}
 bool Gfx_Engine::RenderFrame(BYTE clearQueues, BYTE present)
 {
 	IDirect3DDevice8* beginDevice = g_D3D.device;

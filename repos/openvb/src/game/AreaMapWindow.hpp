@@ -11,15 +11,6 @@ namespace JE { class AreaMap; class AreaMapNote; }
 namespace GUI { class LineSystem; }
 class AreaMapIcon;
 
-class AreaMapWindowServices
-{
-public:
-	virtual ~AreaMapWindowServices() {}
-	// Actual41EA11 reads the visible Actionbar child and its absolute top.
-	virtual BYTE GetVisibleActionbarTop(LONG& top) = 0;
-};
-AreaMapWindowServices* SetAreaMapWindowServices(AreaMapWindowServices* services);
-
 struct AreaMapVertex
 {
 	float x, y, z, rhw;

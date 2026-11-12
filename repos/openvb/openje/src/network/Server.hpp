@@ -17,7 +17,6 @@ namespace JE
 		class Server : public Base
 		{
 		public:
-			typedef void (*UserPacketObserver)(void* context,JE::Net::UInt32 index,const Packet& packet);
 			explicit Server(JE::Net::UInt16 port); // 0x5A0B40.
 			~Server(); // 0x5A1DC0.
 			void Initialize(); // 0x552980; calls virtual Configure(16).

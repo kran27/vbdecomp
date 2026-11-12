@@ -8,6 +8,7 @@
 #include "F3.hpp"
 #include "startup/CommonException.hpp"
 
+
 // Original 0x56B810 startup policy. Reconstruction remains incomplete.
 static int RunOriginalStartup(HINSTANCE hInstance, LPSTR lpCmdLine, int nCmdShow)
 {

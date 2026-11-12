@@ -1,5 +1,4 @@
 #include "ResourceSystem.hpp"
-#include "ResourceDemandServices.hpp"
 #include "ResourceFormats.hpp"
 #include "diagnostics/DebugOutput.hpp"
 
@@ -158,40 +157,5 @@ namespace JE
 
 		}
 
-		namespace ResourceDemandServices
-		{
-			Net::UInt32 Classify(std::string& name) { return ExtractFileType(name); }
-			ResourceDescriptor* Find(ResourceIndex& index, const char* name, Net::UInt32 type)
-			{
-				return index.Find(name, type);
-			}
-			ResourceData* Get(ResourceCache& cache, ResourceDescriptor* descriptor) { return cache.Get(descriptor); }
-			void Add(ResourceCache& cache, ResourceData* resource, ResourceDescriptor* descriptor)
-			{
-				cache.Add(resource, descriptor);
-			}
-			void* AllocateData(Net::UInt32 size) { return new unsigned char[size]; }
-			ResourceData* AllocateResource() { return new ResourceData; }
-			void AssignName(ResourceData& resource, const char* name) { resource.name.assign(name); }
-			void FreeData(void* data) { ::operator delete(data); }
-			void DestroyResource(ResourceData* resource)
-			{
-				resource->~ResourceData();
-				::operator delete(resource);
-			}
-			void Promote(ResourceCache& cache, ResourceCacheNode* item)
-			{
-				cache.items.Promote(item);
-			}
-			ResourceCacheNode* Append(ResourceCache& cache, ResourceData* resource)
-			{
-				return cache.items.Append(resource);
-			}
-			void Erase(ResourceCache& cache, ResourceCacheNode* item)
-			{
-				cache.items.Remove(item,1);
-			}
-
-		}
 	}
 }

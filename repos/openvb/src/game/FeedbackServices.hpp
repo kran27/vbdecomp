@@ -9,8 +9,7 @@ namespace F3
 {
 	class FeedbackInterface;
 	class ActionbarInterface;
-	//Typed projection of the actual standalone Feedback while the full
-	//GameInterfaces parent remains unbound. It never creates a missing HUD owner.
+	//Borrowed Feedback from the current GameClient.
 	FeedbackInterface* GetClientFeedback(JE::Client* client);
 	ActionbarInterface* GetFeedbackActionbar();
 	void DisplayClientFeedback(std::string text,DWORD red,DWORD green,DWORD blue,std::string speaker);

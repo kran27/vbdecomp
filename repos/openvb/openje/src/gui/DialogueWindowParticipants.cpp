@@ -65,8 +65,6 @@ namespace JE
 			DialogueWindowServices::RequestClose(close);
 		}
 		std::map<DWORD, DialogueWindowMember>::iterator found = members.find(listener);
-		if (found == members.end())
-			throw std::logic_error("DialogueWindow595203: original unchecked missing member");
 		DialogueWindowMember member(found->second);
 		const BYTE changed = listenerID != listener || !currentMember || Different(member, *currentMember);
 		if (!currentMember) currentMember = new DialogueWindowMember;
@@ -148,8 +146,6 @@ namespace JE
 				const DWORD replyID = member.replyOrder[i];
 				replies[i]->SetReplyID(replyID);
 				std::map<DWORD, DWORD>::const_iterator reply = member.replies.find(replyID);
-				if (reply == member.replies.end())
-					throw std::logic_error("DialogueWindow595780: original unchecked reply map miss");
 				replies[i]->GetSize(textWidth, textHeight);
 				replies[i]->Resize(textWidth, 768);
 				F3::g_EngineStringSystem.GetString(reply->second, text);
@@ -178,8 +174,6 @@ namespace JE
 			totalHeight += height;
 		}
 
-		if (!speakerEntity)
-			throw std::logic_error("DialogueWindow59591F: original NULL speaker after close request");
 		D3DXVECTOR3 head = speakerEntity->position;
 		double modelHeight = 0.0;
 		if (speakerEntity->model)

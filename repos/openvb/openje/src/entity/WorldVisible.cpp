@@ -22,9 +22,8 @@ namespace
 			return left->data.priority > right->data.priority; //547AB0 signed descending.
 		}
 	};
-	JE::World& CurrentWorld(const char* boundary)
+	JE::World& CurrentWorld()
 	{
-		if (!JE::g_World) throw std::logic_error(boundary);
 		return *JE::g_World;
 	}
 	void AppendMapEffects(std::list<JE::VFX_EffectInstance*>& output, JE::Map* map)
@@ -120,7 +119,7 @@ namespace JE
 			VFX_Light* effect = *i;
 			if (effect->active && effect->light)
 			{
-				OCTREE* tree = CurrentWorld("World545B0B: actual World required").GetCurrentMapOctree();
+				OCTREE* tree = CurrentWorld().GetCurrentMapOctree();
 				effect->PositionInfluence(tree);
 				Gfx_Light* light = effect->active ? effect->light : NULL;
 				OctreeShapeNodes* nodes = effect->GetInfluenceNodes();
@@ -138,11 +137,9 @@ namespace JE
 				object->ClearLights(); //545BC3 captures the static-light array before this callback.
 				for (std::list<VFX_Light*>::iterator light = visibleLights.begin(); light != visibleLights.end(); ++light)
 					if ((*light)->active && (*light)->light) object->AddLight((*light)->light);
-				OCTREE* tree = CurrentWorld("World545C1B: actual World required").GetCurrentMapOctree();
+				OCTREE* tree = CurrentWorld().GetCurrentMapOctree();
 				if (tree)
 				{
-					if (tree->lightGrid && !lightIndices)
-						throw std::logic_error("World545C4B: actual World+128 light-index allocation required");
 					DWORD count = 0;
 					tree->GetLightVisibility(&position.x, &count, lightIndices);
 					for (DWORD index = 0; index < count; ++index)
@@ -189,8 +186,6 @@ namespace JE
 					if ((*light)->active && (*light)->light) object->AddLight((*light)->light);
 				if (tree)
 				{
-					if (tree->lightGrid && !lightIndices)
-						throw std::logic_error("World545C4B: actual World+128 light-index allocation required");
 					DWORD count = 0;
 					WORD* indices = lightIndices;
 					tree->GetLightVisibility(&position.x, &count, indices);

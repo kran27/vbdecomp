@@ -7,7 +7,6 @@
 
 namespace JE
 {
-	class SoundSystem;
 	namespace Resources
 	{
 		class ResourceSystem;
@@ -43,8 +42,6 @@ namespace JE
 		void ResetData(); // 4C7000.
 		DWORD GetBufferSize(); // 4C6E20.
 		BYTE SeekSamples(Resources::ResourceFileHandle* handle, LONG offset, int origin); // 4C7600.
-		int CreatePlaybackBuffer(SoundSystem& system,
-			const DSBUFFERDESC& description, const BYTE* samples, DWORD count); // 4C82E0 suffix.
 		int Play(DWORD requestedFlags, DWORD fadeIn, DWORD delay); // 4C7EB0.
 		int Prepare(); // 4C6910, rewind a nonstreaming voice.
 		int Stop(DWORD fadeOut); // 4C79E0.

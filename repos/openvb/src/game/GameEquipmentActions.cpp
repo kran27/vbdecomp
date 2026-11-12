@@ -1,5 +1,4 @@
 #include <winsock2.h>
-#include "network/EngineClientBinding.hpp"
 #include "GameEquipmentActions.hpp"
 #include "GameEquipmentPackets.hpp"
 #include "GameEntity.hpp"
@@ -21,7 +20,6 @@ namespace F3
 		GameServer* EquipmentServer()
 		{
 			GameServer* server=dynamic_cast<GameServer*>(JE::GetEntityEnvironment().GetServer());
-			if (!server) throw std::logic_error("Game equipment action: original GameServer owner required");
 			return server;
 		}
 	}
@@ -164,10 +162,7 @@ namespace F3
 			}
 			return;
 		}
-		//The original skips a missing optional Actionbar. An explicit workspace
-		//capture remains separate from that native path.
-		if (JE::GetEngineClientBinding(*client).unconsumedInterfaceAction)
-			JE::GetEngineClientBinding(*client).unconsumedInterfaceAction(*client,0x407890,JE::GetEngineClientBinding(*client).unconsumedInterfaceActionContext);
+
 	}
 	int GameActionSetActiveWeapon::Update(DWORD time, DWORD budget) //407910.
 	{

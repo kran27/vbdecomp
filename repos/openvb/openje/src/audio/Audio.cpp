@@ -115,7 +115,7 @@ namespace JE
 	{
 		AudioServices::g_WorkerRunning = 0;
 		::Sleep(500);
-		AudioMusic* captured = music;
+		CMusic* captured = music;
 		if (captured)
 		{
 			delete captured;
@@ -157,31 +157,5 @@ namespace JE
 		::OutputDebugStringA("\n");
 		music->SetVolume(static_cast<int>(musicVolume), 0);
 		music->SetPiece(name);
-	}
-
-	namespace AudioServices
-	{
-		const Configuration::Values* FindSection(const Configuration::Settings& settings,
-			const char* name)
-		{
-			JE::Configuration::Settings::const_iterator found = settings.find(name);
-			return found == settings.end() ? NULL : &found->second;
-		}
-		const std::string* FindValue(const Configuration::Values& values, const char* name)
-		{
-			JE::Configuration::Values::const_iterator found = values.find(name);
-			return found == values.end() ? NULL : &found->second;
-		}
-		Configuration::Values* GetOrCreateSection(Configuration::Settings& settings, const char* name)
-		{
-			return &settings[name];
-		}
-		std::string* GetOrCreateValue(Configuration::Values& values, const char* name)
-		{
-			return &values[name];
-		}
-		void AssignString(std::string& target, const char* value) { target.assign(value); }
-		JE::Net::Int32 ToLong(const char* value) { return static_cast<JE::Net::Int32>(std::atol(value)); }
-		const char* FormatInteger(JE::Net::Int32 value, char* buffer) { return ::_itoa(value, buffer, 10); }
 	}
 }

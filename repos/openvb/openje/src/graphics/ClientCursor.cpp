@@ -1,6 +1,5 @@
 #include <winsock2.h>
 #include "ClientCursor.hpp"
-#include "ClientCursorActions.hpp"
 #include "ClientDebugReport.hpp"
 #include "SystemInterface.hpp"
 #include "gui/Interface.hpp"
@@ -19,32 +18,6 @@
 
 namespace
 {
-	//Explicit snapshot/window host adaptation. The original noarg game update
-	//uses Manager::ProcessCursor4B2D40 and its real FindCursorWindow owner.
-	BYTE GUICursor(HWND window)
-	{
-		POINT point;
-		GetCursorPos(&point);
-		ScreenToClient(window,&point);
-		::GUI::Manager& manager = ::GUI::g_Manager;
-		const LONG x = static_cast<LONG>(double(point.x)/manager.scaleX);
-		const LONG y = static_cast<LONG>(double(point.y)/manager.scaleY);
-		::GUI::Window* hit = manager.capturedWindow;
-		if (!hit)
-		{
-			for (std::list<::GUI::Interface*>::iterator i = manager.interfaces.begin(); i != manager.interfaces.end(); ++i)
-			{
-				hit = (*i)->FindAt(x,y,0);
-				if (hit) break;
-			}
-		}
-		for (::GUI::Window* ancestor = hit; ancestor; ancestor = ancestor->GetParent())
-		{
-			::GUI::Interface* owner = ancestor->GetOwner();
-			if (owner) return owner->OnCursor(hit,point.x,point.y);
-		}
-		return 0;
-	}
 	const char* const CursorNames[17] = {
 		"DefaultCursor.tga","DefaultCursor.tga","DefaultCursor.tga","UseCursor.tga",
 		"TalkCursor.tga","DefaultCursor.tga","DefaultCursor.tga","DefaultCursor.tga",
@@ -109,30 +82,12 @@ namespace JE
 	}
 	void CursorManager::GetImage(std::string& output) { output = imageName; }
 	BYTE CursorManager::ReleaseInput(const Input::InputEvent&) { return 0; } //591690, RET4.
-	BYTE CursorManager::ReleaseInput(ClientInputState& input, const Input::InputEvent& event, HWND window)
-	{
-		//The borrowed workspace entry has no original virtual slot. Dispatch its
-		//explicit snapshot overload without replacing the canonical event-only ABI.
-		F3::GameCursorManager* game = dynamic_cast<F3::GameCursorManager*>(this);
-		return game ? game->ReleaseInput(input,event,window) : 0;
-	}
 	void CursorManager::UpdateFrame() //5915E0.
 	{
 		if (!cursorInterface || !picture) return;
 		POINT point;
 		GetCursorPos(&point);
 		ScreenToClient(F3::g_window,&point);
-		float scaleX,scaleY;
-		::GUI::g_Manager.GetScale(scaleX,scaleY);
-		picture->SetAbsolutePosition(static_cast<LONG>(double(LONG(DWORD(point.x)-DWORD(hotspotX)))/scaleX),
-			static_cast<LONG>(double(LONG(DWORD(point.y)-DWORD(hotspotY)))/scaleY));
-	}
-	void CursorManager::UpdateFrame(ClientInputState&, HWND window) //Explicit host adaptation.
-	{
-		if (!cursorInterface || !picture) return;
-		POINT point;
-		GetCursorPos(&point);
-		ScreenToClient(window,&point);
 		float scaleX,scaleY;
 		::GUI::g_Manager.GetScale(scaleX,scaleY);
 		picture->SetAbsolutePosition(static_cast<LONG>(double(LONG(DWORD(point.x)-DWORD(hotspotX)))/scaleX),
@@ -244,19 +199,6 @@ namespace F3
 		savedY = pendingY;
 		UpdateFrame();
 	}
-	void GameCursorManager::SetContext(DWORD value, JE::ClientInputState& input, HWND window) //Explicit host adaptation.
-	{
-		context = value;
-		LONG hotspot = 0;
-		if (value == 1) subcontext = 0;
-		else if (value == 5) hotspot = 4;
-		else if (value == 15 || value == 16) hotspot = 15;
-		QueueContextImage(value,hotspot,hotspot);
-		savedName = pendingName;
-		savedX = pendingX;
-		savedY = pendingY;
-		UpdateFrame(input,window);
-	}
 	void GameCursorManager::UpdateTooltip(LONG id) //436840.
 	{
 		const LONG requestedID = id;
@@ -358,53 +300,6 @@ namespace F3
 		if (!requestedTooltip) UpdateTooltip(0);
 		JE::CursorManager::UpdateFrame();
 	}
-	void GameCursorManager::UpdateFrame(JE::ClientInputState& input, HWND window) //Explicit host adaptation.
-	{
-		BYTE requestedTooltip = 0;
-		if (!GUICursor(window))
-		{
-			if (!input.enabled) SetSubcontext(0);
-			else if (context != 1)
-			{
-				if (!pendingImage && !savedName.empty()) RequestImage(savedName.c_str(),savedX,savedY,0);
-			}
-			else if (input.hoveredEntityID)
-			{
-				if (!input.selectedEntityID || input.selectedEntityID == input.hoveredEntityID)
-				{
-					SetSubcontext(0);
-					if (input.selectedEntityID == input.hoveredEntityID)
-					{ UpdateTooltip(input.hoveredEntityID); requestedTooltip = 1; }
-				}
-				else
-				{
-					JE::Entity* selected = JE::GetEntityPtr(input.selectedEntityID);
-					JE::Entity* hovered = JE::GetEntityPtr(input.hoveredEntityID);
-					if (selected && hovered)
-					{
-						SetSubcontext(hovered->GetContextAction(selected));
-						UpdateTooltip(input.hoveredEntityID);
-						requestedTooltip = 1;
-					}
-					else
-					{
-						input.selectedEntityID = 0;
-						SetSubcontext(0);
-					}
-				}
-			}
-			else SetSubcontext(0);
-			if (pendingImage) { savedName = pendingName; savedX = pendingX; savedY = pendingY; }
-		}
-		if (pendingImage)
-		{
-			JE::CursorManager::RequestImage(pendingName.c_str(),pendingX,pendingY,pendingCenter);
-			pendingImage = 0;
-			pendingCenter = 0;
-		}
-		if (!requestedTooltip) UpdateTooltip(0);
-		JE::CursorManager::UpdateFrame(input,window);
-	}
 	BYTE GameCursorManager::LeftPress(LONG, LONG) { return 0; }
 	BYTE GameCursorManager::RightPress(LONG, LONG) { return 0; }
 
@@ -442,21 +337,6 @@ namespace F3
 		if (!selected || !hovered) return 0;
 		client->RequestContextMenu(selectedID,hoveredID,x,y);
 		SetContext(1);
-		return 1;
-	}
-	BYTE GameCursorManager::ReleaseInput(JE::ClientInputState& input, const JE::Input::InputEvent& event, HWND window)
-	{
-		if (!input.enabled || event.category != 2 || event.subtype != 2) return 0;
-		if (!event.button) return LeftRelease(input,event.x,event.y,window);
-		if (event.button != 2) return 0;
-		if (event.modifiers & 1)
-			return DebugPrintEntityInfo(event.x,event.y);
-		const DWORD selectedID = input.selectedEntityID, hoveredID = input.hoveredEntityID;
-		JE::Entity* selected = JE::GetEntityPtr(selectedID);
-		JE::Entity* hovered = JE::GetEntityPtr(hoveredID);
-		if (!selected || !hovered) return 0;
-		Actions().OpenContextMenu(selectedID,hoveredID,event.x,event.y);
-		SetContext(1,input,window);
 		return 1;
 	}
 }

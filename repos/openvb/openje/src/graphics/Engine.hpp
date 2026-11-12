@@ -1,8 +1,6 @@
 #pragma once
 
 #include "SystemInterface.hpp"
-#include "EngineFrameState.hpp"
-#include "GraphicsProjectedShadows.hpp"
 #include <d3dfont.h>
 #include <d3dx8math.h>
 #include <list>
@@ -13,11 +11,11 @@ class Gfx_BufferManager;
 class Gfx_ModelDataManager;
 class Gfx_SkinMeshManager;
 
+struct Gfx_ShadowPoint { float x, z, radius; }; //Engine+64, 12-byte records.
+
 // Actual engine identity with normal owned VC7 containers and the unmodified
 // SDK CD3DFont. Offsets describe the observed x86 owner, not an allocation or
-// serialization contract. All interface entries now have source bodies; the
-// debug-light sphere child remains an explicit failure. Production startup
-// and the preview still do not allocate this owner pending native integration.
+// serialization contract. Unresolved children remain explicit.
 class Gfx_Engine : public Gfx_System_Interface
 {
 public:
@@ -192,7 +190,7 @@ public:
 	DWORD activeLightLimit; //+50, initialized0.
 	float parameter84, parameter88; //+54/+58; reset5BDE90 supplies defaults.
 	UINT shadowPointCapacity, shadowPointCount; //+5C/+60.
-	JE::GraphicsProjectedShadows::Point* shadowPoints; //+64; owns raw POD array storage.
+	Gfx_ShadowPoint* shadowPoints; //+64; owns raw POD array storage.
 	BYTE automapRequested, automapReady; // +68/+69; post-automap writes0/1.
 	UINT automapWidth, automapHeight; //+6C/+70; padding6A..6B unwritten.
 	D3DXVECTOR3 levelMinimum, levelMaximum; //+74/+80.
@@ -226,7 +224,6 @@ public:
 	IUnknown* resource8A0;
 
 private:
-	Gfx_EngineFrameView FrameView(); //Live field aliases for shared frame policies.
 	Gfx_Engine(const Gfx_Engine&);
 	Gfx_Engine& operator=(const Gfx_Engine&);
 };

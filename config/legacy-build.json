@@ -129,14 +129,6 @@
       "compileOnly": true,
       "target": "openvb"
     },
-    "d3d-context": {
-      "sources": [
-        "repos/openvb/openje/src/graphics/D3DContext.cpp",
-        "repos/openvb/openje/src/graphics/D3DServices.cpp"
-      ],
-      "compileOnly": false,
-      "target": "vb-d3d-context"
-    },
     "matrix-stack": {
       "sources": [
         "repos/openvb/openje/src/graphics/MatrixStackBridge.cpp"

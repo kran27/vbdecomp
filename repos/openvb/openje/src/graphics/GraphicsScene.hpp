@@ -14,27 +14,11 @@ namespace JE
 {
 	class World;
 
-	//Field view used by existing Client/World consumers. The owner constructor
-	//aliases actual Graphics members; the default constructor retains standalone
-	//fixture storage. Neither mode owns any pointed-to graphics resource.
+	//Non-owning aliases of the live Graphics fields.
 	struct GraphicsSceneState
 	{
-	private:
-		struct StandaloneFields
-		{
-			Gfx_CamCtrl* cameraControl;
-			Octree2Gfx* renderer;
-			MapMaskManager* maskManager;
-			DWORD shadowMode;
-			BYTE startupMovies, sceneEnabled, bounds, debugBounds;
-			OCTREE* currentOctree;
-		};
-		StandaloneFields standalone; //Unused/unread in an actual-owner view.
-
 	public:
-		GraphicsSceneState(); //580E20's corresponding scalar/pointer defaults.
 		explicit GraphicsSceneState(::Graphics& owner); //Non-owning live field aliases; owner must outlive this view.
-		void ReadStartupMovieConfiguration(const Configuration::Settings& settings); //581C30's main-settings+56 factor.
 		Gfx_CamCtrl*& cameraControl; //Graphics+0C, actual three-slot interface.
 		Octree2Gfx*& renderer; //+10.
 		MapMaskManager*& maskManager; //+14.
@@ -49,15 +33,6 @@ namespace JE
 		GraphicsSceneState(const GraphicsSceneState&);
 		GraphicsSceneState& operator=(const GraphicsSceneState&);
 	};
-	struct GraphicsSceneInputs
-	{
-		const BYTE* clientFlag10A; //Nonzero suppresses GUI Manager4B37F0.
-		const BYTE* clientFlag108; //Nonzero suppresses terrain submission4BC6F0.
-		::GUI::Manager* guiManager; //Actual Manager required only when10A is zero.
-	};
-
-	void PrepareGraphicsScene(GraphicsSceneState& state, World& world,
-		const GraphicsSceneInputs& inputs, BYTE& mapChanged); //5828D0, selects map after GUI Update.
 	void SetSceneOctree(OCTREE* tree); //4B81A0, actual global707F08.
 	OCTREE* GetSceneOctree(); //4B81B0.
 }

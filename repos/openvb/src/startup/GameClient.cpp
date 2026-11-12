@@ -1,6 +1,4 @@
 #include "GameClient.hpp"
-#include "GameClientBinding.hpp"
-#include "network/EngineClientBinding.hpp"
 #include "GameAudio.hpp"
 #include "ClientCommands.hpp"
 #include "ConfigurationObject.hpp"
@@ -8,7 +6,6 @@
 #include "game/ActionbarInterface.hpp"
 #include "game/InventoryInterface.hpp"
 #include "NetworkComponent.hpp"
-#include "graphics/ClientWorldActions.hpp"
 #include "graphics/ClientCursor.hpp"
 #include "graphics/Graphics.hpp"
 #include "graphics/OctreeCamera.hpp"
@@ -239,33 +236,13 @@ namespace F3
 	void GameClient::RequestInventoryInspection(DWORD targetID, DWORD actorID, float screenX, float screenY)
 	{
 		JE::WorldContainerInterface* popup = WorldContainer();
-		if (popup)
-		{
-			JE::DebugWindow* debugWindow = JE::WorldContainerServices::CaptureInspectionDebug();
-			popup->SetHidden(0);
-			popup->Populate(targetID, actorID);
-			const LONG y = LONG(static_cast<__int64>(screenY)); //Original Y conversion precedes X.
-			const LONG x = LONG(static_cast<__int64>(screenX));
-			popup->SetAbsolutePosition(x, y);
-			JE::WorldContainerServices::WriteInspectionDebug(debugWindow);
-			const GameClientBinding* binding = FindGameClientBinding(*this);
-			if (binding && binding->inventoryInspectionObserver)
-			{
-				const InventoryInspection request = {targetID, actorID, x, y};
-				binding->inventoryInspectionObserver(*this, request, binding->inventoryInspectionObserverContext);
-			}
-			return;
-		}
-		const GameClientBinding* binding = FindGameClientBinding(*this);
-		if (!child0xA0 && binding && binding->unconsumedInventoryInspection)
-		{
-			const LONG y = LONG(static_cast<__int64>(screenY));
-			const LONG x = LONG(static_cast<__int64>(screenX));
-			const InventoryInspection request = {targetID, actorID, x, y};
-			binding->unconsumedInventoryInspection(*this, request, binding->unconsumedInventoryInspectionContext);
-			return;
-		}
-		throw std::logic_error("GameActionOperateContainer406DBA: actual inventory popup owner GameClient+A0/+28 and debug window required");
+		JE::DebugWindow* debugWindow = JE::WorldContainerServices::CaptureInspectionDebug();
+		popup->SetHidden(0);
+		popup->Populate(targetID, actorID);
+		const LONG y = LONG(static_cast<__int64>(screenY));
+		const LONG x = LONG(static_cast<__int64>(screenX));
+		popup->SetAbsolutePosition(x, y);
+		JE::WorldContainerServices::WriteInspectionDebug(debugWindow);
 	}
 
 	void GameClient::Initialize()
@@ -315,4 +292,16 @@ namespace F3
 		void Activate(GameClientView* view) { view->BringToFront(); }
 		void FinishInitialization(GameClient& client) { client.InitializeMainmenuCamera(); }
 	}
+}
+
+namespace F3
+{
+	ActionbarInterface* GameClient::Actionbar() const { return Interfaces()->actionbar; }
+	FeedbackInterface* GameClient::Feedback() const { return Interfaces()->feedback; }
+	InventoryInterface* GameClient::Inventory() const { return Interfaces()->inventory; }
+	MiniMapInterface* GameClient::MiniMap() const { return Interfaces()->miniMap; }
+	EscapeMenuInterface* GameClient::EscapeMenu() const { return Interfaces()->escapeMenu; }
+	OptionsInterface* GameClient::Options() const { return Interfaces()->options; }
+	PipBoyInterface* GameClient::PipBoy() const { return Interfaces()->pipBoy; }
+	JE::WorldContainerInterface* GameClient::WorldContainer() const { return Interfaces()->container; }
 }

@@ -16,15 +16,11 @@ namespace F3
 	ActionbarInterface* GetFeedbackActionbar()
 	{
 		GameClient* game=dynamic_cast<GameClient*>(g_pNetworkInstance->client);
-		if (!game || !game->Actionbar())
-			throw std::logic_error("Feedback4341AA: actual GameInterfaces Actionbar owner required");
 		return game->Actionbar();
 	}
 	void DisplayClientFeedback(std::string text,DWORD red,DWORD green,DWORD blue,std::string speaker)
 	{
 		FeedbackInterface* feedback=GetClientFeedback(static_cast<JE::Client*>(g_pNetworkInstance->client));
-		if (!feedback)
-			throw std::logic_error("Feedback434B70: actual client feedback owner required");
 		feedback->AddMessage(text,red,green,blue,speaker);
 	}
 }

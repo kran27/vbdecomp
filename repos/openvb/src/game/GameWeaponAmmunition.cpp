@@ -15,7 +15,6 @@ namespace F3
 		GameServer& AmmunitionServer()
 		{
 			GameServer* server=dynamic_cast<GameServer*>(JE::GetEntityEnvironment().GetServer());
-			if (!server) throw std::logic_error("GameWeapon412B58: original unchecked NULL GameServer ammunition publisher");
 			return *server;
 		}
 		void DeductStack(JE::Entity* stack, DWORD amount) //549D30, count never becomes0.
@@ -45,8 +44,6 @@ namespace F3
 	{
 		if (!primaryAmmoLoaded) { primaryAmmo=NULL; return 1; }
 		GameServer& server=AmmunitionServer();
-		if (!owner || !owner->inventory)
-			throw std::logic_error("GameWeapon413619: original unchecked NULL owner/inventory during ammo unload");
 		JE::Inventory* inventoryOwner=owner->inventory;
 		GameAmmo* stack=NULL;
 		std::list<JE::Entity*>::iterator i=inventoryOwner->items.begin();
@@ -56,8 +53,6 @@ namespace F3
 			GameItem* item=dynamic_cast<GameItem*>(*i);
 			if (!item || item->entityClass!=9) continue;
 			GameAmmo* candidate=dynamic_cast<GameAmmo*>(item);
-			if (!candidate)
-				throw std::logic_error("GameWeapon413697: original class9 item failed unchecked GameAmmo cast");
 			if (candidate->caliber==primaryCaliber && candidate->modifier==primaryModifier)
 			{
 				stack=candidate;
@@ -66,15 +61,13 @@ namespace F3
 		}
 		if (!stack)
 		{
-			GameAmmo* archetype=ResolveAmmunition(primaryCaliber,primaryModifier);
+			GameAmmo* archetype=FindAmmunition(primaryCaliber,primaryModifier);
 			if (!archetype)
 				JE::FatalError("GameWeapon::UnloadPrimaryAmmo() - Unable to look up ammo. Caliber %d, modifier %d",
 					primaryCaliber,primaryModifier);
 			stack=new GameAmmo;
-			if (!stack) throw std::logic_error("GameWeapon413720: original unchecked NULL newly allocated GameAmmo");
 			stack->CopyFrom(archetype);
 			GameInventory* inventory=dynamic_cast<GameInventory*>(owner->inventory);
-			if (!inventory) throw std::logic_error("GameWeapon41375D: original unchecked GameInventory RTTI result");
 			inventory->Add(stack);
 			server.SendNewAmmoStack(owner->entityID,stack->entityID,primaryCaliber,primaryModifier);
 		}
@@ -89,8 +82,6 @@ namespace F3
 	{
 		if (!secondaryAmmoLoaded) { secondaryAmmo=NULL; return 1; }
 		GameServer& server=AmmunitionServer();
-		if (!owner || !owner->inventory)
-			throw std::logic_error("GameWeapon413869: original unchecked NULL owner/inventory during ammo unload");
 		JE::Inventory* inventoryOwner=owner->inventory;
 		GameAmmo* stack=NULL;
 		std::list<JE::Entity*>::iterator i=inventoryOwner->items.begin();
@@ -100,8 +91,6 @@ namespace F3
 			GameItem* item=dynamic_cast<GameItem*>(*i);
 			if (!item || item->entityClass!=9) continue;
 			GameAmmo* candidate=dynamic_cast<GameAmmo*>(item);
-			if (!candidate)
-				throw std::logic_error("GameWeapon4138E7: original class9 item failed unchecked GameAmmo cast");
 			if (candidate->caliber==secondaryCaliber && candidate->modifier==secondaryModifier)
 			{
 				stack=candidate;
@@ -110,15 +99,13 @@ namespace F3
 		}
 		if (!stack)
 		{
-			GameAmmo* archetype=ResolveAmmunition(secondaryCaliber,secondaryModifier);
+			GameAmmo* archetype=FindAmmunition(secondaryCaliber,secondaryModifier);
 			if (!archetype)
 				JE::FatalError("GameWeapon::UnloadPrimaryAmmo() - Unable to look up ammo. Caliber %d, modifier %d",
 					secondaryCaliber,secondaryModifier);
 			stack=new GameAmmo;
-			if (!stack) throw std::logic_error("GameWeapon413970: original unchecked NULL newly allocated GameAmmo");
 			stack->CopyFrom(archetype);
 			GameInventory* inventory=dynamic_cast<GameInventory*>(owner->inventory);
-			if (!inventory) throw std::logic_error("GameWeapon4139AD: original unchecked GameInventory RTTI result");
 			inventory->Add(stack);
 			server.SendNewAmmoStack(owner->entityID,stack->entityID,secondaryCaliber,secondaryModifier);
 		}
@@ -146,7 +133,7 @@ namespace F3
 		if (stack->count956<amount) amount=stack->count956;
 		primaryAmmoLoaded+=amount;
 		primaryModifier=stack->modifier;
-		primaryAmmo=ResolveAmmunition(stack->caliber,stack->modifier);
+		primaryAmmo=FindAmmunition(stack->caliber,stack->modifier);
 		if (!primaryAmmo)
 			JE::FatalError("GameWeapon::ReloadPrimaryAmmo - Unable to look up ammo: caliber %d, modifier %d",stack->caliber,stack->modifier);
 		GameServer& server=AmmunitionServer();
@@ -177,7 +164,7 @@ namespace F3
 		if (stack->count956<amount) amount=stack->count956;
 		secondaryAmmoLoaded=amount; //413D8C assigns, rather than adding prior ammo.
 		secondaryModifier=stack->modifier;
-		secondaryAmmo=ResolveAmmunition(stack->caliber,stack->modifier);
+		secondaryAmmo=FindAmmunition(stack->caliber,stack->modifier);
 		if (!secondaryAmmo)
 			JE::FatalError("GameWeapon::ReloadSecondaryAmmo - Unable to look up ammo: caliber %d, modifier %d",stack->caliber,stack->modifier);
 		GameServer& server=AmmunitionServer();

@@ -1,5 +1,4 @@
 #include "EngineClient.hpp"
-#include "network/EngineClientBinding.hpp"
 #include "CommandProcessor.hpp"
 #include "graphics/CameraControl.hpp"
 #include "graphics/ClientCursor.hpp"
@@ -115,11 +114,5 @@ namespace JE
 	{
 		child0x7C->Dispatch(); //587FD5, commands queued by focus/input run here.
 		child0x84->Update(); //587FE0, preserve the original order.
-	}
-	void Client::UpdateCursorFade(ClientInputState& input, HWND)
-	{
-		child0xA4->UpdateFrame(); //587FED, actual no-argument virtual before fade and scene/picking.
-		if (JE::GetEngineClientBinding(*this).borrowedInputState == &input) CaptureInputState();
-		child0xA8->Update(); //587FF8, reload child after the cursor callback.
 	}
 }

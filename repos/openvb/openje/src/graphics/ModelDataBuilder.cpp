@@ -360,13 +360,6 @@ Gfx_ModelData526620* Gfx_G3D_Model::Build(DWORD fvf, DWORD kind, BYTE textures,
 	return data;
 }
 
-Gfx_ModelData526620* Gfx_BuildModelData(G3D_Model* source, DWORD kind, BYTE textures,
-	BYTE shadow, float scale, DWORD fvf, BYTE resources)
-{
-	Gfx_G3D_Model converter;
-	converter.SetSource(source, resources);
-	return converter.Build(fvf, kind, textures, shadow, scale);
-}
 
 DWORD Gfx_LoadModelData(G3D_Model* source, DWORD kind, DWORD textures, DWORD shadow,
 	float scale, DWORD fvf, Gfx_ModelData526620** output, BYTE resources) //529D80.
@@ -395,16 +388,4 @@ DWORD Gfx_LoadModelData(const std::string& name, DWORD kind, BYTE textures,
 	DWORD handle = 0;
 	if (data) handle = g_GfxSystem->RegisterModelData(data);
 	return handle;
-}
-
-DWORD Gfx_LoadModelData(const char* name, DWORD kind, BYTE textures, BYTE shadow,
-	float scale, DWORD fvf, Gfx_ModelData526620** output)
-{
-	//Explicit compatibility/inspection API; the original wrapper has six words.
-	Gfx_G3D_Model converter;
-	converter.LoadResource(std::string(name));
-	Gfx_ModelData526620* data = converter.Build(fvf, kind, textures, shadow, scale);
-	if (!data) return 0;
-	if (output) *output = data;
-	return g_GfxSystem->RegisterModelData(data);
 }

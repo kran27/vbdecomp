@@ -15,7 +15,6 @@ namespace F3
 		if (first==last) return first;
 		if (last<first) { LONG swap=first; first=last; last=swap; }
 		DWORD span=DWORD(last)-DWORD(first)+1;
-		if (!span) throw std::logic_error("RandomRange48CD00: original divide by zero range");
 		return LONG(DWORD(first)+RandomNext()%span);
 	}
 

@@ -15,8 +15,7 @@
 #include "RSSKBaseLightmapFOW.hpp"
 #include "RSSKBaseLightmapHeightFogFOW.hpp"
 
-//One production storage owner for the original loader-zero states. Isolated
-//unit fixtures may define their own storage without linking this registry.
+//Shared storage for the original loader-zero states.
 Gfx_RS_BaseState g_RSBaseState;
 Gfx_RS_B_LMState g_RSBaseLightmapState;
 Gfx_RS_SK_B_LMState g_RSSKBaseLightmapState;

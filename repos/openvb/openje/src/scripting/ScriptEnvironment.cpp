@@ -11,7 +11,6 @@
 
 namespace JE
 {
-	ScriptEnvironment* g_ScriptEnvironment = NULL;
 	namespace
 	{
 		//Source integration only; no second Client, Server, VM or native table.
@@ -38,7 +37,6 @@ namespace JE
 		};
 		ScriptEnvironment& Environment()
 		{
-			if (g_ScriptEnvironment) return *g_ScriptEnvironment;
 			static NativeScriptEnvironment native;
 			return native;
 		}

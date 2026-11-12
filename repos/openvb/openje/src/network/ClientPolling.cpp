@@ -1,5 +1,4 @@
 #include "Client.hpp"
-#include "ClientBinding.hpp"
 #include "Connection.hpp"
 #include "DebugPrint.hpp"
 #include <cstdio>
@@ -59,10 +58,6 @@ namespace JE
 		JE::Net::UInt8 Client::OnDiscoveryResponse(Packet&) { return 1; } //409BB0.
 		JE::Net::UInt8 Client::OnServerChallenge(Packet&) { return 1; } //409BB0.
 		JE::Net::UInt8 Client::OnServerConnect(Packet&) { return 1; } //409BB0.
-		bool Client::DispatchGamePacketSink(Packet& packet)
-		{
-			return DispatchClientPacketSink(*this, packet);
-		}
 		void Client::OnGamePacket(Packet&) {} //Original5A9320 is unconditionally empty.
 		void Client::SendDisconnectRequest()
 		{

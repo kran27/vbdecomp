@@ -10,7 +10,6 @@
 #include "entity/Entity.hpp"
 #include "entity/Map.hpp"
 #include "entity/World.hpp"
-#include "graphics/ClientWorldActions.hpp"
 #include "graphics/Octree.hpp"
 #include "network/EngineClient.hpp"
 #include "startup/NetworkComponent.hpp"
@@ -419,7 +418,7 @@ namespace F3
 				D3DXVECTOR3 position(world.x, bounds[4], world.z);
 				float height;
 				if (octree->QueryFloorHeight(&position.x, &height, 1, 0, NULL) == 1) position.y = height;
-				JE::SendClientWorldAction(*client, 60, selectedID, position);
+				client->RequestMoveTo(selectedID, position);
 			}
 			break;
 		}

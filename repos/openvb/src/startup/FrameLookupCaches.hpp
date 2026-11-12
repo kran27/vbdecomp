@@ -15,17 +15,6 @@ namespace F3
 		typedef std::vector<void*> ObjectList;
 		typedef std::map<JE::Net::UInt32, ObjectList*> ObjectMap;
 		typedef std::map<JE::Net::UInt32, MemberList*> MemberMap;
-		ObjectMap objects; // original 0x70BED8
-		MemberMap squads; // original 0x70C6C4
-		MemberMap teams; // original 0x70C6D0
-
-		void ClearObjects(); // Local-instance compatibility operation.
-		void ClearTeams(); // Local-instance compatibility operation.
-		void ClearSquads(); // Local-instance compatibility operation.
-		JE::Net::UInt32 GetSquadMember(JE::Net::UInt32 nHandle, JE::Net::UInt32 nIndex) const; // Local-cache compatibility API.
-		JE::Net::UInt32 GetTeamMember(JE::Net::UInt32 nHandle, JE::Net::UInt32 nIndex) const; // Local-cache compatibility API.
-		const ObjectList* GetObjects(JE::Net::UInt32 nHandle) const; // Local-instance compatibility lookup.
-		JE::Net::UInt32 GetObjectId(JE::Net::UInt32 nHandle, JE::Net::UInt32 nIndex) const; // Local-cache compatibility API; native uses free function below
 	};
 
 	//Independent original global maps, each with its own initializer/atexit lifetime.

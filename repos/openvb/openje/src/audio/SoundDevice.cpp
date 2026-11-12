@@ -1,5 +1,6 @@
 #include "SoundSystem.hpp"
 #include "Sound.hpp"
+#include "network/Types.hpp"
 #include <cstring>
 
 namespace JE
@@ -40,7 +41,7 @@ namespace JE
 			device->Release();
 			device = NULL;
 		}
-		if (SoundDeviceServices::Create(NULL, &device, NULL) < 0) return 3;
+		if (::DirectSoundCreate8(NULL, &device, NULL) < 0) return 3;
 		if (device->SetCooperativeLevel(window, cooperativeLevel) < 0) return 3;
 
 		DWORD primaryFlags = DSBCAPS_PRIMARYBUFFER;
@@ -103,13 +104,5 @@ namespace JE
 			return 1;
 		}
 		return 0;
-	}
-
-	namespace SoundDeviceServices
-	{
-		HRESULT Create(LPCGUID device, IDirectSound8** output, IUnknown* outer)
-		{
-			return ::DirectSoundCreate8(device, output, outer);
-		}
 	}
 }

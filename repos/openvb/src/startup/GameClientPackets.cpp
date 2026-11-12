@@ -1,9 +1,7 @@
 #include "GameClient.hpp"
-#include "network/EngineClientBinding.hpp"
 #include "gui/WorldContainerInterface.hpp"
 #include "game/InventoryInterface.hpp"
 #include "game/ActionbarInterface.hpp"
-#include "game/MainMenuServices.hpp"
 #include "gui/DebugWindow.hpp"
 #include "EngineStringSystem.hpp"
 #include "NetworkComponent.hpp"
@@ -27,8 +25,6 @@ namespace F3
 		GameInventory* RequireGameInventory(JE::Inventory* inventory)
 		{
 			GameInventory* game = dynamic_cast<GameInventory*>(inventory);
-			if (!game)
-				throw std::logic_error("GameClient461C0B: actual equipment inventory virtual child required");
 			return game;
 		}
 
@@ -164,7 +160,6 @@ namespace F3
 				char buffer[12];
 				_itoa(LONG(value), buffer, 10);
 				std::string text(buffer);
-				if (!child0xAC && DispatchGamePacketSink(packet)) return;
 				AddFloatingDamageText(id, text, 128, 0, 0); //461B5D..461B79, third wire word ignored.
 			}
 			return;
@@ -180,7 +175,6 @@ namespace F3
 			if (packet.field0x30 == 89)
 			{
 				//463B70 is called without a NULL test in this branch.
-				if (!entity) throw std::logic_error("GameClient461D60: original unchecked NULL GameEntity");
 				entity->activeWeaponSlot = value;
 				RefreshInterface();
 			}
@@ -291,18 +285,12 @@ namespace F3
 			return;
 		}
 		case 104:
-			if (Interfaces())
-			{
-				MainMenuServices::HideGameInterfaces(); //Actual461E58 ->45E6C0.
-				return;
-			}
-			if (DispatchGamePacketSink(packet)) return;
-			throw std::logic_error("GameClient461E58: actual HUD hide45E6C0 owner required");
+			HideInterfaces(); //461E58 ->45E6C0.
+			return;
 		case 105:
 		{
 			char name[260];
 			packet.ReadCString(name);
-			if (DispatchGamePacketSink(packet)) return;
 			throw std::logic_error("GameClient4621D0: actual store UI461960 remains unresolved");
 		}
 		case 108:
@@ -311,7 +299,6 @@ namespace F3
 			JE::Net::UInt32 id;
 			packet.ReadCString(name);
 			packet.ReadDword(id);
-			if (DispatchGamePacketSink(packet)) return;
 			throw std::logic_error("GameClient461E06: actual WorldMap interface GameInterfaces+34/459E70 remains unresolved");
 		}
 		case 109:
@@ -323,11 +310,7 @@ namespace F3
 			packet.ReadByte(green);
 			packet.ReadByte(blue);
 			//46221A reads the published Network.client's window, not this receiver.
-			if (!g_pNetworkInstance)
-				throw std::logic_error("GameClient46221A: original Network singleton required");
 			JE::Client* client = dynamic_cast<JE::Client*>(g_pNetworkInstance->client);
-			if (!client)
-				throw std::logic_error("GameClient46221A: original published game Client required");
 			JE::DebugWindow* window = client->child0x8C;
 			if (!window) return;
 			std::string text;

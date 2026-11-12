@@ -153,6 +153,6 @@ void Gfx_Engine::SetProjectedShadowPointCapacity(UINT count)
 	shadowPointCapacity = count;
 	// Actual5BDF80 allocates raw12*count bytes without initializing records.
 	// The UINT multiplication preserves the original32-bit wrapped size.
-	shadowPoints = static_cast<JE::GraphicsProjectedShadows::Point*>(::operator new[](12u * count));
+	shadowPoints = static_cast<Gfx_ShadowPoint*>(::operator new[](12u * count));
 	shadowPointCount = 0;
 }

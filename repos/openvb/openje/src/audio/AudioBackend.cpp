@@ -1,6 +1,5 @@
 #include "SoundSystem.hpp"
 #include "resources/ResourceSystem.hpp"
-#include "startup/Window.hpp"
 #include <cstdlib>
 #include <new>
 
@@ -31,12 +30,6 @@ namespace JE
 			if (directMusic) g_System->InitializeDirectMusic(window);
 			if (cdAudio) g_System->InitializeCD();
 		}
-		void InitializeBackend(const char* groups,const char* jumps,
-			bool directShow,bool directMusic,bool cdAudio)
-		{
-			InitializeBackend(F3::g_window,Resources::g_pResourceSystem,
-				groups,jumps,directShow,directMusic,cdAudio);
-		}
 		void UpdateBackend() { if (g_System && g_System->initialized) g_System->Update(); }
 		void ShutdownBackend()
 		{
@@ -51,6 +44,5 @@ namespace JE
 			if (victim) delete victim;
 			g_System=NULL; //Also clears a replacement published during destruction.
 		}
-		CMasterJumplist* MusicJumpList() { return g_System ? g_System->jumps : NULL; }
 	}
 }

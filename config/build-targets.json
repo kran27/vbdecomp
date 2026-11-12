@@ -440,10 +440,6 @@
           "compileGroupIndex": 0
         },
         {
-          "path": "repos/openvb/openje/src/gui/PointerCapture.cpp",
-          "compileGroupIndex": 0
-        },
-        {
           "path": "repos/openvb/openje/src/filesystem/Directories.cpp",
           "compileGroupIndex": 0
         },
@@ -624,15 +620,7 @@
           "compileGroupIndex": 0
         },
         {
-          "path": "repos/openvb/openje/src/network/ClientBinding.cpp",
-          "compileGroupIndex": 0
-        },
-        {
           "path": "repos/openvb/openje/src/network/ServerPolling.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/network/ServerBinding.cpp",
           "compileGroupIndex": 0
         },
         {
@@ -649,14 +637,6 @@
         },
         {
           "path": "repos/openvb/openje/src/network/EngineClientConnect.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/network/EngineClientBinding.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/src/startup/GameClientBinding.cpp",
           "compileGroupIndex": 0
         }
       ],
@@ -1092,10 +1072,6 @@
           "compileGroupIndex": 0
         },
         {
-          "path": "repos/openvb/openje/src/audio/SoundInstanceServices.cpp",
-          "compileGroupIndex": 0
-        },
-        {
           "path": "repos/openvb/src/startup/GameAudio.cpp",
           "compileGroupIndex": 0
         },
@@ -1109,55 +1085,6 @@
         },
         {
           "path": "repos/openvb/src/startup/EngineSettings.cpp",
-          "compileGroupIndex": 0
-        }
-      ]
-    },
-    {
-      "id": "vb-d3d-context",
-      "name": "vb-d3d-context",
-      "type": "STATIC_LIBRARY",
-      "artifacts": [
-        {
-          "path": "vb-d3d-context.lib"
-        }
-      ],
-      "dependencies": [
-        {
-          "id": "vb-d3d-mode-order"
-        },
-        {
-          "id": "vb-window"
-        },
-        {
-          "id": "vb-matrix-stack"
-        }
-      ],
-      "compileGroups": [
-        {
-          "language": "CXX",
-          "defines": [],
-          "includes": [
-            {
-              "path": "repos/openvb/openje/src"
-            },
-            {
-              "path": "deps/dx81/include"
-            },
-            {
-              "path": "repos/openvb/src"
-            }
-          ],
-          "compileCommandFragments": []
-        }
-      ],
-      "sources": [
-        {
-          "path": "repos/openvb/openje/src/graphics/D3DContext.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/graphics/D3DServices.cpp",
           "compileGroupIndex": 0
         }
       ]
@@ -1394,23 +1321,7 @@
           "compileGroupIndex": 0
         },
         {
-          "path": "repos/openvb/openje/src/graphics/GraphicsProjectedShadows.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/graphics/GraphicsFogOfWar.cpp",
-          "compileGroupIndex": 0
-        },
-        {
           "path": "repos/openvb/openje/src/graphics/GraphicsShadowMode.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/graphics/GraphicsLightingState.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/graphics/GraphicsConfiguration.cpp",
           "compileGroupIndex": 0
         },
         {
@@ -1446,10 +1357,6 @@
           "compileGroupIndex": 0
         },
         {
-          "path": "repos/openvb/openje/src/graphics/GraphicsPresentation.cpp",
-          "compileGroupIndex": 0
-        },
-        {
           "path": "repos/openvb/openje/src/graphics/CameraControl.cpp",
           "compileGroupIndex": 0
         },
@@ -1466,14 +1373,6 @@
           "compileGroupIndex": 0
         },
         {
-          "path": "repos/openvb/openje/src/graphics/ClientSelectionBinding.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/network/EngineClientIdentity.cpp",
-          "compileGroupIndex": 0
-        },
-        {
           "path": "repos/openvb/openje/src/graphics/ClientCursor.cpp",
           "compileGroupIndex": 0
         },
@@ -1483,10 +1382,6 @@
         },
         {
           "path": "repos/openvb/openje/src/graphics/VfxDamageSocket.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/graphics/ClientWorldActions.cpp",
           "compileGroupIndex": 0
         },
         {
@@ -1715,14 +1610,6 @@
         },
         {
           "path": "repos/openvb/openje/src/gui/Win32Input.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/gui/GraphicsInput.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/graphics/GraphicsLevelResources.cpp",
           "compileGroupIndex": 0
         },
         {
@@ -4418,10 +4305,6 @@
           "compileGroupIndex": 0
         },
         {
-          "path": "repos/openvb/openje/src/graphics/EngineFrameState.cpp",
-          "compileGroupIndex": 0
-        },
-        {
           "path": "repos/openvb/openje/src/graphics/EngineClock.cpp",
           "compileGroupIndex": 0
         },
@@ -4868,10 +4751,6 @@
         },
         {
           "path": "repos/openvb/src/startup/Path.cpp",
-          "compileGroupIndex": 0
-        },
-        {
-          "path": "repos/openvb/openje/src/gui/PointerCapture.cpp",
           "compileGroupIndex": 0
         },
         {

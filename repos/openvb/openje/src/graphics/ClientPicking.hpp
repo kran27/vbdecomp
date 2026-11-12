@@ -18,8 +18,6 @@ namespace JE
 		virtual OCTREE_Camera* CurrentCamera() = 0; //Graphics581190.
 		virtual OCTREE* CurrentOctree() = 0; //World interface+0C ->544CF0.
 	};
-	void PickClientMouse(ClientInputState& state, BYTE force,
-		ClientPickingServices& services); //58AB80; incidental AL is not a success result.
 	void PickClientMouse(Client& client, BYTE force,
 		ClientPickingServices& services); //Canonical live Client fields; no owned snapshot.
 }

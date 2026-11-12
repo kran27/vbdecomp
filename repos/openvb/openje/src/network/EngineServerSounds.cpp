@@ -1,20 +1,9 @@
 #include "EngineServer.hpp"
-#include "EngineServerSoundServices.hpp"
 #include "entity/Entity.hpp"
 #include <cstring>
 
 namespace JE
 {
-	namespace EngineServerSoundServices
-	{
-		UnconsumedRequests* g_UnconsumedRequests=NULL;
-		void AttachSound(Entity* entity, const char* filename, BYTE looping, DWORD id)
-		{
-			if (g_UnconsumedRequests)
-				g_UnconsumedRequests->CaptureAttachSound(entity,filename,looping,id);
-			else entity->AttachSound(filename,looping,id);
-		}
-	}
 	JE::Net::UInt32 Server::AttachSound(Entity* entity, const char* filename, JE::Net::UInt8 looping)
 	{
 		DWORD id=AllocateSoundID(); //555816: allocation precedes required local child.

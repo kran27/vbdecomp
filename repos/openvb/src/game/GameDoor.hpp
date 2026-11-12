@@ -5,18 +5,6 @@
 
 namespace F3
 {
-	// Explicit workspace override for door feedback. The native default uses
-	// actual Client+A0 / GameInterfaces.feedback and captured434B70 receivers.
-	class GameDoorFeedbackServices
-	{
-	public:
-		virtual ~GameDoorFeedbackServices() {}
-		virtual BYTE HasFeedback() = 0;
-		virtual void Display(std::string text, DWORD red, DWORD green, DWORD blue,
-			std::string speaker) = 0;
-	};
-	GameDoorFeedbackServices* SetGameDoorFeedbackServices(GameDoorFeedbackServices* services);
-
 	class GameDoor : public GameUsableObject
 	{
 		friend JE::Entity* CreateGameEntity(DWORD type);

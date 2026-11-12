@@ -9,14 +9,6 @@ namespace GUI { class Label; }
 namespace JE { class AreaMapNote; }
 class Gfx_Viewport;
 
-//Optional host lifetime observation only. The original omits deleting icon labels.
-struct AreaMapIconLabelObserver
-{
-	void (*observe)(::GUI::Label* label,void* context);
-	void* context;
-};
-AreaMapIconLabelObserver SetAreaMapIconLabelObserver(AreaMapIconLabelObserver observer);
-
 //Actual global RTTI AreaMapIcon; normal host members, not a legacy overlay.
 class AreaMapIcon
 {

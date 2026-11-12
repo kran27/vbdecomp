@@ -36,7 +36,6 @@ namespace JE
 		{
 			//41D050/401130 return the actual global World's two interfaces. They
 			//do not add a Network-mode guard, and each original call reloads it.
-			if (!g_World) throw std::logic_error("Client58C660: actual World required");
 			return *g_World;
 		}
 	}

@@ -39,23 +39,17 @@ OctreeResourceTellCallback SetOctreeResourceCallbacks(OctreeResourceReadCallback
 size_t ReadOctreeResourceInput(void* output, size_t size, size_t count,
 	JE::Resources::ResourceFileHandle* handle)
 {
-	if (g_OctreeReadCallback != ::fread) return g_OctreeReadCallback(output, size, count, reinterpret_cast<FILE*>(handle));
-	//The explicit resource-only host adaptation predates Graphics. Retain
-	//its explicit typed read until the real constructor installs these callbacks.
-	return JE::Resources::g_pResourceSystem->Read(output,
-		static_cast<DWORD>(size * count), handle) ? count : 0;
+	return g_OctreeReadCallback(output, size, count, reinterpret_cast<FILE*>(handle));
 }
 
 int SeekOctreeResourceInput(JE::Resources::ResourceFileHandle* handle, LONG offset, int origin)
 {
-	if (g_OctreeSeekCallback != ::fseek) return g_OctreeSeekCallback(reinterpret_cast<FILE*>(handle), offset, origin);
-	return !JE::Resources::g_pResourceSystem->Seek(handle, offset, origin != 0);
+	return g_OctreeSeekCallback(reinterpret_cast<FILE*>(handle), offset, origin);
 }
 
 LONG TellOctreeResourceInput(JE::Resources::ResourceFileHandle* handle)
 {
-	if (g_OctreeTellCallback != ::ftell) return g_OctreeTellCallback(reinterpret_cast<FILE*>(handle));
-	return static_cast<LONG>(JE::Resources::g_pResourceSystem->Tell(handle));
+	return g_OctreeTellCallback(reinterpret_cast<FILE*>(handle));
 }
 
 int OCTREE::Read8Resource(JE::Resources::ResourceFileHandle* handle,

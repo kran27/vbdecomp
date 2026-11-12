@@ -67,7 +67,6 @@ void MapMaskManager::Clear() //597B60.
 }
 void MapMaskManager::Update()
 {
-	if (!JE::g_World) throw std::logic_error("MapMaskManager599121: actual World required");
 	Update(*JE::g_World);
 }
 void MapMaskManager::Update(JE::World& world) //5990E0.

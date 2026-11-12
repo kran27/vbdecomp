@@ -62,7 +62,6 @@ namespace JE
 		VFX_ResourceData GetTypeAndValue() const; //500760, full per-type pair conversion.
 		std::string GetResourceType() const;
 		std::string GetResourceName() const;
-		void GetVector(float* output, DWORD count) const; //Unclaimed compatibility dispatcher.
 		VFX_Vector GetVector3() const; //4FE450, owned12-byte value.
 		VFX_Vector2 GetVector2() const; //4FE690, owned8-byte value.
 		VFX_TextureCoordinates GetTextureUVs() const; //4FEEF0, owned16-byte value.
@@ -88,7 +87,6 @@ namespace JE
 		static std::string GetEnumTypeName(LONG subtype); //52FB30, owned name or empty.
 		static LONG GetEnumTypeID(const char* input); // 0x52FA70, complete name.
 		const BYTE* RawValue() const;
-		DWORD ValueSize() const;
 
 		std::string name; // Original +4.
 		LONG type, subtype; // Original +20/+24.
@@ -100,8 +98,6 @@ namespace JE
 		void ResizeValue(LONG count); //0x4FDE50.
 		void SetValue(const void* input, LONG count); //0x4FDF50.
 		void ReadValue(const BYTE* buffer, DWORD& offset); // 0x4FF580.
-		void RequireValue(DWORD count) const;
-		std::string ValueString() const;
 	};
 
 #if defined(_MSC_VER) && _MSC_VER == 1300

@@ -27,8 +27,6 @@ namespace F3
 			}
 			GameWeapon* selected=dynamic_cast<GameWeapon*>(item);
 			*weapon=selected; //Original publishes the RTTI result before reading its mode.
-			if (!selected)
-				throw std::logic_error("ResolveWeaponAndAttackMode40B46F: original unchecked NULL GameWeapon owner");
 			*mode=selected->currentAttackMode;
 		}
 		else

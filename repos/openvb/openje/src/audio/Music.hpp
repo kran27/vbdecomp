@@ -58,9 +58,4 @@ namespace JE
 		void MakeSegmentName(char* output, const char* name); //539080, native thiscall.
 		BYTE HasSegment(const char* name); //5390A0, native one-byte predicate.
 	};
-
-	namespace AudioBackend
-	{
-		CMasterJumplist* MusicJumpList(); // The original SoundSystem+1F4 owner.
-	}
 }

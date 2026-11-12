@@ -544,7 +544,7 @@ HRESULT Gfx_RS_SK_B_LM_HeightFog::SetMaterial(Gfx_Material* material, DWORD fogB
 		effect->SetTexture("LM", texture && texture->frameCount > 0 ? texture->frames[0].texture : NULL);
 		if (!texture)
 		{
-			const std::string name = Gfx_GetTextureDiagnosticName(texture); //Original NULL-object copy4AB1C0 remains invalid.
+			const std::string name = texture->GetDiagnosticName(); //Original NULL-object copy4AB1C0 remains invalid.
 			JE::LogDebugString("Gfx_RS_SK_B_LM_HeightFog: Cannot find Lightmap %s", name.c_str());
 		}
 	}
@@ -556,7 +556,7 @@ HRESULT Gfx_RS_SK_B_LM_HeightFog::SetMaterial(Gfx_Material* material, DWORD fogB
 		effect->SetTexture("Base", texture && texture->frameCount > 0 ? texture->frames[0].texture : NULL);
 		if (!texture)
 		{
-			const std::string name = Gfx_GetTextureDiagnosticName(texture);
+			const std::string name = texture->GetDiagnosticName();
 			JE::LogDebugString("Gfx_RS_SK_B_LM_HeightFog: Cannot find Base Texture %s", name.c_str());
 		}
 	}

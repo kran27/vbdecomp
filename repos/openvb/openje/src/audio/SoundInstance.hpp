@@ -18,7 +18,6 @@ namespace JE
 		int Load(const char* name,DWORD flags=0,const char* overrideName=NULL); //52D820.
 		D3DXVECTOR3* GetPosition(D3DXVECTOR3* output) const; //52C370, typed native three-word output boundary.
 		void SetPosition(D3DXVECTOR3 value); //52C350, actual by-value vector/RET12 boundary.
-		void SetPosition(float x,float y,float z) { SetPosition(D3DXVECTOR3(x,y,z)); } //Host convenience adapter.
 		DWORD IsPlaying(); //52CC40, actual52C5D0/52C610 software flags.
 		DWORD GetStartedAt() const; //544A00, shared +24 getter; no unique body credit.
 		int Stop(DWORD value); //52C580, reset sequencing then per-file stop child.

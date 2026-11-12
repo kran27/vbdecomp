@@ -48,11 +48,6 @@ namespace F3
 		return world->FindAmmunition(caliber,modifier);
 	}
 
-	GameAmmo* GameWeapon::ResolveAmmunition(DWORD caliber, DWORD modifier)
-	{
-		GameWorld* world = dynamic_cast<GameWorld*>(JE::g_World);
-		return world ? world->FindAmmunition(caliber, modifier) : NULL;
-	}
 
 	void GameWeapon::RebuildAttackModes(JE::Entity* owner)
 	{

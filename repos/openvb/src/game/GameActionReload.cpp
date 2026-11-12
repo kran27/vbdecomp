@@ -74,8 +74,6 @@ namespace F3
 		}
 		if (!stack)
 		{
-			if (!owner->inventory)
-				throw std::logic_error("GameActionReload407430: original unchecked NULL inventory while choosing ammo");
 			const DWORD caliber=secondary ? weapon->secondaryCaliber : weapon->primaryCaliber;
 			const DWORD modifier=secondary ? weapon->secondaryModifier : weapon->primaryModifier;
 			for (std::list<JE::Entity*>::iterator i=owner->inventory->items.begin();
@@ -84,8 +82,6 @@ namespace F3
 				GameItem* item=dynamic_cast<GameItem*>(*i);
 				if (!item || item->entityClass!=9) continue;
 				GameAmmo* ammo=dynamic_cast<GameAmmo*>(item);
-				if (!ammo)
-					throw std::logic_error("GameActionReload4074C5: original unchecked class9 GameAmmo RTTI result");
 				if (ammo->caliber==caliber && ammo->modifier==modifier) { stack=ammo; break; }
 			}
 			if (!stack) { completed=1; return 0; }

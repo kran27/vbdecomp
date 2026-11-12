@@ -56,6 +56,5 @@ namespace F3
 		GameAmmo* secondaryAmmo;
 	protected:
 		GameWeapon(); // Recovered data defaults414510; complete Entity/Create lifetime stays open.
-		virtual GameAmmo* ResolveAmmunition(DWORD caliber, DWORD modifier); // Source-only adapter; no original virtual slot claim.
 	};
 }

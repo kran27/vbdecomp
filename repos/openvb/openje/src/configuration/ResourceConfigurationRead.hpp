@@ -11,12 +11,5 @@ namespace JE
 		unsigned char __cdecl ReadResourceConfigurationFile(std::string sFilename,
 			Settings& settings);
 
-		namespace ResourceConfigurationServices
-		{
-			// The default reuses FileServices' documented extra physical byte for
-			// the parser. The game-owned logical request remains DWORD length+1.
-			void* __cdecl Allocate(Net::UInt32 nBytes);
-			void __cdecl Free(void* pBuffer);
-		}
 	}
 }

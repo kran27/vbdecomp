@@ -1,6 +1,5 @@
 #include "EngineClient.hpp"
 #include "startup/NetworkComponent.hpp"
-#include "network/EngineClientBinding.hpp"
 #include "entity/Entity.hpp"
 #include "entity/EntityEnvironment.hpp"
 #include "entity/Map.hpp"
@@ -29,33 +28,26 @@ namespace JE
 	}
 	void Client::MapTransitionInterface(DWORD address)
 	{
-		if ((address == 0x58C52A || address == 0x58D2C5 || address == 0x58D3CD) && child0xA4)
+		if (address == 0x58C52A || address == 0x58D2C5 || address == 0x58D3CD)
 		{
 			child0xA4->OnUnused(); //Actual cursor virtual+20; Game437B40 resets drag/context state.
 			return;
 		}
-		if (child0xA0)
+		switch (address)
 		{
-			switch (address)
-			{
-			case 0x589F78: child0xA0->SetLoadingVisible(1); return;
-			case 0x58C51F:
-			case 0x58C5BD:
-			case 0x58D2BA:
-			case 0x58D42F: child0xA0->SetLoadingVisible(0); return;
-			case 0x58DADC: child0xA0->RefreshSelection(); return;
-			case 0x58C53C:
-			case 0x58D2D7: child0xA0->ShowGameplay(); return;
-			}
+		case 0x589F78: child0xA0->SetLoadingVisible(1); return;
+		case 0x58C51F:
+		case 0x58C5BD:
+		case 0x58D2BA:
+		case 0x58D42F: child0xA0->SetLoadingVisible(0); return;
+		case 0x58DADC: child0xA0->RefreshSelection(); return;
+		case 0x58C53C:
+		case 0x58D2D7: child0xA0->ShowGameplay(); return;
 		}
-		if (JE::GetEngineClientBinding(*this).unconsumedInterfaceAction)
-			JE::GetEngineClientBinding(*this).unconsumedInterfaceAction(*this,address,JE::GetEngineClientBinding(*this).unconsumedInterfaceActionContext);
-		else
-		{
-			char message[128];
-			std::sprintf(message,"Client%08lX: actual map-transition interface child unresolved",address);
-			throw std::logic_error(message);
-		}
+
+		char message[128];
+		std::sprintf(message,"Client%08lX: actual map-transition interface child unresolved",address);
+		throw std::logic_error(message);
 	}
 	void Client::PrepareMapTransition()
 	{
@@ -65,7 +57,6 @@ namespace JE
 		DWORD gameplayAddress)
 	{
 		ClientChild0x84* camera=child0x84; //58C4F5 captures one receiver for both calls.
-		if (!camera) throw std::logic_error("Client58C4FF: actual CameraControl required");
 		camera->SetConstraints(1);
 		camera->Reset();
 		if (child0x74)
@@ -73,7 +64,6 @@ namespace JE
 		else
 		{
 			//Explicit workspace entry without child74 retains its borrowed global backend.
-			if (!g_GfxSystem) throw std::logic_error("Client58C510: actual graphics interface required");
 			g_GfxSystem->SetFogOfWarEnabled(1,NULL);
 		}
 		MapTransitionInterface(loadingAddress); //A0 virtual+10(0).

@@ -6,35 +6,6 @@ namespace JE
 {
 	namespace Resources
 	{
-		// Standalone policy adapter. Empty CD settings retain previous paths.
-		static void ConfigurePathArray(std::string* paths, const char* root,
-			const Configuration::Settings& settings)
-		{
-			static const char* const keys[8] =
-			{
-				"HD", "CD1", "CD2", "CD3", "CD4", "CD5", "CD6", "CD7"
-			};
-			for (std::size_t nIndex = 0; nIndex < ResourcePaths::PathCount; ++nIndex)
-			{
-				std::string sPath(Configuration::GetString(settings, "Resources", keys[nIndex], ""));
-				if (nIndex == 0 && sPath.empty())
-					sPath = root;
-				else if (sPath.empty())
-					continue;
-				// Original tests the terminal NUL, not size()-1. A trailing slash
-				// therefore gains another slash; preserve that path decision.
-				if (sPath.c_str()[sPath.size()] != '\\')
-					sPath.append(1, '\\');
-				paths[nIndex] = sPath + "data\\";
-			}
-		}
-
-		void ConfigureResourcePaths(ResourcePaths& paths, const char* root,
-			const Configuration::Settings& settings)
-		{
-			ConfigurePathArray(paths.paths, root, settings);
-		}
-
 		void ResourceSystem::ConfigurePaths(const Configuration::Settings& settings)
 		{
 			std::string path;
@@ -117,18 +88,5 @@ namespace JE
 				"Resources", "file_max_count", 10));
 		}
 
-		// Preserve the standalone settings API without fabricating a manager lifetime.
-		void ConfigureFileManagerSettings(FileManagerSettings& fileManager,
-			const char* root, const Configuration::Settings& settings)
-		{
-			fileManager.root = root;
-			fileManager.managed = Configuration::GetBoolean(settings, "Resources",
-				"use_managed_file", 0);
-			fileManager.count = 0;
-			fileManager.bytes = static_cast<Net::UInt32>(Configuration::GetInteger(settings,
-				"Resources", "file_cache_size", 0x20000000));
-			fileManager.maxCount = static_cast<Net::UInt32>(Configuration::GetInteger(settings,
-				"Resources", "file_max_count", 10));
-		}
 	}
 }

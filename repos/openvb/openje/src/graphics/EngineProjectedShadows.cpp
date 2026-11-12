@@ -131,7 +131,7 @@ void Gfx_Engine::ProjectShadows()
 							continue;
 						}
 					}
-					JE::GraphicsProjectedShadows::Point& point = shadowPoints[index];
+					Gfx_ShadowPoint& point = shadowPoints[index];
 					point.x -= levelMinimum.x;
 					point.z = levelMaximum.z - point.z;
 					const float left = float((double(point.x) - point.radius * 1.0)

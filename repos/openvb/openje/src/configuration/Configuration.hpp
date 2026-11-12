@@ -28,8 +28,6 @@ namespace JE
 		unsigned char __cdecl WriteFile(std::string sFilename, const Settings& settings);
 
 
-		// Production Allocate reserves an extra unwritten byte for the parser's
-		// end+1 store; the original logical allocation request remains unchanged.
 		namespace FileServices
 		{
 			FILE* __cdecl Open(const char*, const char*);

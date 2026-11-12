@@ -101,7 +101,6 @@ namespace JE
 		friend class World;
 	public:
 		// Original Entity additions28..E4 follow DynamicObject's00..24 prefix.
-		// The two explicit fixture seams below are outside the original surface.
 		virtual void CopyFrom(Entity* source); //552420,+28.
 		virtual DWORD GetUpdateInterval() const; //408080,+2C.
 		virtual DWORD GetContextAction(Entity* actor); //404BB0,+30, base0.

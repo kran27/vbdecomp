@@ -1,13 +1,14 @@
 #pragma once
 
-#include "SoundInstanceServices.hpp"
-#include "SoundDevice.hpp"
 #include "resources/ResourceLock.hpp"
+#include <dsound.h>
 #include <list>
 #include <d3dx8.h>
 
 namespace JE
 {
+	class CSound;
+	namespace Resources { class ResourceSystem; }
 	class MasterSoundGroups;
 	class CMasterJumplist;
 	class DirectShowAudio;
@@ -41,29 +42,6 @@ namespace JE
 		void UnregisterSound(CSound* sound); //52A930, pointer argument cell passed to list removal.
 		void Update(); //52AB10/52A960.
 		int LookupVolume(int volume) const; //52A1F0.
-		void SetListenerPosition(float x,float y,float z);
-		Resources::ResourceSystem& ResourceOwner();
-		void RegisterInstance(VfxSoundInstance& instance);
-		void UnregisterInstance(VfxSoundInstance& instance);
-		BYTE HasGroupOwner();
-		BYTE HasPlaybackOwner();
-		SoundPlaybackOwner CapturePlaybackOwner();
-		SoundGroupOwner CaptureGroupOwner();
-		SoundGroup* FindGroup(const char* name,BYTE preset);
-		void ApplyGroup(CSound& sound,SoundGroup& group);
-		int RequestPriority(VfxSoundInstance& instance);
-		DWORD Clock();
-		void PlayInstance(VfxSoundInstance& instance,DWORD flags,DWORD delay);
-		void StopSound(CSound& sound,DWORD first,DWORD second);
-		void SetSoundVolume(CSound& sound,int volume,DWORD force);
-		int SoundVolume(CSound& sound);
-		void InitializeSound(CSound& sound);
-		void DestroySound(CSound& sound);
-		void LoadSound(CSound& sound,const DSBUFFERDESC& description,
-			const BYTE* sampleBytes,DWORD sampleSize);
-		int CountActiveGroup(LONG groupID);
-		void EvictOldestGroup(LONG groupID,VfxSoundInstance& incoming);
-		int MixVolume(VfxSoundInstance& instance);
 
 		// Observed native owner prefix. Occupied scalar cells carry their actual
 		// stored width; unresolved names do not imply padding or nominal types.
@@ -131,10 +109,7 @@ namespace JE
 		SoundSystem* GetSystem(); //52A000, returns the published owner without a guard.
 		void InitializeBackend(HWND window,Resources::ResourceSystem* resources,
 			const char* groups,const char* jumps,bool directShow,bool directMusic,bool cdAudio); //52ACF0.
-		void InitializeBackend(const char* groups,const char* jumps,
-			bool directShow,bool directMusic,bool cdAudio); //Captures native caller globals.
 		void UpdateBackend();
 		void ShutdownBackend();
-		CMasterJumplist* MusicJumpList();
 	}
 }

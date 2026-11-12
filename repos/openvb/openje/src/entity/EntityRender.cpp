@@ -37,7 +37,6 @@ namespace JE
 
 	BYTE Entity::IsFogVisible()
 	{
-		if (!g_World) throw std::logic_error("Entity54A172: actual World required");
 		Map* owner = g_World->GetMap(mapHandle);
 		AreaMap* fog = owner->areaMap;
 		if (!fog) return 0;

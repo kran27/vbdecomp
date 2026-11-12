@@ -2,7 +2,6 @@
 #include "SurfaceRelease.hpp"
 #include "AutomapDimensions.hpp"
 #include "D3DState.hpp"
-#include "GraphicsFogOfWar.hpp"
 #include "Texture.hpp"
 #include "TextureManager.hpp"
 #include "diagnostics/DebugOutput.hpp"
@@ -44,7 +43,7 @@ namespace
 				Gfx_Texture* texture = manager->Lookup(item->first);
 				const char* mipmap = texture->frameCount > 0 && texture->frames[0].mipCount > 1
 					? "MIPMAP" : "";
-				std::string name = Gfx_GetTextureDiagnosticName(texture);
+				std::string name = texture->GetDiagnosticName();
 				DWORD size = texture->frameCount > 0 ? texture->frames[0].firstMipSize : 0;
 				DWORD bits = texture->frameCount > 0 ? texture->frames[0].bitsPerPixelWord : 0;
 				UINT height = texture->frameCount > 0 ? texture->frames[0].height : 0;

@@ -439,15 +439,6 @@ namespace
 		return -1;
 	}
 
-	template<class T> T Value(const JE::VFX_Parameter& parameter)
-	{
-		if (parameter.ValueSize() < sizeof(T))
-			throw std::logic_error("VFX_Parameter value is truncated; original access is invalid.");
-		T result;
-		memcpy(&result, parameter.RawValue(), sizeof(result));
-		return result;
-	}
-
 	//52E4E0: cdecl two-string formatting; preserve its owned result copy.
 	std::string FormatResourceValue(const JE::VFX_ResourceData& input)
 	{
@@ -604,25 +595,8 @@ namespace JE
 		return value;
 	}
 
-	DWORD VFX_Parameter::ValueSize() const
-	{
-		return static_cast<DWORD>(valueSize);
-	}
 
-	void VFX_Parameter::RequireValue(DWORD count) const
-	{
-		if (ValueSize() < count)
-			throw std::logic_error("VFX_Parameter value is truncated; original access is invalid.");
-	}
 
-	std::string VFX_Parameter::ValueString() const
-	{
-		if (!value) return std::string();
-		const void* end = memchr(RawValue(), 0, ValueSize());
-		if (!end)
-			throw std::logic_error("VFX_Parameter string lacks the original required terminator.");
-		return std::string(reinterpret_cast<const char*>(RawValue()));
-	}
 
 	BYTE VFX_Parameter::ReadParameter(const BYTE* buffer, DWORD& offset)
 	{
@@ -1314,56 +1288,17 @@ namespace JE
 
 	std::string VFX_Parameter::GetResourceType() const
 	{
-		if (type != Resource)
-			throw std::logic_error("VFX_Parameter resource conversion requires type10.");
-		RequireValue(2);
 		DWORD offset = 0;
-		WORD size = Value<WORD>(*this);
-		RequireValue(2 + size);
 		return ReadStringValue(RawValue(), offset);
 	}
 
 	std::string VFX_Parameter::GetResourceName() const
 	{
-		if (type != Resource)
-			throw std::logic_error("VFX_Parameter resource conversion requires type10.");
-		RequireValue(2);
 		DWORD offset = 0;
-		WORD first = Value<WORD>(*this);
-		RequireValue(2 + first + 2);
 		ReadStringValue(RawValue(), offset);
-		WORD second;
-		memcpy(&second, RawValue() + offset, sizeof(second));
-		RequireValue(offset + 2 + second);
 		return ReadStringValue(RawValue(), offset);
 	}
 
-	void VFX_Parameter::GetVector(float* output, DWORD count) const
-	{
-		switch (count)
-		{
-		case 2:
-		{
-			const VFX_Vector2 result = GetVector2();
-			memcpy(output, &result, sizeof(result));
-			break;
-		}
-		case 3:
-		{
-			const VFX_Vector result = GetVector3();
-			memcpy(output, &result, sizeof(result));
-			break;
-		}
-		case 4:
-		{
-			const VFX_TextureCoordinates result = GetTextureUVs();
-			memcpy(output, &result, sizeof(result));
-			break;
-		}
-		default:
-			throw std::logic_error("VFX_Parameter vector conversion requires 2, 3 or 4 values.");
-		}
-	}
 
 	VFX_Vector VFX_Parameter::GetVector3() const
 	{

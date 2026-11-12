@@ -1,17 +1,10 @@
 #include "GameScriptNatives.hpp"
-#include "GameAttitudes.hpp"
 #include "entity/World.hpp"
 #include "diagnostics/DebugOutput.hpp"
 #include <stdexcept>
 
 namespace F3
 {
-	// Compatibility adapters for existing non-native callers; not original ABI claims.
-	DWORD GetTeamAttitude(const JE::TeamSystem& table,DWORD source,DWORD target)
-	{ return const_cast<JE::TeamSystem&>(table).GetAttitude(source,target); }
-	DWORD GetSquadAttitude(const JE::SquadSystem& table,DWORD source,DWORD target)
-	{ return const_cast<JE::SquadSystem&>(table).GetAttitude(source,target); }
-
 	cell AMX_NATIVE_CALL NativeGetTeamAttitude(AMX* vm, cell* parameters)
 	{
 		//45AAF0: identical IDs return1 before the server guard, including0/0.
