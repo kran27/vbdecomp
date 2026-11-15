@@ -100,3 +100,4 @@
 *.til
 *.dmp
 __pycache__/
+.cache/
