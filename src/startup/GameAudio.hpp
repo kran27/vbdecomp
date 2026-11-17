@@ -4,13 +4,13 @@
 
 namespace F3
 {
-	class GameAudio : public JE::Audio
-	{
-	public:
-		GameAudio() {}
-		virtual ~GameAudio() {}
-		void ResetDefaults(); // 0x45E390.
-	};
+    class GameAudio : public JE::Audio
+    {
+      public:
+        GameAudio() {}
+        virtual ~GameAudio() {}
+        void ResetDefaults(); // 0x45E390.
+    };
 
-	GameAudio* CreateGameAudio(); // 0x45E830.
-}
+    GameAudio* CreateGameAudio(); // 0x45E830.
+} // namespace F3

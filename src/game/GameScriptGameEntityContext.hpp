@@ -4,6 +4,6 @@
 
 namespace F3
 {
-	class GameEntity;
-	BYTE ResolveGameEntity(AMX* vm, DWORD id, GameEntity** output); //45B9F0.
-}
+    class GameEntity;
+    BYTE ResolveGameEntity(AMX* vm, DWORD id, GameEntity** output); // 45B9F0.
+} // namespace F3

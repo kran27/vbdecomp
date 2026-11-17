@@ -6,13 +6,13 @@
 
 namespace F3
 {
-	struct GameClient;
-	namespace ActionbarServices
-	{
-		GameClient* GetClient();
-		void SetCompanionHidden(DWORD ownerOffset, BYTE hidden);
-		void RefreshMinimap();
-		void Feedback(const std::string& text, DWORD red, DWORD green, DWORD blue);
-		void QueueCommand(const char* command); //580D10, actual Client+7C.
-	}
-}
+    struct GameClient;
+    namespace ActionbarServices
+    {
+        GameClient* GetClient();
+        void SetCompanionHidden(DWORD ownerOffset, BYTE hidden);
+        void RefreshMinimap();
+        void Feedback(const std::string& text, DWORD red, DWORD green, DWORD blue);
+        void QueueCommand(const char* command); // 580D10, actual Client+7C.
+    } // namespace ActionbarServices
+} // namespace F3

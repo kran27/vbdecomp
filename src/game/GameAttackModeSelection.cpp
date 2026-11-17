@@ -15,10 +15,7 @@ namespace F3
         // The weapon sequence terminates at the end; the creature sequence
         // wraps to the first unarmed attack. A null or foreign-list selection
         // starts from the first entry in either case.
-        AttackModeIterator FindNextAvailableMode(
-            std::list<AttackMode>& modes,
-            AttackModeIterator selected,
-            bool wrap)
+        AttackModeIterator FindNextAvailableMode(std::list<AttackMode>& modes, AttackModeIterator selected, bool wrap)
         {
             if (modes.empty())
             {
@@ -55,7 +52,7 @@ namespace F3
 
             return {};
         }
-    }
+    } // namespace
 
     AttackMode* GameWeapon::CurrentAttackMode()
     {
@@ -103,4 +100,4 @@ namespace F3
     {
         currentAttackMode = PeekNextAttackMode();
     }
-}
+} // namespace F3

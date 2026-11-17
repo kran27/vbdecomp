@@ -1,6 +1,9 @@
 #pragma once
 
-namespace JE { namespace Net
+namespace JE
 {
-	typedef void (__cdecl *Logger)(const char* format, ...);
-} }
+    namespace Net
+    {
+        typedef void(__cdecl* Logger)(const char* format, ...);
+    }
+} // namespace JE

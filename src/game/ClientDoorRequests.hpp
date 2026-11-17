@@ -3,9 +3,16 @@
 #include <winsock2.h>
 #include <windows.h>
 
-namespace JE { namespace Net { class Client; class Packet; } }
+namespace JE
+{
+    namespace Net
+    {
+        class Client;
+        class Packet;
+    } // namespace Net
+} // namespace JE
 
 namespace F3
 {
-	BYTE ReceiveGameServerOperateRequest(JE::Net::Packet& packet); //46DD70 case78, actual door/container actions.
+    BYTE ReceiveGameServerOperateRequest(JE::Net::Packet& packet); // 46DD70 case78, actual door/container actions.
 }

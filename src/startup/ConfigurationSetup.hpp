@@ -3,6 +3,6 @@
 
 namespace F3
 {
-	// 0x56B220. Uses the canonical save/cwd/stem globals and ignores reader AL.
-	void __cdecl SetupConfigFile();
-}
+    // 0x56B220. Uses the canonical save/cwd/stem globals and ignores reader AL.
+    void __cdecl SetupConfigFile();
+} // namespace F3

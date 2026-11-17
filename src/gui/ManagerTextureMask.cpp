@@ -2,8 +2,8 @@
 
 namespace GUI
 {
-	TextureMask* Manager::GetTextureMask(DWORD handle)
-	{
-		return textureMasks.Get(handle);
-	}
-}
+    TextureMask* Manager::GetTextureMask(DWORD handle)
+    {
+        return textureMasks.Get(handle);
+    }
+} // namespace GUI

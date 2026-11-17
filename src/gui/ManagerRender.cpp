@@ -10,63 +10,63 @@
 
 namespace GUI
 {
-	void Manager::AddViewport(Gfx_Viewport* viewport)
-	{
-		entries148.push_back(viewport);
-	}
+    void Manager::AddViewport(Gfx_Viewport* viewport)
+    {
+        entries148.push_back(viewport);
+    }
 
-	void Manager::Render()
-	{
-		packets->Clear();
-		storage->Reset();
-		if (view)
-		{
-			g_GfxSystem->AddViewport(view);
-			Gfx_Viewport* currentView = view;
-			Gfx_MeshInstance* currentInstance = &currentView->instance;
-			Gfx_RenderManager* currentRenderer = currentView->renderer;
-			currentView->flag1C = 1;
-			currentRenderer->QueueMeshInstances(currentInstance, 1);
-		}
+    void Manager::Render()
+    {
+        packets->Clear();
+        storage->Reset();
+        if (view)
+        {
+            g_GfxSystem->AddViewport(view);
+            Gfx_Viewport* currentView = view;
+            Gfx_MeshInstance* currentInstance = &currentView->instance;
+            Gfx_RenderManager* currentRenderer = currentView->renderer;
+            currentView->flag1C = 1;
+            currentRenderer->QueueMeshInstances(currentInstance, 1);
+        }
 
-		std::list<Gfx_Viewport*>::iterator viewport = entries148.begin();
-		while (viewport != entries148.end())
-		{
-			if (*viewport)
-			{
-				g_GfxSystem->AddViewport(*viewport);
-			}
-			++viewport;
-		}
-		entries148.clear();
+        std::list<Gfx_Viewport*>::iterator viewport = entries148.begin();
+        while (viewport != entries148.end())
+        {
+            if (*viewport)
+            {
+                g_GfxSystem->AddViewport(*viewport);
+            }
+            ++viewport;
+        }
+        entries148.clear();
 
-		// Keep the currently held node across the callback. An ordinary
-		// reverse_iterator instead retains its one-ahead base and can revisit
-		// an appended entry. Only valid current-node-preserving lists apply.
-		//std::list<Interface*>::iterator entry = interfaces.end();
-		//--entry;
-		//while (entry != interfaces.end())
-		//{
-		//	Interface* current = *entry;
-		//	if (!current->GetHidden())
-		//	{
-		//		current->Draw();
-		//	}
-		//	--entry;
-		//}
-		auto entry = interfaces.end();
+        // Keep the currently held node across the callback. An ordinary
+        // reverse_iterator instead retains its one-ahead base and can revisit
+        // an appended entry. Only valid current-node-preserving lists apply.
+        // std::list<Interface*>::iterator entry = interfaces.end();
+        //--entry;
+        // while (entry != interfaces.end())
+        //{
+        //	Interface* current = *entry;
+        //	if (!current->GetHidden())
+        //	{
+        //		current->Draw();
+        //	}
+        //	--entry;
+        //}
+        auto entry = interfaces.end();
 
-		while (entry != interfaces.begin())
-		{
-			--entry;
+        while (entry != interfaces.begin())
+        {
+            --entry;
 
-			Interface* current = *entry;
+            Interface* current = *entry;
 
-			if (!current->GetHidden())
-			{
-				current->Draw();
-			}
-		}
-		packets->Flush();
-	}
-}
+            if (!current->GetHidden())
+            {
+                current->Draw();
+            }
+        }
+        packets->Flush();
+    }
+} // namespace GUI

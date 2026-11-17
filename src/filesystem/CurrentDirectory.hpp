@@ -9,5 +9,5 @@ namespace JE
     {
         char* __cdecl GetCurrentDirectory(char*, int);
         char* __cdecl GetDriveCurrentDirectory(int, char*, int);
-    }
-}
+    } // namespace LegacyFilesystem
+} // namespace JE

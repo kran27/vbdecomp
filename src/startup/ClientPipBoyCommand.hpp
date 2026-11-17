@@ -5,7 +5,6 @@
 
 namespace F3
 {
-	void __cdecl CommandTogglePipBoy(CommandArguments* arguments); //45EC70.
-	unsigned char ExecuteClientPipBoyCommand(JE::Net::UInt32 originalVA,
-		CommandArguments* arguments);
-}
+    void __cdecl CommandTogglePipBoy(CommandArguments* arguments); // 45EC70.
+    unsigned char ExecuteClientPipBoyCommand(JE::Net::UInt32 originalVA, CommandArguments* arguments);
+} // namespace F3

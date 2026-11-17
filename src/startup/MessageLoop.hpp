@@ -6,9 +6,9 @@
 
 namespace F3
 {
-	extern unsigned long g_nSystemTimeMS;
-	extern unsigned long g_nElapsedTimeMS;
+    extern unsigned long g_nSystemTimeMS;
+    extern unsigned long g_nElapsedTimeMS;
 
-	DWORD GetElapsedTimeMS(); //56AF50; chosen source name for the actual accumulated-clock getter.
-	bool ProcessMessagesAndUpdateTime();
-}
+    DWORD GetElapsedTimeMS(); // 56AF50; chosen source name for the actual accumulated-clock getter.
+    bool ProcessMessagesAndUpdateTime();
+} // namespace F3

@@ -3,23 +3,26 @@
 #include "gui/Label.hpp"
 #include <cstddef>
 
-namespace GUI { class LineSystem; }
+namespace GUI
+{
+    class LineSystem;
+}
 
 class POIWaypoint : public GUI::Label
 {
-public:
-	POIWaypoint(); //4587E0.
-	virtual ~POIWaypoint(); //4588C0.
-	virtual void Refresh(); //458930.
-	virtual void Draw(); //458950.
-	virtual float SetDepth(float depth, float increment); //458980.
+  public:
+    POIWaypoint(); // 4587E0.
+    virtual ~POIWaypoint(); // 4588C0.
+    virtual void Refresh(); // 458930.
+    virtual void Draw(); // 458950.
+    virtual float SetDepth(float depth, float increment); // 458980.
 
-	LONG coordinateX, coordinateY; //E64/E68.
-	float valueE6C, valueE70, valueE74, valueE78; //Float route values; see458BC0/459680.
-	GUI::LineSystem* lineSystem; //E7C, owned; published after construction.
-private:
-	POIWaypoint(const POIWaypoint&);
-	POIWaypoint& operator=(const POIWaypoint&);
+    LONG coordinateX, coordinateY; // E64/E68.
+    float valueE6C, valueE70, valueE74, valueE78; // Float route values; see458BC0/459680.
+    GUI::LineSystem* lineSystem; // E7C, owned; published after construction.
+  private:
+    POIWaypoint(const POIWaypoint&);
+    POIWaypoint& operator=(const POIWaypoint&);
 };
 
 #if defined(_MSC_VER) && _MSC_VER == 1300

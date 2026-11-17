@@ -2,10 +2,10 @@
 
 namespace F3
 {
-	GameActionFloatingSpeechText::GameActionFloatingSpeechText() {}
-	int GameActionFloatingSpeechText::Start(DWORD time)
-	{
-		JE::ActionFloatingSpeechText::Start(time);
-		return 0;
-	}
-}
+    GameActionFloatingSpeechText::GameActionFloatingSpeechText() {}
+    int GameActionFloatingSpeechText::Start(DWORD time)
+    {
+        JE::ActionFloatingSpeechText::Start(time);
+        return 0;
+    }
+} // namespace F3

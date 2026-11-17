@@ -17,10 +17,8 @@ struct Gfx_DX9TechniqueDesc
 
 class Gfx_DX9Effect
 {
-public:
-    explicit Gfx_DX9Effect(ID3DXEffect* effect)
-        : m_effect(effect)
-    {}
+  public:
+    explicit Gfx_DX9Effect(ID3DXEffect* effect) : m_effect(effect) {}
 
     Gfx_DX9Effect(const Gfx_DX9Effect&) = delete;
     Gfx_DX9Effect& operator=(const Gfx_DX9Effect&) = delete;
@@ -32,20 +30,11 @@ public:
         return references;
     }
 
-    HRESULT GetDesc(D3DXEFFECT_DESC* desc)
-    {
-        return m_effect->GetDesc(desc);
-    }
+    HRESULT GetDesc(D3DXEFFECT_DESC* desc) { return m_effect->GetDesc(desc); }
 
-    HRESULT OnLostDevice()
-    {
-        return m_effect->OnLostDevice();
-    }
+    HRESULT OnLostDevice() { return m_effect->OnLostDevice(); }
 
-    HRESULT OnResetDevice()
-    {
-        return m_effect->OnResetDevice();
-    }
+    HRESULT OnResetDevice() { return m_effect->OnResetDevice(); }
 
     HRESULT Begin(UINT* passes, DWORD flags)
     {
@@ -93,20 +82,11 @@ public:
         return m_effect->End();
     }
 
-    HRESULT SetDword(D3DXHANDLE name, DWORD value)
-    {
-        return m_effect->SetInt(name, static_cast<INT>(value));
-    }
+    HRESULT SetDword(D3DXHANDLE name, DWORD value) { return m_effect->SetInt(name, static_cast<INT>(value)); }
 
-    HRESULT SetMatrix(D3DXHANDLE name, const D3DXMATRIX* matrix)
-    {
-        return m_effect->SetMatrix(name, matrix);
-    }
+    HRESULT SetMatrix(D3DXHANDLE name, const D3DXMATRIX* matrix) { return m_effect->SetMatrix(name, matrix); }
 
-    HRESULT SetTexture(D3DXHANDLE name, IDirect3DBaseTexture9* texture)
-    {
-        return m_effect->SetTexture(name, texture);
-    }
+    HRESULT SetTexture(D3DXHANDLE name, IDirect3DBaseTexture9* texture) { return m_effect->SetTexture(name, texture); }
 
     HRESULT SetTechnique(int index)
     {
@@ -118,10 +98,7 @@ public:
     }
 
     // The existing callers pass D3DX8-style numeric indices encoded as LPCSTR.
-    HRESULT SetTechnique(D3DXHANDLE index)
-    {
-        return SetTechniqueIndex(reinterpret_cast<std::uintptr_t>(index));
-    }
+    HRESULT SetTechnique(D3DXHANDLE index) { return SetTechniqueIndex(reinterpret_cast<std::uintptr_t>(index)); }
 
     HRESULT GetParameterDesc(D3DXHANDLE parameter, D3DXPARAMETER_DESC* desc)
     {
@@ -164,7 +141,7 @@ public:
         return FindValidTechniqueFrom(reinterpret_cast<std::uintptr_t>(from), desc);
     }
 
-private:
+  private:
     HRESULT SetTechniqueIndex(std::uintptr_t index)
     {
         D3DXEFFECT_DESC desc = {};
@@ -231,12 +208,8 @@ private:
     bool m_passActive = false;
 };
 
-inline HRESULT Gfx_CreateDX9Effect(
-    IDirect3DDevice9* device,
-    const void* source,
-    UINT length,
-    Gfx_DX9Effect** output,
-    ID3DXBuffer** errors)
+inline HRESULT Gfx_CreateDX9Effect(IDirect3DDevice9* device, const void* source, UINT length, Gfx_DX9Effect** output,
+                                   ID3DXBuffer** errors)
 {
     if (!output)
     {
@@ -250,17 +223,7 @@ inline HRESULT Gfx_CreateDX9Effect(
     }
 
     ID3DXEffect* raw = nullptr;
-    const HRESULT result = D3DXCreateEffect(
-        device,
-        source,
-        length,
-        nullptr,
-        nullptr,
-        0,
-        nullptr,
-        &raw,
-        errors
-    );
+    const HRESULT result = D3DXCreateEffect(device, source, length, nullptr, nullptr, 0, nullptr, &raw, errors);
 
     if (FAILED(result))
     {

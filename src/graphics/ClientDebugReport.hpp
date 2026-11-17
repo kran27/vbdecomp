@@ -4,5 +4,5 @@
 
 namespace F3
 {
-	BYTE __stdcall DebugPrintEntityInfo(LONG x, LONG y); //437030; coordinates are unused.
+    BYTE __stdcall DebugPrintEntityInfo(LONG x, LONG y); // 437030; coordinates are unused.
 }

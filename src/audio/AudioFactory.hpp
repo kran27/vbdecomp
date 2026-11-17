@@ -4,5 +4,5 @@
 
 namespace JE
 {
-	Audio* CreateAudio(); // 0x587B10.
+    Audio* CreateAudio(); // 0x587B10.
 }

@@ -8,12 +8,12 @@ namespace JE
     {
         ::intptr_t __cdecl FindFirst(const char* path, FindData32* data)
         {
-            //return ::_findfirst(path, data);
+            // return ::_findfirst(path, data);
             return ::_findfirst32(path, data);
         }
         int __cdecl FindNext(::intptr_t handle, FindData32* data)
         {
-            //return ::_findnext(handle, data);
+            // return ::_findnext(handle, data);
             return ::_findnext32(handle, data);
         }
         int __cdecl FindClose(::intptr_t handle)
@@ -24,5 +24,5 @@ namespace JE
         {
             return ::_mkdir(path);
         }
-    }
-}
+    } // namespace LegacyFilesystem
+} // namespace JE

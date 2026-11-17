@@ -12,5 +12,5 @@ namespace JE
         {
             return ::_getdcwd(drive, output, length);
         }
-    }
-}
+    } // namespace LegacyFilesystem
+} // namespace JE

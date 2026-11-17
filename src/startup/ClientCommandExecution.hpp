@@ -5,7 +5,7 @@
 
 namespace F3
 {
-	// Called by the per-identity native adapters in ClientCommands.cpp.
-	// Only recovered callbacks are executable; other identities fail explicitly.
-	void ExecuteClientCommand(JE::Net::UInt32 originalVA, CommandArguments* pArguments);
-}
+    // Called by the per-identity native adapters in ClientCommands.cpp.
+    // Only recovered callbacks are executable; other identities fail explicitly.
+    void ExecuteClientCommand(JE::Net::UInt32 originalVA, CommandArguments* pArguments);
+} // namespace F3

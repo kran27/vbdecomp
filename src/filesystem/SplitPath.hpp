@@ -6,4 +6,4 @@ namespace JE
     {
         void __cdecl SplitPath(const char*, char*, char*, char*, char*);
     }
-}
+} // namespace JE

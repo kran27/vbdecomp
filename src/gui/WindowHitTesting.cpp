@@ -3,28 +3,34 @@
 
 namespace GUI
 {
-	bool Window::Contains(LONG x, LONG y)
-	{
-		return Base::Contains(x, y) ? true : false;
-	}
+    bool Window::Contains(LONG x, LONG y)
+    {
+        return Base::Contains(x, y) ? true : false;
+    }
 
-	BYTE Window::GetValue3B()
-	{
-		return value3B;
-	}
+    BYTE Window::GetValue3B()
+    {
+        return value3B;
+    }
 
-	Window* Window::FindAt(LONG x, LONG y, BYTE overrideSelf)
-	{
-		if (hidden)
-			return NULL;
-		for (std::list<Window*>::iterator entry = children.begin(); entry != children.end(); ++entry)
-		{
-			Window* result = (*entry)->FindAt(x, y, overrideSelf);
-			if (result)
-				return result;
-		}
-		if (GetValue3B() && !overrideSelf)
-			return NULL;
-		return Contains(x, y) ? this : NULL;
-	}
-}
+    Window* Window::FindAt(LONG x, LONG y, BYTE overrideSelf)
+    {
+        if (hidden)
+        {
+            return NULL;
+        }
+        for (std::list<Window*>::iterator entry = children.begin(); entry != children.end(); ++entry)
+        {
+            Window* result = (*entry)->FindAt(x, y, overrideSelf);
+            if (result)
+            {
+                return result;
+            }
+        }
+        if (GetValue3B() && !overrideSelf)
+        {
+            return NULL;
+        }
+        return Contains(x, y) ? this : NULL;
+    }
+} // namespace GUI

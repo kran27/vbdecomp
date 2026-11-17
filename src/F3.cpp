@@ -8,17 +8,17 @@
 
 namespace F3
 {
-	// 0x5ACE00. A departing phase does not run any subsequent phase or cleanup.
-	int Main()
-	{
-		Startup();
-		RegisterConsoleCommand("quit", &QuitCommand);
-		while (ProcessMessagesAndUpdateTime())
-		{
-			UpdateComponents();
-		}
-		Shutdown();
-		return 1;
-	}
+    // 0x5ACE00. A departing phase does not run any subsequent phase or cleanup.
+    int Main()
+    {
+        Startup();
+        RegisterConsoleCommand("quit", &QuitCommand);
+        while (ProcessMessagesAndUpdateTime())
+        {
+            UpdateComponents();
+        }
+        Shutdown();
+        return 1;
+    }
 
-}
+} // namespace F3

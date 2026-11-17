@@ -5,9 +5,9 @@
 
 namespace JE
 {
-	struct MapEntryPoint
-	{
-		VFX_Rotation positions[6]; // 46CB30 constructs each float triple through 52C260.
-		float values[6];
-	};
-}
+    struct MapEntryPoint
+    {
+        VFX_Rotation positions[6]; // 46CB30 constructs each float triple through 52C260.
+        float values[6];
+    };
+} // namespace JE

@@ -4,12 +4,14 @@
 
 namespace F3
 {
-	JE::Effect* GameWorld::NewEffect(DWORD type) //46FA40.
-	{
-		switch (type)
-		{
-		case 1: return new GameEffectDamage(1);
-		default: return World::NewEffect(type);
-		}
-	}
-}
+    JE::Effect* GameWorld::NewEffect(DWORD type) // 46FA40.
+    {
+        switch (type)
+        {
+        case 1:
+            return new GameEffectDamage(1);
+        default:
+            return World::NewEffect(type);
+        }
+    }
+} // namespace F3

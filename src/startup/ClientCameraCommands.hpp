@@ -5,6 +5,6 @@
 
 namespace F3
 {
-	//1 means this callback identity was handled, not an original return value.
-	unsigned char ExecuteClientCameraCommand(JE::Net::UInt32 originalVA, CommandArguments* arguments);
-}
+    // 1 means this callback identity was handled, not an original return value.
+    unsigned char ExecuteClientCameraCommand(JE::Net::UInt32 originalVA, CommandArguments* arguments);
+} // namespace F3

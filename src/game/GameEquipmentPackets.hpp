@@ -2,7 +2,10 @@
 
 #include <windows.h>
 
-namespace JE { class Server; }
+namespace JE
+{
+    class Server;
+}
 
 namespace F3
 {

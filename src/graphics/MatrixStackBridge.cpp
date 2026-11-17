@@ -5,21 +5,20 @@
 
 namespace JE
 {
-	namespace Gfx
-	{
-		namespace MatrixStackBridge
-		{
-			HRESULT Create(DWORD flags, Handle* output)
-			{
-				// Preserve the SDK's direct output write and unchanged HRESULT.
-				return D3DXCreateMatrixStack(flags,
-					reinterpret_cast<ID3DXMatrixStack**>(output));
-			}
+    namespace Gfx
+    {
+        namespace MatrixStackBridge
+        {
+            HRESULT Create(DWORD flags, Handle* output)
+            {
+                // Preserve the SDK's direct output write and unchanged HRESULT.
+                return D3DXCreateMatrixStack(flags, reinterpret_cast<ID3DXMatrixStack**>(output));
+            }
 
-			ULONG Release(Handle stack)
-			{
-				return static_cast<ID3DXMatrixStack*>(stack)->Release();
-			}
-		}
-	}
-}
+            ULONG Release(Handle stack)
+            {
+                return static_cast<ID3DXMatrixStack*>(stack)->Release();
+            }
+        } // namespace MatrixStackBridge
+    } // namespace Gfx
+} // namespace JE

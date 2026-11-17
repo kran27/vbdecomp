@@ -5,11 +5,15 @@
 
 namespace JE
 {
-	class Server;
-	namespace Net { class Client; class Packet; }
-}
+    class Server;
+    namespace Net
+    {
+        class Client;
+        class Packet;
+    } // namespace Net
+} // namespace JE
 
 namespace F3
 {
-	BYTE ReceiveGameServerDialogueRequest(JE::Server& server, JE::Net::Packet& packet); //46DD70 case73.
+    BYTE ReceiveGameServerDialogueRequest(JE::Server& server, JE::Net::Packet& packet); // 46DD70 case73.
 }
