@@ -243,7 +243,7 @@ namespace JE
             mesh.SetVertexDesc(0x142, D3DXGetFVFVertexSize(0x142), result->vertexCount);
             if (data.innerGlow)
             {
-                mesh.value10 = reinterpret_cast<DWORD>(result->indices);
+                mesh.value10 = result->indices;
                 mesh.SetIndexDesc(2, result->indexCount);
             }
             result->packet = new Gfx_PacketData;
@@ -282,7 +282,7 @@ namespace JE
             mesh.materialSet.RebuildGroups();
             mesh.value04 = DWORD(-1);
             result->instances[0].SetMesh(&mesh);
-            result->instances[0].value0C = reinterpret_cast<DWORD>(result->packet);
+            result->instances[0].value0C = result->packet;
             bucket.push_back(result);
         }
     }

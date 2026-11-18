@@ -4,13 +4,11 @@
 #include <cstdint>
 #include <new>
 
-// D3DX8 exposed the technique index as an LPCSTR-like value.  The existing
-// renderer stores and increments that value as a zero-based integer.
-// Keep that convention at this boundary; never expose a D3DX9 technique handle
-// to those render-style classes.
+// The renderer works with zero-based technique indices. The D3DX9 handles
+// are obtained privately from ID3DXEffect and must not be used as indices.
 struct Gfx_DX9TechniqueDesc
 {
-    D3DXHANDLE Index = nullptr;
+    DWORD Index = 0;
     LPCSTR Name = nullptr;
     UINT Passes = 0;
 };
@@ -97,24 +95,29 @@ class Gfx_DX9Effect
         return SetTechniqueIndex(static_cast<UINT>(index));
     }
 
-    // The existing callers pass D3DX8-style numeric indices encoded as LPCSTR.
-    HRESULT SetTechnique(D3DXHANDLE index) { return SetTechniqueIndex(reinterpret_cast<std::uintptr_t>(index)); }
+    HRESULT SetTechnique(DWORD index) { return SetTechniqueIndex(index); }
 
-    HRESULT GetParameterDesc(D3DXHANDLE parameter, D3DXPARAMETER_DESC* desc)
+HRESULT GetParameterDesc(DWORD index, D3DXPARAMETER_DESC* desc)
     {
-        D3DXEFFECT_DESC effectDesc = {};
+        if (!desc)
+        {
+            return E_POINTER;
+        }
+
+        D3DXEFFECT_DESC effectDesc{};
         const HRESULT result = m_effect->GetDesc(&effectDesc);
         if (FAILED(result))
         {
             return result;
         }
 
-        const std::uintptr_t value = reinterpret_cast<std::uintptr_t>(parameter);
-        if (value < effectDesc.Parameters)
+        if (index >= effectDesc.Parameters)
         {
-            parameter = m_effect->GetParameter(nullptr, static_cast<UINT>(value));
+            return D3DERR_INVALIDCALL;
         }
-        else if (value < 65536)
+
+        const D3DXHANDLE parameter = m_effect->GetParameter(nullptr, index);
+        if (!parameter)
         {
             return D3DERR_INVALIDCALL;
         }
@@ -136,10 +139,6 @@ class Gfx_DX9Effect
         return FindValidTechniqueFrom(from, desc);
     }
 
-    HRESULT FindNextValidTechnique(D3DXHANDLE from, Gfx_DX9TechniqueDesc* desc)
-    {
-        return FindValidTechniqueFrom(reinterpret_cast<std::uintptr_t>(from), desc);
-    }
 
   private:
     HRESULT SetTechniqueIndex(std::uintptr_t index)
@@ -195,7 +194,7 @@ class Gfx_DX9Effect
                 return describe;
             }
 
-            output->Index = reinterpret_cast<D3DXHANDLE>(index);
+            output->Index = static_cast<DWORD>(index);
             output->Name = details.Name;
             output->Passes = details.Passes;
             return S_OK;

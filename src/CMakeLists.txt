@@ -220,7 +220,8 @@ target_sources(enginelib PUBLIC
 	"graphics/G3DWaterTile.hpp"
 	"graphics/GfxColor4.hpp"
 	"graphics/GfxVector3.hpp"
-	"graphics/GrannyRuntime21.hpp"
+	#"graphics/GrannyRuntime28.hpp"
+	"graphics/GrannyRuntime28.hpp"
 	"graphics/Graphics.hpp"
 	"graphics/GraphicsBaseObject.hpp"
 	"graphics/GraphicsDeviceState.hpp"
@@ -916,7 +917,7 @@ target_sources(enginelib PUBLIC
 	"graphics/G3DTransform.cpp"
 	"graphics/G3DWaterTile.cpp"
 	"graphics/GfxColor4.cpp"
-	"graphics/GrannyRuntime21.cpp"
+	"graphics/GrannyRuntime28.cpp"
 	"graphics/GraphicsBaseObject.cpp"
 	"graphics/GraphicsCommands.cpp"
 	"graphics/GraphicsDeviceState.cpp"
@@ -1400,7 +1401,7 @@ find_package(dxsdk-d3dx CONFIG REQUIRED)
 target_link_libraries(enginelib PUBLIC
     d3d9
     Microsoft::D3DX9
-	dx81-audio
+	windows-audio
 	winmm 
 	ws2_32
 	small-runtime 

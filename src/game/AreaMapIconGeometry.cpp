@@ -71,6 +71,6 @@ void AreaMapIcon::RebuildGeometry() // 4203C0.
     mesh.materialSet.RebuildGroups();
     mesh.value04 = 0xFFFFFFFF;
     instances[0].SetMesh(&mesh);
-    instances[0].value0C = DWORD(packet);
+    instances[0].value0C = packet;
     ready = 1;
 }

@@ -222,6 +222,6 @@ void Gfx_ParticleSystem::BuildAfterimageGeometry(
     mesh.materialSet.RebuildGroups();
     mesh.value04 = DWORD(-1);
     batch->instances[0].SetMesh(&mesh);
-    batch->instances[0].value0C = reinterpret_cast<DWORD>(batch->packet);
+    batch->instances[0].value0C = batch->packet;
     pools[currentBatchIndex].push_back(batch); // Publish only after actual mesh/packet construction.
 }

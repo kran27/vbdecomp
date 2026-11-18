@@ -25,7 +25,7 @@ namespace F3
                 LogScriptError(vm, "%s() was unable to retrieve the 'from' id.", name);
                 return 0;
             }
-            return DWORD(reinterpret_cast<UINT_PTR>(value));
+            return ScriptOwnerID(value);
         }
         cell* ReadArguments(AMX* vm, cell* parameters, LONG count, const char* failure, BYTE* valid)
         {
@@ -200,7 +200,7 @@ namespace F3
             }
             else
             {
-                entity->EnqueueMessage(DWORD(reinterpret_cast<UINT_PTR>(owner)), DWORD(parameters[2]), values,
+                entity->EnqueueMessage(ScriptOwnerID(owner), DWORD(parameters[2]), values,
                                        provided - 2);
             }
         }
@@ -243,7 +243,7 @@ namespace F3
             }
             else
             {
-                entity->EnqueueMessage(DWORD(reinterpret_cast<UINT_PTR>(owner)), DWORD(parameters[2]), values,
+                entity->EnqueueMessage(ScriptOwnerID(owner), DWORD(parameters[2]), values,
                                        provided - 2);
                 ++delivered;
             }

@@ -5,6 +5,7 @@
 
 namespace JE
 {
+#if !defined(_WIN64)
     typedef char ShowSize[(sizeof(DirectShowAudio) == 0x48) ? 1 : -1];
     typedef char ShowFlag[(offsetof(DirectShowAudio, initialized) == 0x20) ? 1 : -1];
     typedef char ShowVolume[(offsetof(DirectShowAudio, baseVolume) == 0x24) ? 1 : -1];
@@ -25,6 +26,7 @@ namespace JE
     typedef char MixerLineControlsSize[(sizeof(MIXERLINECONTROLSA) == 24) ? 1 : -1];
     typedef char MixerDetailsSize[(sizeof(MIXERCONTROLDETAILS) == 24) ? 1 : -1];
     typedef char MixerValueSize[(sizeof(MIXERCONTROLDETAILS_UNSIGNED) == 4) ? 1 : -1];
+#endif // Legacy x86 structure sizes
 
     DirectShowAudio::DirectShowAudio() // 539D90.
     {
@@ -219,6 +221,7 @@ namespace JE
         }
     }
 
+#if !defined(_WIN64)
     DirectMusicAudio::DirectMusicAudio()
     {
         loader = NULL;
@@ -361,4 +364,19 @@ namespace JE
         }
         return result;
     }
+
+#else // _WIN64: DirectMusic Performance Layer deliberately unavailable.
+    // VANBUREN_X64_DIRECTMUSIC_STUB
+    DirectMusicAudio::DirectMusicAudio() : loader(nullptr), performance(nullptr) {}
+    DirectMusicAudio::~DirectMusicAudio() = default;
+    HRESULT DirectMusicAudio::Initialize(HWND) { return E_NOTIMPL; }
+    void DirectMusicAudio::Close() {}
+    void DirectMusicAudio::Update() {}
+
+    LONG DirectMusicSegment::CalculateVolume() { return 0; }
+    int DirectMusicSegment::SetVolume(LONG, BYTE) { return 1; }
+    int DirectMusicSegment::RefreshVolume(BYTE) { return 1; }
+    HRESULT DirectMusicSegment::Update() { return E_NOTIMPL; }
+#endif // !_WIN64
+
 } // namespace JE

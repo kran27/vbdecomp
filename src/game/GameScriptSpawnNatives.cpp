@@ -36,7 +36,7 @@ namespace F3
         }
         void* owner;
         amx_GetUserData(vm, 0x464C534D, &owner); // 5CA749 consumes its output even after failure.
-        DWORD mapID = reinterpret_cast<DWORD>(owner);
+        DWORD mapID = ScriptOwnerID(owner);
         switch (mapID >> 29)
         {
         case 0:

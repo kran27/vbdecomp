@@ -222,7 +222,7 @@ void Gfx_WaterTile::BuildPacket()
     const DWORD fvf = flag226 ? 0x242 : 0x252;
     mesh.vertices = flag226 ? static_cast<void*>(vertices32) : static_cast<void*>(vertices44);
     mesh.SetVertexDesc(fvf, D3DXGetFVFVertexSize(fvf), vertexCount);
-    mesh.value10 = reinterpret_cast<DWORD>(indices);
+    mesh.value10 = indices;
     mesh.SetIndexDesc(2, indexCount);
     delete packet;
     packet = new Gfx_PacketData;
@@ -257,7 +257,7 @@ void Gfx_WaterTile::BuildPacket()
     mesh.materialSet.RebuildGroups();
     mesh.value04 = DWORD(-1);
     instances[0].SetMesh(&mesh);
-    instances[0].value0C = reinterpret_cast<DWORD>(packet);
+    instances[0].value0C = packet;
     instances[0].flag1D = 1;
     instances[0].flag1E = 1;
 }

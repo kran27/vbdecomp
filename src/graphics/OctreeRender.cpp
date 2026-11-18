@@ -253,19 +253,19 @@ void Octree2Gfx::ConstructRenderData()
         }
     }
     vertices = new BYTE*[meshCount];
-    memset(vertices, 0, 4 * meshCount);
+    memset(vertices, 0, sizeof(*vertices) * meshCount);
     indices = new BYTE*[meshCount];
-    memset(indices, 0, 4 * meshCount);
+    memset(indices, 0, sizeof(*indices) * meshCount);
     floorGroups = new OctreeFloorGroup[meshCount];
     meshes = new Gfx_MeshData[meshCount];
     instances = new Gfx_MeshInstance[meshCount];
     packets = new Gfx_PacketData*[meshCount];
-    memset(packets, 0, 4 * meshCount);
+    memset(packets, 0, sizeof(*packets) * meshCount);
     textureHandles = new DWORD[textureCount];
     nodeMinimum = new D3DXVECTOR3*[meshCount];
-    memset(nodeMinimum, 0, 4 * meshCount);
+    memset(nodeMinimum, 0, sizeof(*nodeMinimum) * meshCount);
     nodeMaximum = new D3DXVECTOR3*[meshCount];
-    memset(nodeMaximum, 0, 4 * meshCount);
+    memset(nodeMaximum, 0, sizeof(*nodeMaximum) * meshCount);
     boundsVertexCount = 8 * nodeCount;
     boundsVertices = new BYTE[16 * boundsVertexCount];
     boundsIndices = new WORD[24 * nodeCount];
@@ -578,7 +578,7 @@ void Octree2Gfx::ConstructRenderData()
             indexBase += batch->count;
             byteCursor += indexStride * batch->count;
         }
-        mesh.value10 = reinterpret_cast<DWORD>(indices[bufferIndex]);
+        mesh.value10 = indices[bufferIndex];
         mesh.SetIndexDesc(indexStride, buffer.count);
         mesh.materialSet.RebuildGroups();
         g_GfxSystem->CreateGeometryData(&mesh);
@@ -587,14 +587,14 @@ void Octree2Gfx::ConstructRenderData()
         packets[bufferIndex]->transform = NULL;
         packets[bufferIndex]->perPrimitiveLights = 1;
         instances[bufferIndex].SetMesh(&mesh);
-        instances[bufferIndex].value0C = reinterpret_cast<DWORD>(packets[bufferIndex]);
+        instances[bufferIndex].value0C = packets[bufferIndex];
     }
     if (showBounds)
     {
         boundsMesh = new Gfx_MeshData;
         boundsMesh->value04 = static_cast<DWORD>(-1);
         boundsMesh->vertices = boundsVertices;
-        boundsMesh->value10 = reinterpret_cast<DWORD>(boundsIndices);
+        boundsMesh->value10 = boundsIndices;
         boundsPrimitive = boundsMesh->SetPrimitiveCount(1);
         boundsPrimitive->type = D3DPT_LINELIST;
         boundsPrimitive->value24 = 1;

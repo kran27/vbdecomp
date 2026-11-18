@@ -287,7 +287,7 @@ int OCTREE::AddObject(const float* center, const float* bounds, void* input, DWO
     OctreeSpatialObject* object = new OctreeSpatialObject;
     if (!object)
     {
-        return static_cast<int>(reinterpret_cast<INT_PTR>(center)); // Original5B0703.
+        return -1; // Allocation failure: return a nonzero error code, not pointer bits.
     }
     object->extent[0] = 0;
     object->extent[1] = 0;
@@ -382,7 +382,7 @@ int OCTREE::RemoveObject(DWORD handle)
     DWORD references = object->references;
     if (references)
     {
-        OctreeSpatialObject** selected = reinterpret_cast<OctreeSpatialObject**>(scratch);
+        OctreeSpatialObject** selected = scratch;
         DWORD index = 0;
         OctreeSpatialObject** cursor = selected;
         while (*cursor && *cursor != object)
@@ -395,9 +395,8 @@ int OCTREE::RemoveObject(DWORD handle)
             object->references = references - 1;
             do
             {
-                reinterpret_cast<OctreeSpatialObject**>(scratch)[index] =
-                    reinterpret_cast<OctreeSpatialObject**>(scratch)[index + 1];
-            } while (reinterpret_cast<OctreeSpatialObject**>(scratch)[index++]);
+                scratch[index] = scratch[index + 1];
+            } while (scratch[index++]);
             if (currentShape)
             {
                 --currentShape->queryCursor; // 5AF354, including original DWORD wrap.

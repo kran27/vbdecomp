@@ -36,16 +36,8 @@ namespace JE
             LONG MouseY() const { return static_cast<LONG>(client.field0xC8); }
             DWORD HoveredEntityID() const { return client.field0xDC; }
             void SetHoveredEntityID(DWORD value) { client.field0xDC = value; }
-            VisualEffect* HoverEffect() const
-            {
-                VisualEffect* effect = NULL;
-                std::memcpy(&effect, &client.field0xFC, sizeof(client.field0xFC));
-                return effect;
-            }
-            void SetHoverEffect(VisualEffect* effect)
-            {
-                std::memcpy(&client.field0xFC, &effect, sizeof(client.field0xFC));
-            }
+            VisualEffect* HoverEffect() const { return client.field0xFC; }
+            void SetHoverEffect(VisualEffect* effect) { client.field0xFC = effect; }
             VFX_VEGInstance* SelectionEffect() const { return client.child0xF8; }
             void ClearGroundHit() { client.reserved0xE8[0] = 0; }
             void SetGroundPoint(const float* point)
@@ -117,7 +109,7 @@ namespace JE
                         else
                         {
                             LogDebugString("Client::HandleMousePicking - No Collision Data for %s!\n",
-                                           animation->GetSkeleton()->name);
+                                           animation->GetSkeleton()->Name);
                             if (hit->distance < closestDistance)
                             {
                                 closestDistance = hit->distance;

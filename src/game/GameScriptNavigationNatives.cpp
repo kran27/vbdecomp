@@ -20,7 +20,7 @@ namespace F3
                 LogScriptError(vm, userError);
                 return 0;
             }
-            DWORD id = ResolveScriptMapID(reinterpret_cast<DWORD>(user));
+            DWORD id = ResolveScriptMapID(ScriptOwnerID(user));
             if (!id)
             {
                 LogScriptError(vm, mapError);
@@ -77,7 +77,7 @@ namespace F3
             LogScriptError(vm, "GetNavpointCount() - was unable to resolve the userID (internal error)");
             return 0;
         }
-        DWORD id = ResolveScriptMapID(reinterpret_cast<DWORD>(user));
+        DWORD id = ResolveScriptMapID(ScriptOwnerID(user));
         if (!id)
         {
             LogScriptError(vm, "GetNavpointCount() - was unable to resolve the map. Usually internal error.");
@@ -103,7 +103,7 @@ namespace F3
             LogScriptError(vm, "GetNavpointLinks() - was unable to resolve the userID (internal error)");
             return 0;
         }
-        DWORD id = ResolveScriptMapID(reinterpret_cast<DWORD>(user));
+        DWORD id = ResolveScriptMapID(ScriptOwnerID(user));
         if (!id)
         {
             LogScriptError(vm, "GetNavpointLinks() - was unable to resolve the map. Usually internal error.");
@@ -137,7 +137,7 @@ namespace F3
             LogScriptError(vm, "GetNavpointPosition() - was unable to resolve the userID (internal error)");
             return 0;
         }
-        DWORD id = ResolveScriptMapID(reinterpret_cast<DWORD>(user));
+        DWORD id = ResolveScriptMapID(ScriptOwnerID(user));
         if (!id)
         {
             LogScriptError(vm, "GetNavpointPosition() - was unable to resolve the map. Usually internal error.");
@@ -169,7 +169,7 @@ namespace F3
             LogScriptError(vm, "GetNavpointOrientation() - was unable to resolve the userID (internal error)");
             return 0;
         }
-        DWORD id = ResolveScriptMapID(reinterpret_cast<DWORD>(user));
+        DWORD id = ResolveScriptMapID(ScriptOwnerID(user));
         if (!id)
         {
             LogScriptError(vm, "GetNavpointOrientation() - was unable to resolve the map. Usually internal error.");
@@ -199,7 +199,7 @@ namespace F3
             LogScriptError(vm, "GetWayPointCount() - was unable to resolve the userID (internal error)");
             return 0;
         }
-        DWORD id = ResolveScriptMapID(reinterpret_cast<DWORD>(user));
+        DWORD id = ResolveScriptMapID(ScriptOwnerID(user));
         if (!id)
         {
             LogScriptError(vm, "GetWayPointCount() - was unable to resolve the map. Usually internal error.");
@@ -231,7 +231,7 @@ namespace F3
             LogScriptError(vm, "GetWayPointPosition() - was unable to resolve the userID (internal error)");
             return 0;
         }
-        DWORD id = ResolveScriptMapID(reinterpret_cast<DWORD>(user));
+        DWORD id = ResolveScriptMapID(ScriptOwnerID(user));
         if (!id)
         {
             LogScriptError(vm, "GetWayPointPosition() - was unable to resolve the map. Usually internal error.");
@@ -268,7 +268,7 @@ namespace F3
             LogScriptError(vm, "GetWayPointOrientation() - was unable to resolve the userID (internal error)");
             return 0;
         }
-        DWORD id = ResolveScriptMapID(reinterpret_cast<DWORD>(user));
+        DWORD id = ResolveScriptMapID(ScriptOwnerID(user));
         if (!id)
         {
             LogScriptError(vm, "GetWayPointOrientation() - was unable to resolve the map. Usually internal error.");

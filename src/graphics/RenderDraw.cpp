@@ -31,7 +31,7 @@ void Gfx_RenderManager::DrawGroup(UINT pass, Gfx_RenderGroup* group, BYTE shadow
             continue;
         }
         Gfx_PacketData* packet =
-            dynamic_cast<Gfx_PacketData*>(reinterpret_cast<Gfx_BasePacketData*>(instance->value0C));
+            dynamic_cast<Gfx_PacketData*>(instance->value0C);
         bool restoreAmbient = false;
         D3DCOLOR oldAmbient;
         D3DXMATRIX world, scaleMatrix;
@@ -94,7 +94,7 @@ void Gfx_RenderManager::DrawGroup(UINT pass, Gfx_RenderGroup* group, BYTE shadow
 
         Gfx_MeshData* mesh = instance->mesh;
         Gfx_MaterialSet* materials =
-            instance->value04 ? reinterpret_cast<Gfx_MaterialSet*>(instance->value04) : &mesh->materialSet;
+            instance->value04 ? instance->value04 : &mesh->materialSet;
         Gfx_Primitive* primitives = mesh->primitives;
         g_D3D.statistics[4] += mesh->vertexCount;
         std::list<DWORD>::iterator material = materials->groups[pass].begin();
@@ -177,7 +177,7 @@ void Gfx_RenderManager::DrawGroup(UINT pass, Gfx_RenderGroup* group, BYTE shadow
                     BYTE flagB = flag48 && instance->flag1E;
                     if (controller)
                     {
-                        controller->SetMaterial(value, 0, flagB, flagA, reinterpret_cast<DWORD>(heightFog));
+                        controller->SetMaterial(value, 0, flagB, flagA, heightFog);
                         UINT passes = 1;
                         if (primitive->value24 & 1)
                         {

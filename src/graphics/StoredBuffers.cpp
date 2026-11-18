@@ -84,7 +84,7 @@ bool Gfx_BufferManager::CreateStoredBuffers(Gfx_MeshData* mesh)
         return false;
     }
     const void* vertexData = mesh->vertices;
-    const void* indexData = reinterpret_cast<const void*>(mesh->value10);
+    const void* indexData = mesh->value10;
     if (vertexData)
     {
         const UINT count = mesh->vertexCount;

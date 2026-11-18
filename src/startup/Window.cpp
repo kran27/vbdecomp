@@ -34,8 +34,7 @@ namespace F3
             windowClass.cbClsExtra = 0;
             windowClass.cbWndExtra = 0;
             windowClass.hInstance = g_instance;
-            windowClass.hIcon =
-                static_cast<HICON>(LoadImageA(g_instance, szClassName, IMAGE_ICON, 0, 0, LR_DEFAULTSIZE));
+            windowClass.hIcon = static_cast<HICON>(LoadImageA(g_instance, szClassName, IMAGE_ICON, 0, 0, LR_DEFAULTSIZE));
             windowClass.hCursor = LoadCursorA(NULL, IDC_ARROW);
             windowClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
             windowClass.lpszMenuName = NULL;
@@ -75,8 +74,7 @@ namespace F3
             const LONG nY = Add32(nScreenHeight, Subtract32(rect.top, rect.bottom)) / 2;
             const int nScreenWidth = GetSystemMetrics(SM_CXSCREEN);
             const LONG nX = Add32(nScreenWidth, Subtract32(rect.left, rect.right)) / 2;
-            HWND window = CreateWindowExA(0, szClassName, szClassName, dwStyle, nX, nY, nOuterWidth, nOuterHeight, NULL,
-                                          NULL, NULL, NULL);
+            HWND window = CreateWindowExA(0, szClassName, "F3 (64-bit) | D3D9", dwStyle, nX, nY, nOuterWidth, nOuterHeight, NULL, NULL, NULL, NULL);
             g_window = window;
             if (!window)
             {

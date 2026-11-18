@@ -14,6 +14,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stack>
+#include <cstdint>
 
 extern "C" AMX_NATIVE_INFO float_Natives[];
 
@@ -24,6 +25,19 @@ namespace
     const long stateTag = 0x54415453;
     const long queueTag = 0x45555146;
     DWORD scriptDebugState; // Original70C724.
+
+    // STAT stores a 32-bit integer encoded in a pointer-shaped userdata slot.
+    // Never pass an int* to amx_GetUserData (which writes a full void*).
+    int ReadScriptState(AMX* vm, long tag, int* state)
+    {
+        void* encoded = nullptr;
+        const int result = amx_GetUserData(vm, tag, &encoded);
+        if (result == 0)
+        {
+            *state = static_cast<int>(reinterpret_cast<std::uintptr_t>(encoded));
+        }
+        return result;
+    }
 
 } // namespace
 
@@ -83,6 +97,7 @@ namespace JE
                     delete stack;
                 }
             }
+            amx_Cleanup(&vm);
             free(program);
             program = NULL;
         }
@@ -190,6 +205,7 @@ namespace JE
         if (lastError != 0)
         {
             LogDebugString("Script_Small::Load() Unable to locate a matching function for a Native in: %s\n", name);
+            amx_Cleanup(&vm);
             free(program);
             program = NULL;
             return 0;
@@ -223,7 +239,7 @@ namespace JE
         if (debugging)
         {
             // 5A5908..5A5912: only this overload rejects a missing STAT tag.
-            if (amx_GetUserData(&vm, stateTag, reinterpret_cast<void**>(&state)) != 0)
+            if (ReadScriptState(&vm, stateTag, &state) != 0)
             {
                 return 0;
             }
@@ -238,7 +254,7 @@ namespace JE
             if (state == 4)
             {
                 state = 1;
-                amx_SetUserData(&vm, stateTag, reinterpret_cast<void*>(state));
+                amx_SetUserData(&vm, stateTag, reinterpret_cast<void*>(static_cast<std::uintptr_t>(state)));
             }
             lastError = amx_Exec(&vm, result, AMX_EXEC_CONT, 0);
         }
@@ -289,7 +305,7 @@ namespace JE
         int state = 0;
         if (debugging)
         {
-            amx_GetUserData(&vm, stateTag, reinterpret_cast<void**>(&state));
+            ReadScriptState(&vm, stateTag, &state);
             if (state == 2)
             {
                 return 0;
@@ -301,7 +317,7 @@ namespace JE
             if (state == 4)
             {
                 state = 1;
-                amx_SetUserData(&vm, stateTag, reinterpret_cast<void*>(state));
+                amx_SetUserData(&vm, stateTag, reinterpret_cast<void*>(static_cast<std::uintptr_t>(state)));
             }
             lastError = amx_Exec(&vm, result, AMX_EXEC_CONT, 0);
         }

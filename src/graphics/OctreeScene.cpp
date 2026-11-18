@@ -121,7 +121,7 @@ int OCTREE::CreateScene(OCTREE_Scene** output, DWORD mode)
     {
         goto failed;
     }
-    memset(buckets, 0, 4 * (vertexBufferCount + 1));
+    memset(buckets, 0, sizeof(*buckets) * (vertexBufferCount + 1));
     for (DWORD index = 0; index < vertexBufferCount; ++index)
     {
         buckets[index] = new OctreeNodeReference[indexedNodeCounts[index] + 1];

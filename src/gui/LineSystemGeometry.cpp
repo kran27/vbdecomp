@@ -106,7 +106,7 @@ namespace GUI
         indexCount = DWORD(writtenIndices);
         mesh.vertices = vertices;
         vertexCount = DWORD(written);
-        mesh.value10 = reinterpret_cast<DWORD>(indices);
+        mesh.value10 = indices;
         mesh.value00 = 0;
         mesh.value04 = DWORD(-1);
         mesh.SetVertexDesc(0x44, D3DXGetFVFVertexSize(0x44), vertexCount);
@@ -129,7 +129,7 @@ namespace GUI
         mesh.materialSet.RebuildGroups();
         mesh.value04 = DWORD(-1);
         instances[0].SetMesh(&mesh);
-        instances[0].value0C = reinterpret_cast<DWORD>(packet);
+        instances[0].value0C = packet;
         geometryReady = 1;
     }
 } // namespace GUI

@@ -15,7 +15,7 @@ namespace F3
             return 0;
         }
         JE::Gregorian* calendar = JE::GetWorldServerInstance()->GetCalendar();
-        DWORD id = reinterpret_cast<DWORD>(owner);
+        DWORD id = ScriptOwnerID(owner);
         cell result = 0;
         if (id & 0xE0000000)
         {
@@ -56,7 +56,7 @@ namespace F3
             return 0;
         }
         JE::Gregorian* calendar = JE::GetWorldServerInstance()->GetCalendar();
-        DWORD id = reinterpret_cast<DWORD>(owner);
+        DWORD id = ScriptOwnerID(owner);
         cell result = 0;
         if (id & 0xE0000000)
         {
@@ -97,7 +97,7 @@ namespace F3
             return 0;
         }
         JE::Gregorian* calendar = JE::GetWorldServerInstance()->GetCalendar();
-        DWORD id = reinterpret_cast<DWORD>(owner);
+        DWORD id = ScriptOwnerID(owner);
         cell result = 0;
         if (id & 0xE0000000)
         {
@@ -138,7 +138,7 @@ namespace F3
             return 0;
         }
         JE::Gregorian* calendar = JE::GetWorldServerInstance()->GetCalendar();
-        DWORD id = reinterpret_cast<DWORD>(owner);
+        DWORD id = ScriptOwnerID(owner);
         cell result = 0;
         if (id & 0xE0000000)
         {
@@ -179,7 +179,7 @@ namespace F3
             return 0;
         }
         JE::Gregorian* calendar = JE::GetWorldServerInstance()->GetCalendar();
-        DWORD id = reinterpret_cast<DWORD>(owner);
+        DWORD id = ScriptOwnerID(owner);
         cell result = 0;
         if (id & 0xE0000000)
         {
@@ -220,7 +220,7 @@ namespace F3
             return 0;
         }
         JE::Gregorian* calendar = JE::GetWorldServerInstance()->GetCalendar();
-        DWORD id = reinterpret_cast<DWORD>(owner);
+        DWORD id = ScriptOwnerID(owner);
         cell result = 0;
         if (id & 0xE0000000)
         {
@@ -265,7 +265,7 @@ namespace F3
             LogScriptError(vm, "YearsPassed() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD id = reinterpret_cast<DWORD>(owner), offset = 0;
+        DWORD id = ScriptOwnerID(owner), offset = 0;
         if (!(id & 0xE0000000))
         {
             JE::Entity* entity = JE::GetEntityPtr(id);
@@ -300,7 +300,7 @@ namespace F3
             LogScriptError(vm, "MonthsPassed() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD id = reinterpret_cast<DWORD>(owner), offset = 0;
+        DWORD id = ScriptOwnerID(owner), offset = 0;
         if (!(id & 0xE0000000))
         {
             JE::Entity* entity = JE::GetEntityPtr(id);
@@ -335,7 +335,7 @@ namespace F3
             LogScriptError(vm, "DaysPassed() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD id = reinterpret_cast<DWORD>(owner), offset = 0;
+        DWORD id = ScriptOwnerID(owner), offset = 0;
         if (!(id & 0xE0000000))
         {
             JE::Entity* entity = JE::GetEntityPtr(id);
@@ -370,7 +370,7 @@ namespace F3
             LogScriptError(vm, "HoursPassed() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD id = reinterpret_cast<DWORD>(owner), offset = 0;
+        DWORD id = ScriptOwnerID(owner), offset = 0;
         if (!(id & 0xE0000000))
         {
             JE::Entity* entity = JE::GetEntityPtr(id);
@@ -405,7 +405,7 @@ namespace F3
             LogScriptError(vm, "MinutesPassed() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD id = reinterpret_cast<DWORD>(owner), offset = 0;
+        DWORD id = ScriptOwnerID(owner), offset = 0;
         if (!(id & 0xE0000000))
         {
             JE::Entity* entity = JE::GetEntityPtr(id);
@@ -440,7 +440,7 @@ namespace F3
             LogScriptError(vm, "SecondsPassed() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD id = reinterpret_cast<DWORD>(owner), offset = 0;
+        DWORD id = ScriptOwnerID(owner), offset = 0;
         if (!(id & 0xE0000000))
         {
             JE::Entity* entity = JE::GetEntityPtr(id);

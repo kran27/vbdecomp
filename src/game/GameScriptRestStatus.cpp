@@ -19,7 +19,7 @@ namespace F3
             LogScriptError(vm, "GetAreaRestStatus() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD id = reinterpret_cast<DWORD>(owner), mapID;
+        DWORD id = ScriptOwnerID(owner), mapID;
         switch (id >> 29)
         {
         case 0:
@@ -61,7 +61,7 @@ namespace F3
             LogScriptError(vm, "SetAreaRestStatus() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD id = reinterpret_cast<DWORD>(owner), mapID;
+        DWORD id = ScriptOwnerID(owner), mapID;
         switch (id >> 29)
         {
         case 0:

@@ -7,6 +7,8 @@
 class Gfx_Material;
 class Gfx_Light;
 class Gfx_TextureParameters;
+class Gfx_HeightFog;
+class Gfx_Viewport;
 
 // Actual fourteen-slot proprietary style interface. Its Begin/End/Pass slots
 // wrap SDK effects; this object is never an Gfx_DX9Effect layout or pointer.
@@ -23,7 +25,7 @@ class Gfx_RenderStyle
     virtual DWORD NextTechnique() = 0; // +1C.
     virtual BYTE UsesVertexShader() = 0; // +20.
     virtual DWORD PassCount() = 0; // +24.
-    virtual HRESULT SetMaterial(Gfx_Material* material, DWORD heightFog) = 0; //+28; Gfx_HeightFog* bits.
+    virtual HRESULT SetMaterial(Gfx_Material* material, Gfx_HeightFog* heightFog) = 0; //+28; borrowed fog object.
     virtual HRESULT Begin(UINT* passes) = 0; // +2C.
     virtual HRESULT End() = 0; // +30.
     virtual HRESULT Pass(UINT pass) = 0; // +34.
@@ -39,7 +41,7 @@ class Gfx_RenderStyleController
   public:
     explicit Gfx_RenderStyleController(Gfx_RenderStyle* const* initial); // 0x506110.
     HRESULT SetMaterial(Gfx_Material* material, BYTE techniqueFlag, BYTE fogOfWar, BYTE heightFogEnabled,
-                        DWORD heightFog); // 506140; final pointer transported as DWORD.
+                        Gfx_HeightFog* heightFog); // 506140; borrowed fog object.
 
     Gfx_RenderStyle* styles[5]; // +00..10, borrowed global style objects.
     DWORD activeIndex; // +14; unchecked after callbacks, reloaded by consumers.
@@ -50,6 +52,6 @@ extern Gfx_RenderStyleController g_ShadowRenderStyle; // 0x708A8C, table entry27
 
 void Gfx_ResetLights(); // 0x506290; live active-light count after each SDK call.
 void Gfx_ApplyLights(const std::list<Gfx_Light*>* lights, const D3DXVECTOR4* extra,
-                     DWORD viewport); // 0x5062D0; viewport bits passed to the actual SubmitLight API.
+                     Gfx_Viewport* viewport); // 0x5062D0; optional borrowed viewport.
 
 inline Gfx_RenderStyle::~Gfx_RenderStyle() {}

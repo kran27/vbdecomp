@@ -1,6 +1,9 @@
 #pragma once
 
 #include <windows.h>
+#include <cstdint>
+#include <cassert>
+#include <limits>
 extern "C"
 {
 #include "amx.h"
@@ -13,6 +16,19 @@ namespace JE
 
 namespace F3
 {
+    // MYSL stores a packed 32-bit entity/map ID in an AMX userdata pointer
+    // slot. It is NOT an allocation address. The upper bits must be zero.
+    inline DWORD ScriptOwnerID(const void* encodedID)
+    {
+        const auto bits = reinterpret_cast<std::uintptr_t>(encodedID);
+        if (bits > (std::numeric_limits<DWORD>::max)())
+        {
+            assert(false && "AMX script owner ID is not a 32-bit encoded ID");
+            return 0;
+        }
+        return static_cast<DWORD>(bits);
+    }
+
     extern AMX_NATIVE_INFO engineNatives[]; // Original6FFAF8; actual table, not a provider adapter.
     extern AMX_NATIVE_INFO gameNatives[]; // Original6F3750; original order retained.
     AMX_NATIVE_INFO* GetScriptNativeTable(DWORD ordinal);

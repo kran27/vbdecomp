@@ -261,11 +261,11 @@ namespace F3
         void* ownerData;
         if (!amx_GetUserData(vm, 0x464C534D, &ownerData)) // Original FLSM.
         {
-            switch (reinterpret_cast<DWORD>(ownerData) >> 29)
+            switch (ScriptOwnerID(ownerData) >> 29)
             {
             case 0:
             {
-                JE::Entity* entity = JE::GetEntityPtr(reinterpret_cast<DWORD>(ownerData));
+                JE::Entity* entity = JE::GetEntityPtr(ScriptOwnerID(ownerData));
                 if (entity)
                 {
                     script = entity->scriptName.c_str();
@@ -274,7 +274,7 @@ namespace F3
             }
             case 1:
             {
-                JE::Map* map = JE::GetWorldServerInstance()->GetMap(reinterpret_cast<DWORD>(ownerData));
+                JE::Map* map = JE::GetWorldServerInstance()->GetMap(ScriptOwnerID(ownerData));
                 if (map)
                 {
                     script = map->scriptName.c_str();
@@ -416,7 +416,7 @@ namespace F3
             LogScriptError(vm, "GetTimeStamp() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD id = reinterpret_cast<DWORD>(data);
+        DWORD id = ScriptOwnerID(data);
         if (!(id & 0xE0000000))
         {
             JE::Entity* entity = JE::GetEntityPtr(id);

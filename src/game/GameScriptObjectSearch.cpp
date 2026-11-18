@@ -123,7 +123,7 @@ namespace F3
             LogScriptError(vm, "FindObjects() was unable to retrieve 'myself' id.");
             return 0;
         }
-        DWORD owner = reinterpret_cast<DWORD>(ownerData), mapID = owner, exclude = 0;
+        DWORD owner = ScriptOwnerID(ownerData), mapID = owner, exclude = 0;
         switch (owner >> 29)
         {
         case 0:

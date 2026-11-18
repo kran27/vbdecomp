@@ -191,17 +191,17 @@ DWORD Gfx_RS_B_EM::PassCount()
 DWORD Gfx_RS_B_EM::SelectTechnique(DWORD index)
 {
     if (index < g_RSBaseEmissiveState.description.Techniques &&
-        index != reinterpret_cast<DWORD>(g_RSBaseEmissiveState.technique))
+        index != g_RSBaseEmissiveState.technique)
     {
         g_RSBaseEmissiveState.techniqueChanged = 1;
-        g_RSBaseEmissiveState.technique = reinterpret_cast<LPCSTR>(index);
+        g_RSBaseEmissiveState.technique = index;
     }
     return index;
 }
 
 DWORD Gfx_RS_B_EM::NextTechnique()
 {
-    DWORD next = reinterpret_cast<DWORD>(g_RSBaseEmissiveState.technique) + 1;
+    DWORD next = g_RSBaseEmissiveState.technique + 1;
     if (next >= g_RSBaseEmissiveState.description.Techniques)
     {
         next = 0;
@@ -223,7 +223,7 @@ HRESULT Gfx_RS_B_EM::Pass(UINT pass)
     return g_RSBaseEmissiveState.effect->Pass(pass);
 }
 
-HRESULT Gfx_RS_B_EM::SetMaterial(Gfx_Material* material, DWORD)
+HRESULT Gfx_RS_B_EM::SetMaterial(Gfx_Material* material, Gfx_HeightFog* )
 {
     HRESULT result = D3DERR_INVALIDCALL;
     if (g_RSBaseEmissiveState.effect)

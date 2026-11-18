@@ -28,7 +28,7 @@ namespace F3
             LogScriptError(vm, "GetCameraFog() was unable to resolve user ID. (internal error)");
             return 0;
         }
-        DWORD mapID = ResolveScriptMapID(reinterpret_cast<DWORD>(owner));
+        DWORD mapID = ResolveScriptMapID(ScriptOwnerID(owner));
         if (!mapID)
         {
             LogScriptError(vm, "GetCameraFog() was unable to resolve the map.");
@@ -90,7 +90,7 @@ namespace F3
             LogScriptError(vm, "SetCameraFog() was unable to resolve user ID. (internal error)");
             return 0;
         }
-        DWORD mapID = ResolveScriptMapID(reinterpret_cast<DWORD>(owner));
+        DWORD mapID = ResolveScriptMapID(ScriptOwnerID(owner));
         if (!mapID)
         {
             LogScriptError(vm, "SetCameraFog() was unable to resolve the map.");
@@ -113,7 +113,7 @@ namespace F3
             LogScriptError(vm, "ResetCameraFog() was unable to resolve user ID. (internal error)");
             return 0;
         }
-        DWORD mapID = ResolveScriptMapID(reinterpret_cast<DWORD>(owner));
+        DWORD mapID = ResolveScriptMapID(ScriptOwnerID(owner));
         if (!mapID)
         {
             LogScriptError(vm, "ResetCameraFog() was unable to resolve the map.");
@@ -136,7 +136,7 @@ namespace F3
             LogScriptError(vm, "GetHeightFog() was unable to resolve user ID. (internal error)");
             return 0;
         }
-        DWORD mapID = ResolveScriptMapID(reinterpret_cast<DWORD>(owner));
+        DWORD mapID = ResolveScriptMapID(ScriptOwnerID(owner));
         if (!mapID)
         {
             LogScriptError(vm, "GetHeightFog() was unable to resolve the map.");
@@ -204,7 +204,7 @@ namespace F3
             LogScriptError(vm, "SetHeightFog() was unable to resolve user ID. (internal error)");
             return 0;
         }
-        DWORD mapID = ResolveScriptMapID(reinterpret_cast<DWORD>(owner));
+        DWORD mapID = ResolveScriptMapID(ScriptOwnerID(owner));
         if (!mapID)
         {
             LogScriptError(vm, "SetHeightFog() was unable to resolve the map.");
@@ -227,7 +227,7 @@ namespace F3
             LogScriptError(vm, "ResetHeightFog() was unable to resolve user ID. (internal error)");
             return 0;
         }
-        DWORD mapID = ResolveScriptMapID(reinterpret_cast<DWORD>(owner));
+        DWORD mapID = ResolveScriptMapID(ScriptOwnerID(owner));
         if (!mapID)
         {
             LogScriptError(vm, "ResetHeightFog() was unable to resolve the map.");

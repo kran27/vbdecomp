@@ -23,11 +23,12 @@ namespace
         JE::Resources::ResourceFileHandle* handle;
         DWORD position, length;
     };
-    typedef char ContextSize[(sizeof(AcmResourceContext) == 16) ? 1 : -1];
-    typedef char ContextOwner[(offsetof(AcmResourceContext, owner) == 0) ? 1 : -1];
-    typedef char ContextHandle[(offsetof(AcmResourceContext, handle) == 4) ? 1 : -1];
-    typedef char ContextPosition[(offsetof(AcmResourceContext, position) == 8) ? 1 : -1];
-    typedef char ContextLength[(offsetof(AcmResourceContext, length) == 12) ? 1 : -1];
+    // Pointer-size-aware layout checks for the ACM decoder context.
+    static_assert(sizeof(AcmResourceContext) == 2 * sizeof(void*) + 2 * sizeof(DWORD));
+    static_assert(offsetof(AcmResourceContext, owner) == 0);
+    static_assert(offsetof(AcmResourceContext, handle) == sizeof(void*));
+    static_assert(offsetof(AcmResourceContext, position) == 2 * sizeof(void*));
+    static_assert(offsetof(AcmResourceContext, length) == 2 * sizeof(void*) + sizeof(DWORD));
 
     int ReadAcmResource(void* opaque, void* output, unsigned int count) // 4C6FC0.
     {

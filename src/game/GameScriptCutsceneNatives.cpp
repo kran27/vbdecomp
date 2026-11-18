@@ -20,7 +20,7 @@ namespace F3
             LogScriptError(vm, "StartCutscene() was unable to resolve user ID. (internal error)");
             return 0;
         }
-        DWORD mapID = ResolveScriptMapID(reinterpret_cast<DWORD>(owner));
+        DWORD mapID = ResolveScriptMapID(ScriptOwnerID(owner));
         if (!mapID)
         {
             LogScriptError(vm, "StartCutscene() was unable to resolve the map.");

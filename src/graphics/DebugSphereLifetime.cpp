@@ -96,7 +96,7 @@ Gfx_DebugSphere505880::Gfx_DebugSphere505880(DWORD, UINT segments) : packet(NULL
     D3DXMatrixIdentity(&transform);
     packet = Gfx_CreatePacketData(0);
     SetMesh(&sphereMesh);
-    value0C = reinterpret_cast<DWORD>(packet);
+    value0C = packet;
     packet->transform = &transform;
     packet->transformEnabled = 1;
     // unknown74 remains unwritten until SetColors.
@@ -139,7 +139,7 @@ void Gfx_DebugSphere505880::SetPosition(float x, float y, float z)
 void Gfx_DebugSphere505880::CopyMaterials()
 {
     copiedMaterials = new Gfx_MaterialSet(sphereMesh.materialSet);
-    value04 = reinterpret_cast<DWORD>(copiedMaterials);
+    value04 = copiedMaterials;
 }
 
 void Gfx_DebugSphere505880::SetColors(BYTE useRGB, BYTE useAlpha, DWORD color)

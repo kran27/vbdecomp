@@ -16,10 +16,10 @@ Gfx_MeshInstance::Gfx_MeshInstance(const Gfx_MeshInstance& source)
     value24 = source.value24;
     if (source.value04 != 0)
     {
-        materialSet = new Gfx_MaterialSet(*reinterpret_cast<const Gfx_MaterialSet*>(source.value04));
+        materialSet = new Gfx_MaterialSet(*source.value04);
         // Publication at +08 precedes RebuildGroups; +04 follows it.
         materialSet->RebuildGroups();
-        value04 = reinterpret_cast<DWORD>(materialSet);
+        value04 = materialSet;
     }
     primitiveFlags = new BYTE[mesh->primitiveCount];
     // Reload the mesh count after allocation, as in the original copy.

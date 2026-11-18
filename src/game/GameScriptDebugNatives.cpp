@@ -83,7 +83,7 @@ namespace F3
         DWORD selectedOwner = server->field0x70E8;
         void* owner = NULL;
         amx_GetUserData(vm, 0x464C534D, &owner); // MYSL; original ignores the API result.
-        if (selectedOwner != reinterpret_cast<DWORD>(owner))
+        if (selectedOwner != ScriptOwnerID(owner))
         {
             return 0;
         }
@@ -93,7 +93,7 @@ namespace F3
         {
             return 0;
         }
-        amx_SetUserData(vm, 0x454E494C, reinterpret_cast<void*>(vm->curline)); // LINE.
+        amx_SetUserData(vm, 0x454E494C, reinterpret_cast<void*>(static_cast<std::uintptr_t>(vm->curline))); // LINE.
         amx_RaiseError(vm, AMX_ERR_SLEEP);
         state = reinterpret_cast<void*>(2);
         amx_SetUserData(vm, 0x54415453, state);

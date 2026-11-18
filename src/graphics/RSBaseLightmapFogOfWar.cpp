@@ -167,17 +167,17 @@ DWORD Gfx_RS_B_LM_FOW::TechniqueCount()
 DWORD Gfx_RS_B_LM_FOW::SelectTechnique(DWORD index)
 {
     if (index < g_RSBaseLightmapFogOfWarState.description.Techniques &&
-        index != reinterpret_cast<DWORD>(g_RSBaseLightmapFogOfWarState.technique))
+        index != g_RSBaseLightmapFogOfWarState.technique)
     {
         g_RSBaseLightmapFogOfWarState.techniqueChanged = 1;
-        g_RSBaseLightmapFogOfWarState.technique = reinterpret_cast<LPCSTR>(index);
+        g_RSBaseLightmapFogOfWarState.technique = index;
     }
     return index;
 }
 
 DWORD Gfx_RS_B_LM_FOW::NextTechnique()
 {
-    DWORD next = reinterpret_cast<DWORD>(g_RSBaseLightmapFogOfWarState.technique) + 1;
+    DWORD next = g_RSBaseLightmapFogOfWarState.technique + 1;
     if (next >= g_RSBaseLightmapFogOfWarState.description.Techniques)
     {
         next = 0;
@@ -211,7 +211,7 @@ HRESULT Gfx_RS_B_LM_FOW::Pass(UINT pass)
     return g_RSBaseLightmapFogOfWarState.effect->Pass(pass);
 }
 
-HRESULT Gfx_RS_B_LM_FOW::SetMaterial(Gfx_Material* material, DWORD)
+HRESULT Gfx_RS_B_LM_FOW::SetMaterial(Gfx_Material* material, Gfx_HeightFog* )
 {
     HRESULT result = D3DERR_INVALIDCALL;
     if (g_RSBaseLightmapFogOfWarState.effect)

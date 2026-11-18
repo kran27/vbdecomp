@@ -520,7 +520,7 @@ namespace JE
         mesh.materialSet.RebuildGroups();
         mesh.value04 = DWORD(-1);
         result.instances[0].SetMesh(&mesh);
-        result.instances[0].value0C = reinterpret_cast<DWORD>(result.packet);
+        result.instances[0].value0C = result.packet;
         result.ready = 1;
     }
 } // namespace JE

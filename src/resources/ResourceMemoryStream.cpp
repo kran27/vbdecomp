@@ -1,6 +1,8 @@
 #include "ResourceSystem.hpp"
 #include "../diagnostics/DebugOutput.hpp"
 #include <string.h>
+#include <cstdint>
+#include <cstddef>
 
 namespace JE
 {
@@ -13,68 +15,43 @@ namespace JE
                 LogDebugString("ResourceSystem::MemStreamRead - memstream not open\n");
                 return 0;
             }
-            // These comparisons use the original unsigned32 address bits, including wrap.
-            Net::UInt32 candidate;
-            if (origin == 0)
+
+            // Addresses are not 32-bit integers. Compute within the loaded
+            // resource and validate the target before forming its pointer.
+            const std::int64_t length = stream->end - stream->begin;
+            const std::int64_t current = stream->cursor - stream->begin;
+            std::int64_t target = -1;
+            switch (origin)
             {
-                if (offset >= 0)
+            case 0:
+                target = offset;
+                break;
+            case 1:
+                target = current + offset;
+                break;
+            case 2:
+                // Preserve the original behavior: backwards end-relative
+                // seeks were rejected, and forwards seeks exceed the buffer.
+                if (offset == 0)
                 {
-                    candidate = Net::UInt32(reinterpret_cast<ULONG_PTR>(stream->begin)) + Net::UInt32(offset);
-                    if (candidate <= Net::UInt32(reinterpret_cast<ULONG_PTR>(stream->end)))
-                    {
-                        stream->cursor = reinterpret_cast<const BYTE*>(ULONG_PTR(candidate));
-                        return 1;
-                    }
+                    target = length;
                 }
-                const char* name = stream->resource->name.c_str();
-                LogDebugString(
-                    "ResourceSystem::MemStreamSeek - Tried a bad seek from the begining of memstream %s - endpos = "
-                    "%d tried = %d\n",
-                    name, Net::Int32(reinterpret_cast<ULONG_PTR>(stream->end)), offset);
-                return 0;
-            }
-            else if (origin == 2)
-            {
-                // The original compares against end, so ordinary negative offsets fail.
-                if (offset <= 0)
-                {
-                    const Net::UInt32 end = Net::UInt32(reinterpret_cast<ULONG_PTR>(stream->end));
-                    candidate = end + Net::UInt32(offset);
-                    if (candidate >= end)
-                    {
-                        stream->cursor = reinterpret_cast<const BYTE*>(ULONG_PTR(candidate));
-                        return 1;
-                    }
-                }
-                const char* name = stream->resource->name.c_str();
-                LogDebugString("ResourceSystem::MemStreamSeek - Tried a bad seek from the end of memstream %s - endpos "
-                               "= %d tried = %d\n",
-                               name, Net::Int32(reinterpret_cast<ULONG_PTR>(stream->end)), offset);
-                return 0;
-            }
-            else if (origin == 1)
-            {
-                candidate = Net::UInt32(reinterpret_cast<ULONG_PTR>(stream->cursor)) + Net::UInt32(offset);
-                if (candidate >= Net::UInt32(reinterpret_cast<ULONG_PTR>(stream->begin)) &&
-                    candidate <= Net::UInt32(reinterpret_cast<ULONG_PTR>(stream->end)))
-                {
-                    stream->cursor = reinterpret_cast<const BYTE*>(ULONG_PTR(candidate));
-                    return 1;
-                }
-                const char* name = stream->resource->name.c_str();
-                LogDebugString(
-                    "ResourceSystem::MemStreamSeek - Tried a bad seek from the current position of file %s - endpos "
-                    "= %d tried = %d\n",
-                    name, Net::Int32(reinterpret_cast<ULONG_PTR>(stream->end)), offset);
-                return 0;
-            }
-            else
-            {
-                const char* name = stream->resource->name.c_str();
+                break;
+            default:
                 LogDebugString("ResourceSystem::MemStreamSeek - Incorrect seek position on memstream %s - tried = %d\n",
-                               name, origin);
+                               stream->resource->name.c_str(), origin);
                 return 0;
             }
+
+            if (target < 0 || target > length)
+            {
+                LogDebugString("ResourceSystem::MemStreamSeek - Tried a bad seek on memstream %s - offset = %d, origin = %d\n",
+                               stream->resource->name.c_str(), offset, origin);
+                return 0;
+            }
+
+            stream->cursor = stream->begin + static_cast<std::ptrdiff_t>(target);
+            return 1;
         }
 
         Net::UInt32 ResourceSystem::TellMemory(ResourceMemoryStream* stream)
@@ -90,7 +67,8 @@ namespace JE
                 return 0;
             }
             const BYTE* cursor = stream->cursor;
-            if (cursor + count > stream->end)
+            if (cursor < stream->begin || cursor > stream->end ||
+                static_cast<std::size_t>(count) > static_cast<std::size_t>(stream->end - cursor))
             {
                 return 0;
             }

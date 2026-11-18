@@ -426,10 +426,11 @@ void Gfx_G3D_Mesh::LoadLegacy(G3D_Node* node, G3D_Mesh* mesh, float scale, BYTE 
     colors = static_cast<D3DXVECTOR4*>(::operator new(16 * count));
     textureCoordinates = static_cast<D3DXVECTOR2*>(::operator new(8 * count));
     lightmapCoordinates = static_cast<D3DXVECTOR2*>(::operator new(8 * count));
-    boneWeights = static_cast<Gfx_G3D_BoneWeight**>(::operator new(4 * maximumBoneWeights));
+    boneWeights = new Gfx_G3D_BoneWeight* [maximumBoneWeights] {};
+
     for (DWORD channel = 0; channel < maximumBoneWeights; ++channel)
     {
-        boneWeights[channel] = static_cast<Gfx_G3D_BoneWeight*>(::operator new(8 * count));
+        boneWeights[channel] = new Gfx_G3D_BoneWeight[count]{};
     }
     if (!positions)
     {

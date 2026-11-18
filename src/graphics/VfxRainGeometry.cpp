@@ -21,7 +21,7 @@ namespace JE
         output.mesh.value00 = 0;
         output.mesh.value04 = DWORD(-1);
         output.mesh.vertices = output.vertices;
-        output.mesh.value10 = reinterpret_cast<DWORD>(output.indices);
+        output.mesh.value10 = output.indices;
         output.mesh.SetVertexDesc(fvf, stride, output.vertexCount);
         output.mesh.SetIndexDesc(2, output.indexCount);
         output.mesh.materialSet.count = 0;
@@ -61,7 +61,7 @@ namespace JE
         output.mesh.materialSet.RebuildGroups();
         output.mesh.value04 = DWORD(-1);
         output.instances[0].SetMesh(&output.mesh);
-        output.instances[0].value0C = reinterpret_cast<DWORD>(output.packet);
+        output.instances[0].value0C = output.packet;
         output.ready = 1;
     }
 

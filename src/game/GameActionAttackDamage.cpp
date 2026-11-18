@@ -125,7 +125,13 @@ namespace F3
 
     void GameActionAttack::PublishPendingDamage() // 403770.
     {
-        for (std::map<DWORD, std::list<AttackDamage>>::iterator i = damage.begin(); i != damage.end(); ++i)
+        // AddEffect activates damage effects immediately. OnDamage scripts can modify
+        // or destroy the current action, invalidating iterators into this->damage.
+        // Detach the batch before invoking any effect callbacks.
+        std::map<DWORD, std::list<AttackDamage>> pendingDamage;
+        pendingDamage.swap(damage);
+
+        for (std::map<DWORD, std::list<AttackDamage>>::iterator i = pendingDamage.begin(); i != pendingDamage.end(); ++i)
         {
             JE::Entity* victim = JE::GetEntityPtr(i->first);
             if (!victim)
@@ -173,6 +179,6 @@ namespace F3
                 victim->AddEffect(effect);
             }
         }
-        damage.clear(); // Only reached after every effect callback completed normally.
+        // pendingDamage is destroyed locally; do not touch this after callbacks.
     }
 } // namespace F3

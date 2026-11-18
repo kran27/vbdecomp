@@ -205,7 +205,7 @@ void AreaMapWindow::BuildImageGeometry() // 4209D0.
     imageMesh.vertices = background.vertices;
     background.vertexCount = vertexCount;
     imageMesh.value00 = 0;
-    imageMesh.value10 = DWORD(background.indices);
+    imageMesh.value10 = background.indices;
     imageMesh.SetVertexDesc(0x244, D3DXGetFVFVertexSize(0x244), vertexCount);
     imageMesh.SetIndexDesc(2, background.indexCount);
     imageMesh.materialSet.Clear();
@@ -232,7 +232,7 @@ void AreaMapWindow::BuildImageGeometry() // 4209D0.
     imageMesh.materialSet.RebuildGroups();
     imageMesh.value04 = 0xFFFFFFFF;
     background.instances[0].SetMesh(&imageMesh);
-    background.instances[0].value0C = DWORD(background.packet);
+    background.instances[0].value0C = background.packet;
     background.ready = 1;
 
     const float scanPixelX = float(x);
@@ -313,7 +313,7 @@ void AreaMapWindow::BuildImageGeometry() // 4209D0.
     scanlines.indexCount = 6;
     scanMesh.value00 = 0;
     scanMesh.value04 = 0xFFFFFFFF;
-    scanMesh.value10 = DWORD(scanlines.indices);
+    scanMesh.value10 = scanlines.indices;
     scanMesh.SetVertexDesc(0x244, D3DXGetFVFVertexSize(0x244), 4);
     scanMesh.SetIndexDesc(2, scanlines.indexCount);
     scanMesh.materialSet.Clear();
@@ -340,7 +340,7 @@ void AreaMapWindow::BuildImageGeometry() // 4209D0.
     scanMesh.materialSet.RebuildGroups();
     scanMesh.value04 = 0xFFFFFFFF;
     scanlines.instances[0].SetMesh(&scanMesh);
-    scanlines.instances[0].value0C = DWORD(scanlines.packet);
+    scanlines.instances[0].value0C = scanlines.packet;
     scanlines.ready = 1;
     depthDirty = 1;
 }

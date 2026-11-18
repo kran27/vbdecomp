@@ -115,7 +115,7 @@ BYTE Gfx_ModelMesh::SetPrimitives(DWORD count, const D3DPRIMITIVETYPE* types, co
             indexOffset += indexCounts[index];
             byteOffset += bytes;
         }
-        mesh.value10 = reinterpret_cast<DWORD>(ownedIndices);
+        mesh.value10 = ownedIndices;
         mesh.SetIndexDesc(stride, total);
         result = 1;
     }

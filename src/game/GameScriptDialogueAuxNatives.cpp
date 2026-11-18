@@ -49,12 +49,12 @@ namespace F3
         }
         void* owner;
         amx_GetUserData(vm, 0x464C534D, &owner); // 5C3A7A ignores status; failure leaves owner unwritten.
-        if (!JE::GetEntityPtr(static_cast<DWORD>(reinterpret_cast<UINT_PTR>(owner))))
+        if (!JE::GetEntityPtr(ScriptOwnerID(owner)))
         {
             LogScriptError(vm, "PCSpeaker() - Unable to locate the entity that owns this active dialogue.");
             return 0;
         }
-        DWORD speaker = Dialogue().GetPCSpeaker(static_cast<DWORD>(reinterpret_cast<UINT_PTR>(owner)));
+        DWORD speaker = Dialogue().GetPCSpeaker(ScriptOwnerID(owner));
         if (!speaker)
         {
             LogScriptError(vm, "PCSpeaker() - Could not find a dialogue owned by this entity.");

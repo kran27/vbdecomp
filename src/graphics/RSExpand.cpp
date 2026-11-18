@@ -115,7 +115,7 @@ HRESULT Gfx_RS_Expand::Initialize()
         for (DWORD index = 0; index < g_RSExpandState.description.Parameters; ++index)
         {
             D3DXPARAMETER_DESC parameter;
-            g_RSExpandState.effect->GetParameterDesc(reinterpret_cast<LPCSTR>(index), &parameter);
+            g_RSExpandState.effect->GetParameterDesc(index, &parameter);
         }
         result = g_RSExpandState.effect->SetTechnique(NULL);
         if (FAILED(result))
@@ -194,17 +194,17 @@ DWORD Gfx_RS_Expand::PassCount()
 
 DWORD Gfx_RS_Expand::SelectTechnique(DWORD index)
 {
-    if (index < g_RSExpandState.description.Techniques && index != reinterpret_cast<DWORD>(g_RSExpandState.technique))
+    if (index < g_RSExpandState.description.Techniques && index != g_RSExpandState.technique)
     {
         g_RSExpandState.techniqueChanged = 1;
-        g_RSExpandState.technique = reinterpret_cast<LPCSTR>(index);
+        g_RSExpandState.technique = index;
     }
     return index;
 }
 
 DWORD Gfx_RS_Expand::NextTechnique()
 {
-    DWORD next = reinterpret_cast<DWORD>(g_RSExpandState.technique) + 1;
+    DWORD next = g_RSExpandState.technique + 1;
     if (next >= g_RSExpandState.description.Techniques)
     {
         next = 0;
@@ -212,7 +212,7 @@ DWORD Gfx_RS_Expand::NextTechnique()
     return SelectTechnique(next);
 }
 
-HRESULT Gfx_RS_Expand::SetMaterial(Gfx_Material*, DWORD)
+HRESULT Gfx_RS_Expand::SetMaterial(Gfx_Material*, Gfx_HeightFog*)
 {
     HRESULT result = D3DERR_INVALIDCALL;
     if (!g_RSExpandState.effect)

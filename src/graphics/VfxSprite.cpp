@@ -538,7 +538,7 @@ namespace JE
         mesh.value00 = 0;
         mesh.value04 = DWORD(-1);
         mesh.vertices = result.vertices;
-        mesh.value10 = reinterpret_cast<DWORD>(result.indices);
+        mesh.value10 = result.indices;
         mesh.SetVertexDesc(0x142, D3DXGetFVFVertexSize(0x142), result.vertexCount);
         mesh.SetIndexDesc(2, result.indexCount);
         mesh.materialSet.count = 0;
@@ -572,7 +572,7 @@ namespace JE
         mesh.materialSet.RebuildGroups();
         mesh.value04 = DWORD(-1);
         result.instances[0].SetMesh(&mesh);
-        result.instances[0].value0C = reinterpret_cast<DWORD>(result.packet);
+        result.instances[0].value0C = result.packet;
         result.flagC8 = 1;
     }
 } // namespace JE

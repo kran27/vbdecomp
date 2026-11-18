@@ -307,7 +307,7 @@ class OCTREE
     DWORD spatialCursor; // +EC.
     OctreeSpatialObject** visibleObjects; // +F0; borrowed camera reference list.
     OCTREE_Shape* currentShape; //+F4, borrowed active query owner.
-    BYTE* scratch;
+    OctreeSpatialObject** scratch; // Owns a null-terminated selection array (handles.capacity + 1).
     OctreeTraversal* traversal;
 
   private:

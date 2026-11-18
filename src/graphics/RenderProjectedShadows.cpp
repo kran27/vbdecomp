@@ -81,7 +81,7 @@ void Gfx_RenderManager::RenderShadowVolumes2()
                     continue;
                 }
                 Gfx_PacketData* packet =
-                    dynamic_cast<Gfx_PacketData*>(reinterpret_cast<Gfx_BasePacketData*>(instance.value0C));
+                    dynamic_cast<Gfx_PacketData*>(instance.value0C);
                 if (packet)
                 {
                     const DWORD transformEnabled = packet->transformEnabled;

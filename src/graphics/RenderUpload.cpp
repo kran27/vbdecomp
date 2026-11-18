@@ -40,7 +40,7 @@ void Gfx_RenderManager::Upload(UINT pass, BYTE shadowOnly)
                     g_D3D.device->SetStreamSource(0, buffer, 0, stride);
                     // Reload this same first node's mesh after the SDK callback.
                     Gfx_MeshData* mesh = first->mesh;
-                    const void* source = reinterpret_cast<const void*>(mesh->value10);
+                    const void* source = mesh->value10;
                     if (source != 0)
                     {
                         UINT indexCount = mesh->value24;

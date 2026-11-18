@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <stdexcept>
+#include <cstdint>
 
 namespace
 {
@@ -20,6 +21,19 @@ namespace
     const long stackTag = 0x4B545356, ownerTag = 0x464C534D;
     const long stateTag = 0x54415453, lineTag = 0x454E494C;
     cell currentSymbol; // Original70C720, shared across all debugger callbacks.
+
+    // Owner/state/line userdata slots intentionally encode 32-bit scalar IDs.
+    template <typename T>
+    int ReadScalarUserData(AMX* vm, long tag, T* output)
+    {
+        void* encoded = nullptr;
+        const int result = amx_GetUserData(vm, tag, &encoded);
+        if (result == 0)
+        {
+            *output = static_cast<T>(reinterpret_cast<std::uintptr_t>(encoded));
+        }
+        return result;
+    }
 
     JE::Client* DebugClient()
     {
@@ -604,27 +618,27 @@ namespace JE
         case DBG_LINE:
         {
             DWORD owner = 0;
-            amx_GetUserData(vm, ownerTag, reinterpret_cast<void**>(&owner));
+            ReadScalarUserData(vm, ownerTag, &owner);
             if (owner != DebugServer()->field0x70E8)
             {
                 break;
             }
             int state = 0;
-            amx_GetUserData(vm, stateTag, reinterpret_cast<void**>(&state));
+            ReadScalarUserData(vm, stateTag, &state);
             if (state != 3)
             {
                 break;
             }
             cell line = 0;
-            amx_GetUserData(vm, lineTag, reinterpret_cast<void**>(&line));
+            ReadScalarUserData(vm, lineTag, &line);
             if (line == vm->curline)
             {
                 break;
             }
             state = 2;
-            amx_SetUserData(vm, stateTag, reinterpret_cast<void*>(state));
+            amx_SetUserData(vm, stateTag, reinterpret_cast<void*>(static_cast<std::uintptr_t>(state)));
             line = vm->curline;
-            amx_SetUserData(vm, lineTag, reinterpret_cast<void*>(line));
+            amx_SetUserData(vm, lineTag, reinterpret_cast<void*>(static_cast<std::uintptr_t>(line)));
             ClientChild0x94* controls = DebugClient()->child0x94;
             if (controls)
             {
@@ -700,7 +714,7 @@ namespace JE
         {
             DWORD owner = 0;
             int state = 1;
-            amx_GetUserData(vm, ownerTag, reinterpret_cast<void**>(&owner));
+            ReadScalarUserData(vm, ownerTag, &owner);
             if (owner == DebugServer()->field0x70E8)
             {
                 DisplayState(vm, 0, 0);
@@ -709,7 +723,7 @@ namespace JE
                 {
                     EnableControls(controls, 0);
                 }
-                amx_GetUserData(vm, stateTag, reinterpret_cast<void**>(&state));
+                ReadScalarUserData(vm, stateTag, &state);
                 if (state == 3)
                 {
                     JE::DebugWindow* window = DebugClient()->child0x8C;
@@ -722,7 +736,7 @@ namespace JE
                 }
             }
             state = 1;
-            amx_SetUserData(vm, stateTag, reinterpret_cast<void*>(state));
+            amx_SetUserData(vm, stateTag, reinterpret_cast<void*>(static_cast<std::uintptr_t>(state)));
             break;
         }
         }

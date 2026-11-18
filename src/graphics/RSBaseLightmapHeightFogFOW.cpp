@@ -395,17 +395,17 @@ DWORD Gfx_RS_B_LM_HFog_FOW::PassCount()
 DWORD Gfx_RS_B_LM_HFog_FOW::SelectTechnique(DWORD index)
 {
     if (index < g_RSBaseLightmapHeightFogFOWState.description.Techniques &&
-        index != reinterpret_cast<DWORD>(g_RSBaseLightmapHeightFogFOWState.technique))
+        index != g_RSBaseLightmapHeightFogFOWState.technique)
     {
         g_RSBaseLightmapHeightFogFOWState.techniqueChanged = 1;
-        g_RSBaseLightmapHeightFogFOWState.technique = reinterpret_cast<LPCSTR>(index);
+        g_RSBaseLightmapHeightFogFOWState.technique = index;
     }
     return index;
 }
 
 DWORD Gfx_RS_B_LM_HFog_FOW::NextTechnique()
 {
-    DWORD next = reinterpret_cast<DWORD>(g_RSBaseLightmapHeightFogFOWState.technique) + 1;
+    DWORD next = g_RSBaseLightmapHeightFogFOWState.technique + 1;
     if (next >= g_RSBaseLightmapHeightFogFOWState.description.Techniques)
     {
         next = 0;
@@ -428,7 +428,7 @@ HRESULT Gfx_RS_B_LM_HFog_FOW::Pass(UINT pass)
     return effect->Pass(pass);
 }
 
-HRESULT Gfx_RS_B_LM_HFog_FOW::SetMaterial(Gfx_Material* material, DWORD fogBits)
+HRESULT Gfx_RS_B_LM_HFog_FOW::SetMaterial(Gfx_Material* material, Gfx_HeightFog* fogBits)
 {
     BYTE useRGB = 0, useAlpha = 0;
     DWORD color;
@@ -439,7 +439,7 @@ HRESULT Gfx_RS_B_LM_HFog_FOW::SetMaterial(Gfx_Material* material, DWORD fogBits)
         JE::LogDebugString("Gfx_RS_B_LM_HFog_FOW::SetMaterial() failed - not created yet.");
         return D3DERR_INVALIDCALL;
     }
-    Gfx_HeightFog* fog = reinterpret_cast<Gfx_HeightFog*>(fogBits);
+    Gfx_HeightFog* fog = fogBits;
     if (!fog)
     {
         JE::LogDebugString("Gfx_RS_B_LM_HFog_FOW: No HeightFog object specified!");

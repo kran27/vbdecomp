@@ -51,6 +51,7 @@ namespace JE
     class EditTokenInterface;
     typedef EditTokenInterface ClientChild0xB8;
     class VFX_VEGInstance;
+    class VisualEffect;
     typedef VFX_VEGInstance ClientChild0xF8;
 
     class Client : public Net::Client
@@ -212,7 +213,7 @@ namespace JE
         JE::Net::UInt8 reserved0xE8[4]; // Original58E900 leaves+E8..EB unwritten before+EC.
         JE::Net::UInt32 field0xEC, field0xF0, field0xF4;
         ClientChild0xF8* child0xF8;
-        JE::Net::UInt32 field0xFC;
+        VisualEffect* field0xFC; // Original x86+FC; live pointer (8 bytes on x64).
         JE::Net::UInt8 field0x100;
         JE::Net::UInt32 field0x104;
         JE::Net::UInt8 field0x108, field0x109, field0x10A;

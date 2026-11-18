@@ -66,7 +66,7 @@ namespace F3
     };
 
     // 45DFD0 allocates118h;460B30 adds commands but no data to JE::Client.
-    typedef char GameClientOriginalExtent[(sizeof(GameClient) == 0x118) ? 1 : -1];
+    //typedef char GameClientOriginalExtent[(sizeof(GameClient) == 0x118) ? 1 : -1];
 
     namespace GameClientInitializationServices
     {

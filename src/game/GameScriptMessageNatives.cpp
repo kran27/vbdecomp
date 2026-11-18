@@ -34,7 +34,7 @@ namespace F3
             }
             arguments[i] = *source;
         }
-        entity->EnqueueMessage(static_cast<DWORD>(reinterpret_cast<UINT_PTR>(owner)), DWORD(parameters[2]), arguments,
+        entity->EnqueueMessage(ScriptOwnerID(owner), DWORD(parameters[2]), arguments,
                                count - 2);
         delete[] arguments;
         return 1;
@@ -49,7 +49,7 @@ namespace F3
             LogScriptError(vm, "MessageArgCount() was unable to retrieve the source entity id.");
             return 0;
         }
-        DWORD id = static_cast<DWORD>(reinterpret_cast<UINT_PTR>(owner));
+        DWORD id = ScriptOwnerID(owner);
         if (id & 0xE0000000)
         {
             LogScriptError(vm, "MessageArgCount() source entity id is not an entity.");
@@ -76,7 +76,7 @@ namespace F3
             LogScriptError(vm, "MessageGetArg() was unable to retrieve the source entity id.");
             return 0;
         }
-        DWORD id = static_cast<DWORD>(reinterpret_cast<UINT_PTR>(owner));
+        DWORD id = ScriptOwnerID(owner);
         if (id & 0xE0000000)
         {
             LogScriptError(vm, "MessageGetArg() source entity id is not an entity.");

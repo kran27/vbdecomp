@@ -7,6 +7,38 @@
 
 namespace
 {
+    // The .8 INFO chunk contains the original x86 fields beginning at
+    // OctreeNode::bounds. Child slots are serialized as 32-bit presence
+    // indicators, NOT as native pointer-sized OctreeNode* values.
+    struct DiskOctreeNodeInfo
+    {
+        float bounds[6];
+        DWORD vertexBuffer;
+        DWORD flags;
+        DWORD children[8];
+    };
+    static_assert(sizeof(DiskOctreeNodeInfo) == 64);
+    static_assert(offsetof(DiskOctreeNodeInfo, children) == 32);
+
+    void ApplyNodeInfo(OctreeNode& node, const DiskOctreeNodeInfo& disk, bool branch)
+    {
+        memcpy(node.bounds, disk.bounds, sizeof(disk.bounds));
+        node.vertexBuffer = disk.vertexBuffer;
+        node.flags = disk.flags;
+        for (DWORD index = 0; index < 8; ++index)
+        {
+            if (branch && disk.children[index])
+            {
+                node.children[index] = new OctreeNode;
+                node.children[index]->parent = &node;
+            }
+            else
+            {
+                node.children[index] = nullptr;
+            }
+        }
+    }
+
     // Scan the same sequential stream as the original; container extents are not guards.
     bool FindChunk(OctreeInput& stream, DWORD tag, DWORD& remaining)
     {
@@ -184,9 +216,9 @@ int OCTREE::Read8Input(OctreeInput& stream, DWORD attributes, OCTREE** output)
     }
     tree->visibleTreeNodes = NULL;
     tree->visibleBuckets = NULL;
-    tree->scratch = new BYTE[4100];
-    *reinterpret_cast<DWORD*>(tree->scratch) = 0;
-    *reinterpret_cast<DWORD*>(tree->scratch + 4096) = 0;
+    // Original x86 layout used 1,025 four-byte slots. Store actual native pointers
+    // and initialize every slot, including the trailing null terminator.
+    tree->scratch = new OctreeSpatialObject*[tree->handles.capacity + 1]{};
     *output = tree;
     return 0;
 
@@ -199,6 +231,10 @@ Failure:
 
 int OCTREE::ReadTree(FILE* stream)
 {
+    if (!depth)
+    {
+        return 1;
+    }
     DWORD* childCounters = new DWORD[depth];
     for (DWORD index = 0; index < depth; ++index)
     {
@@ -247,16 +283,19 @@ int OCTREE::ReadTree(FILE* stream)
                         break; // INFO.
                     }
                 }
-                size_t read = g_OctreeReadCallback(node->bounds, 1, header[1], stream);
-                header[1] -= static_cast<DWORD>(read);
-                for (OctreeNode** child = node->children; child != node->children + 8; ++child)
+                // Read the on-disk x86 layout into a 64-byte record. Reading
+                // directly into OctreeNode overwrites x64 pointer fields.
+                if (header[1] < sizeof(DiskOctreeNodeInfo))
                 {
-                    if (*child)
-                    {
-                        *child = new OctreeNode;
-                        (*child)->parent = node;
-                    }
+                    goto Failure;
                 }
+                DiskOctreeNodeInfo disk{};
+                if (g_OctreeReadCallback(&disk, 1, sizeof(disk), stream) != sizeof(disk))
+                {
+                    goto Failure;
+                }
+                header[1] -= sizeof(disk);
+                ApplyNodeInfo(*node, disk, true);
                 for (;;)
                 {
                     if (header[1])
@@ -318,9 +357,18 @@ int OCTREE::ReadTree(FILE* stream)
                         break;
                     }
                 }
-                size_t read = g_OctreeReadCallback(node->bounds, 1, header[1], stream);
-                header[1] -= static_cast<DWORD>(read);
-                memset(node->children, 0, sizeof(node->children));
+                if (header[1] < offsetof(DiskOctreeNodeInfo, children))
+                {
+                    goto Failure;
+                }
+                DiskOctreeNodeInfo disk{};
+                const DWORD bytesToRead = header[1] < sizeof(disk) ? header[1] : sizeof(disk);
+                if (g_OctreeReadCallback(&disk, 1, bytesToRead, stream) != bytesToRead)
+                {
+                    goto Failure;
+                }
+                header[1] -= bytesToRead;
+                ApplyNodeInfo(*node, disk, false);
                 for (;;)
                 {
                     if (header[1])
@@ -367,6 +415,10 @@ int OCTREE::ReadTree(FILE* stream)
                 OctreeNode* child = node->children[nextChild++];
                 if (child)
                 {
+                    if (currentCounter + 1 == childCounters + depth)
+                    {
+                        goto Failure;
+                    }
                     *currentCounter = nextChild;
                     node = child;
                     ++currentCounter;
@@ -391,8 +443,11 @@ Failure:
 
 int OCTREE::ReadTreeInput(OctreeInput& stream)
 {
-    DWORD* childCounters = new DWORD[depth];
-    memset(childCounters, 0, 4 * depth);
+    if (!depth)
+    {
+        return 1;
+    }
+    DWORD* childCounters = new DWORD[depth]{};
     for (DWORD index = 0; index < vertexBufferCount; ++index)
     {
         indexedNodeCounts[index] = 0;
@@ -422,22 +477,21 @@ int OCTREE::ReadTreeInput(OctreeInput& stream)
             {
                 goto Failure;
             }
-            remaining -= static_cast<DWORD>(OctreeRead(node->bounds, 1, remaining, stream));
-            if (branch)
+            // INFO contains 32-bit serialized child indicators. It must
+            // never be read directly into a pointer-bearing OctreeNode.
+            if (remaining < offsetof(DiskOctreeNodeInfo, children) ||
+                (branch && remaining < sizeof(DiskOctreeNodeInfo)))
             {
-                for (DWORD index = 0; index < 8; ++index)
-                {
-                    if (node->children[index])
-                    {
-                        node->children[index] = new OctreeNode;
-                        node->children[index]->parent = node;
-                    }
-                }
+                goto Failure;
             }
-            else
+            DiskOctreeNodeInfo disk{};
+            const DWORD bytesToRead = remaining < sizeof(disk) ? remaining : sizeof(disk);
+            if (OctreeRead(&disk, 1, bytesToRead, stream) != bytesToRead)
             {
-                memset(node->children, 0, sizeof(node->children));
+                goto Failure;
             }
+            remaining -= bytesToRead;
+            ApplyNodeInfo(*node, disk, branch);
             for (;;)
             {
                 if (remaining)
@@ -502,6 +556,10 @@ int OCTREE::ReadTreeInput(OctreeInput& stream)
                 OctreeNode* child = node->children[nextChild++];
                 if (child)
                 {
+                    if (static_cast<DWORD>(level + 1) >= depth)
+                    {
+                        goto Failure;
+                    }
                     childCounters[level] = nextChild;
                     node = child;
                     ++level;

@@ -4,23 +4,6 @@
 #include <string.h>
 #include <stdexcept>
 
-namespace Granny21
-{
-    extern "C"
-    {
-        __declspec(dllimport) float __stdcall GrannyGetControlDuration(const Control* control);
-        __declspec(dllimport) float __stdcall GrannyGetControlDurationLeft(Control* control);
-        __declspec(dllimport) bool __stdcall GrannyControlIsComplete(const Control* control);
-        __declspec(dllimport) float __stdcall GrannyGetControlClock(const Control* control);
-        __declspec(dllimport) void __stdcall GrannySetControlLoopCount(Control* control, int count);
-        __declspec(dllimport) void __stdcall GrannySetControlSpeed(Control* control, float speed);
-        __declspec(dllimport) float __stdcall GrannyEaseControlIn(Control* control, float duration, BYTE fromCurrent);
-        __declspec(dllimport) float __stdcall GrannyEaseControlOut(Control* control, float duration);
-        __declspec(dllimport) void __stdcall GrannyCompleteControlAt(Control* control, float time);
-        __declspec(dllimport) void __stdcall GrannyFreeControlOnceUnused(Control* control);
-    }
-} // namespace Granny21
-
 LONG Gfx_AnimationInstance::GetSemanticBoneIndex(LONG bone) const // 49C9E0.
 {
     if (bone < 212)
@@ -53,21 +36,17 @@ Gfx_AnimationInstance::Gfx_AnimationInstance(Gfx_AnimationObject* object)
       collisionBindingFlags(NULL), flagC4(0)
 {
     modelInstance = animationObject->CreateModelInstance();
-    boneCount = Granny21::GrannyGetSourceSkeleton(modelInstance)->boneCount;
-    worldPose = Granny21::GrannyNewWorldPose(boneCount);
-    trackMask = Granny21::GrannyNewTrackMask(1.0f, boneCount);
+    boneCount = Granny28::GrannyGetSourceSkeleton(modelInstance)->BoneCount;
+    worldPose = Granny28::GrannyNewWorldPose(boneCount);
+    trackMask = Granny28::GrannyNewTrackMask(1.0f, boneCount);
     worldMatrices = new D3DXMATRIX[boneCount];
     compositeMatrices = new D3DXMATRIX[boneCount];
-    Granny21::Mesh* collision = animationObject->collisionMesh;
+    Granny28::Mesh* collision = animationObject->collisionMesh;
     if (collision)
     {
-        // Public Granny2.1 Mesh prefix field+1C is BoneBindingCount. The original
-        // 4A5D33 allocates exactly this many zeroed bytes, not vertexCount bytes.
-        DWORD count;
-        memcpy(&count, reinterpret_cast<const BYTE*>(collision) + 0x1C, 4);
-        collisionBindingFlags = new BYTE[count];
-        memcpy(&count, reinterpret_cast<const BYTE*>(collision) + 0x1C, 4);
-        memset(collisionBindingFlags, 0, count);
+        // Allocate one collision flag per Granny bone binding.
+        const DWORD count = static_cast<DWORD>(collision->BoneBindingCount);
+        collisionBindingFlags = new BYTE[count]{};
     }
 }
 
@@ -90,23 +69,23 @@ Gfx_AnimationInstance::~Gfx_AnimationInstance()
     }
     if (control)
     {
-        Granny21::GrannyFreeControl(control);
+        Granny28::GrannyFreeControl(control);
     }
     if (nextControl)
     {
-        Granny21::GrannyFreeControl(nextControl);
+        Granny28::GrannyFreeControl(nextControl);
     }
     if (trackMask)
     {
-        Granny21::GrannyFreeTrackMask(trackMask);
+        Granny28::GrannyFreeTrackMask(trackMask);
     }
     if (worldPose)
     {
-        Granny21::GrannyFreeWorldPose(worldPose);
+        Granny28::GrannyFreeWorldPose(worldPose);
     }
     if (modelInstance)
     {
-        Granny21::GrannyFreeModelInstance(modelInstance);
+        Granny28::GrannyFreeModelInstance(modelInstance);
     }
     for (std::vector<float*>::iterator position = cuePositions.begin(); position != cuePositions.end(); ++position)
     {
@@ -189,20 +168,20 @@ void Gfx_AnimationInstance::SetSpeed(float value)
 {
     if (control)
     {
-        Granny21::GrannySetControlSpeed(control, value);
+        Granny28::GrannySetControlSpeed(control, value);
     }
     if (nextControl)
     {
-        Granny21::GrannySetControlSpeed(nextControl, value);
+        Granny28::GrannySetControlSpeed(nextControl, value);
     }
     speed = value;
 }
 
 void Gfx_AnimationInstance::ProcessCuesUntil(float seconds)
 {
-    Granny21::Control* capturedCurrent = control;
+    Granny28::Control* capturedCurrent = control;
     float offset = timeOffset, current = seconds;
-    Granny21::Control* capturedNext = nextControl;
+    Granny28::Control* capturedNext = nextControl;
     DWORD capturedIndex = animationIndex, capturedGroup = group;
     if (capturedCurrent && (!loopState || remaining > 0.0f))
     {
@@ -212,14 +191,14 @@ void Gfx_AnimationInstance::ProcessCuesUntil(float seconds)
         }
         else
         {
-            current = Granny21::GrannyGetControlDuration(capturedCurrent) - (offset + seconds);
+            current = Granny28::GrannyGetControlDuration(capturedCurrent) - (offset + seconds);
         }
-        Granny21::GrannyControlIsComplete(control); // Original call, result ignored.
+        Granny28::GrannyControlIsComplete(control); // Original call, result ignored.
     }
     float next = seconds;
     if (capturedNext && reverse)
     {
-        next = Granny21::GrannyGetControlDuration(capturedNext) - seconds;
+        next = Granny28::GrannyGetControlDuration(capturedNext) - seconds;
     }
     if (control)
     {
@@ -238,11 +217,11 @@ void Gfx_AnimationInstance::CompleteCurrentControl(float value, BYTE ease)
     {
         if (ease)
         {
-            Granny21::GrannyCompleteControlAt(control, Granny21::GrannyEaseControlOut(control, value));
+            Granny28::GrannyCompleteControlAt(control, Granny28::GrannyEaseControlOut(control, value));
         }
         else
         {
-            Granny21::GrannyCompleteControlAt(control, value);
+            Granny28::GrannyCompleteControlAt(control, value);
         }
     }
 }
@@ -253,7 +232,7 @@ void Gfx_AnimationInstance::PrepareTransition()
     {
         if (control)
         {
-            Granny21::GrannyFreeControl(control);
+            Granny28::GrannyFreeControl(control);
         }
         control = nextControl;
         remaining = nextRemaining;
@@ -289,12 +268,12 @@ void Gfx_AnimationInstance::PrepareTransition()
     else if (loopState && remaining <= 0.0f)
     {
         timeOffset = 0.0f;
-        Granny21::GrannyFreeControl(control);
+        Granny28::GrannyFreeControl(control);
         control = NULL;
     }
     else
     {
-        timeOffset = Granny21::GrannyGetControlClock(control);
+        timeOffset = Granny28::GrannyGetControlClock(control);
         if (timeOffset < 0.0f)
         {
             timeOffset = 0.0f;
@@ -314,27 +293,27 @@ void Gfx_AnimationInstance::PrepareTransition()
     }
     if (nextControl)
     {
-        Granny21::GrannySetControlLoopCount(nextControl, nextLoopState);
-        Granny21::GrannySetControlSpeed(nextControl, speed);
+        Granny28::GrannySetControlLoopCount(nextControl, nextLoopState);
+        Granny28::GrannySetControlSpeed(nextControl, speed);
         if (!(value80 > 0.0f))
         {
             CompleteCurrentControl(timeOffset, 0);
         }
         else
         {
-            Granny21::GrannyEaseControlIn(nextControl, value80, flag84);
+            Granny28::GrannyEaseControlIn(nextControl, value80, flag84);
             CompleteCurrentControl(value80, 1);
         }
         if (reverse)
         {
-            float duration = Granny21::GrannyGetControlDuration(nextControl);
-            nextRemaining = duration - Granny21::GrannyGetControlDurationLeft(nextControl);
+            float duration = Granny28::GrannyGetControlDuration(nextControl);
+            nextRemaining = duration - Granny28::GrannyGetControlDurationLeft(nextControl);
         }
         else
         {
-            nextRemaining = Granny21::GrannyGetControlDurationLeft(nextControl);
+            nextRemaining = Granny28::GrannyGetControlDurationLeft(nextControl);
         }
-        Granny21::GrannyFreeControlOnceUnused(nextControl);
+        Granny28::GrannyFreeControlOnceUnused(nextControl);
     }
     else
     {
@@ -367,41 +346,41 @@ void Gfx_AnimationInstance::Update(float seconds)
     {
         if (reverse)
         {
-            controlTime = Granny21::GrannyGetControlDuration(control) - (seconds + timeOffset);
-            Granny21::GrannySetControlClock(control, controlTime);
+            controlTime = Granny28::GrannyGetControlDuration(control) - (seconds + timeOffset);
+            Granny28::GrannySetControlClock(control, controlTime);
             remaining = controlTime;
         }
         else
         {
             controlTime = seconds + timeOffset;
-            Granny21::GrannySetControlClock(control, controlTime);
-            remaining = Granny21::GrannyGetControlDurationLeft(control);
+            Granny28::GrannySetControlClock(control, controlTime);
+            remaining = Granny28::GrannyGetControlDurationLeft(control);
         }
-        complete = Granny21::GrannyControlIsComplete(control);
+        complete = Granny28::GrannyControlIsComplete(control);
     }
     float nextTime = seconds;
     if (nextControl)
     {
-        float duration = Granny21::GrannyGetControlDuration(nextControl);
+        float duration = Granny28::GrannyGetControlDuration(nextControl);
         if (reverse)
         {
             nextTime = duration - seconds;
         }
-        Granny21::GrannySetControlClock(nextControl, nextTime);
+        Granny28::GrannySetControlClock(nextControl, nextTime);
         if (reverse)
         {
-            nextRemaining = duration - Granny21::GrannyGetControlDurationLeft(nextControl);
+            nextRemaining = duration - Granny28::GrannyGetControlDurationLeft(nextControl);
         }
         else
         {
-            nextRemaining = Granny21::GrannyGetControlDurationLeft(nextControl);
+            nextRemaining = Granny28::GrannyGetControlDurationLeft(nextControl);
         }
     }
     if (control && (complete || (loopState && remaining <= 0.0f)))
     {
         if (complete || nextControl)
         {
-            Granny21::GrannyFreeControl(control);
+            Granny28::GrannyFreeControl(control);
             control = nextControl;
             remaining = nextRemaining;
             loopState = nextLoopState;
@@ -420,7 +399,7 @@ void Gfx_AnimationInstance::Update(float seconds)
         timeOffset = 0.0f;
         if (reverse)
         {
-            controlTime = Granny21::GrannyGetControlDuration(control) - (seconds + timeOffset);
+            controlTime = Granny28::GrannyGetControlDuration(control) - (seconds + timeOffset);
         }
         else
         {
@@ -442,7 +421,7 @@ void Gfx_AnimationInstance::Update(float seconds)
         timeOffset = 0.0f;
         if (reverse)
         {
-            controlTime = Granny21::GrannyGetControlDuration(control) - (seconds + timeOffset);
+            controlTime = Granny28::GrannyGetControlDuration(control) - (seconds + timeOffset);
         }
         else
         {
@@ -476,14 +455,14 @@ void Gfx_AnimationInstance::Update(float seconds)
         parentTransform = reinterpret_cast<const float*>(parent->worldMatrices + bone);
     }
     animationObject->UpdateWorldPose(modelInstance, worldPose, parentTransform);
-    sourceCompositeMatrices = Granny21::GrannyGetWorldPoseComposite4x4Array(worldPose);
+    sourceCompositeMatrices = reinterpret_cast<const float*>(Granny28::GrannyGetWorldPoseComposite4x4Array(worldPose));
     if (scaling)
     {
         D3DXMATRIX scaleMatrix = g_D3D.identity;
         scaleMatrix._11 = scale[0];
         scaleMatrix._22 = scale[1];
         scaleMatrix._33 = scale[2];
-        const float* source = Granny21::GrannyGetWorldPose4x4Array(worldPose);
+        const float* source = reinterpret_cast<const float*>(Granny28::GrannyGetWorldPose4x4Array(worldPose));
         for (DWORD bone = 0; bone < boneCount; ++bone)
         {
             D3DXMATRIX& matrix = worldMatrices[bone];
@@ -507,7 +486,7 @@ void Gfx_AnimationInstance::Update(float seconds)
     }
     else
     {
-        const float* source = Granny21::GrannyGetWorldPose4x4Array(worldPose);
+        const float* source = reinterpret_cast<const float*>(Granny28::GrannyGetWorldPose4x4Array(worldPose));
         memcpy(worldMatrices, source, boneCount * 64);
         memcpy(compositeMatrices, sourceCompositeMatrices, boneCount * 64);
     }

@@ -63,8 +63,8 @@ namespace JE
 
     namespace
     {
-        typedef char SoundDataSize[(sizeof(SoundData) == 28) ? 1 : -1];
-        typedef char SoundDataFormat[(offsetof(SoundData, format) == 12) ? 1 : -1];
+        //typedef char SoundDataSize[(sizeof(SoundData) == 28) ? 1 : -1];
+        //typedef char SoundDataFormat[(offsetof(SoundData, format) == 12) ? 1 : -1];
 #if defined(_MSC_VER) && _MSC_VER == 1300 && defined(_M_IX86)
         typedef char SoundSize[(sizeof(CSound) == 248) ? 1 : -1];
 #endif

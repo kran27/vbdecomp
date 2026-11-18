@@ -4,7 +4,7 @@
 
 int Octree2Gfx::UpdateCamera(Gfx_Viewport* viewport)
 {
-    int result = reinterpret_cast<int>(octree);
+    int result = octree != nullptr;
     if (result)
     {
         if (!viewport)
@@ -27,7 +27,7 @@ int Octree2Gfx::UpdateCamera(Gfx_Viewport* viewport)
 
 int Octree2Gfx::RestoreVisibility()
 {
-    int result = reinterpret_cast<int>(octree);
+    int result = octree != nullptr;
     if (result)
     {
         result = octree->RestoreVisibility(camera);

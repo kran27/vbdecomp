@@ -101,7 +101,7 @@ namespace JE
                 Entity* second = GetEntityPtr(field0xDC);
                 if (second && field0xFC)
                 {
-                    second->RemoveVisualEffect(reinterpret_cast<VisualEffect*>(field0xFC), 1);
+                    second->RemoveVisualEffect(field0xFC, 1);
                     field0xFC = 0;
                 }
             }

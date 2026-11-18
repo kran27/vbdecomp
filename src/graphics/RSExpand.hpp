@@ -8,7 +8,7 @@ struct Gfx_RS_ExpandState
     DWORD users;
     Gfx_DX9Effect* effect;
     D3DXEFFECT_DESC description;
-    LPCSTR technique;
+    DWORD technique;
     BYTE usesShader, techniqueChanged;
     BYTE padding16[2];
     DWORD passes;
@@ -29,7 +29,7 @@ class Gfx_RS_Expand : public Gfx_RenderStyle
     virtual DWORD NextTechnique(); // 536520.
     virtual BYTE UsesVertexShader(); // 536420.
     virtual DWORD PassCount(); // 536430.
-    virtual HRESULT SetMaterial(Gfx_Material* material, DWORD texture); // 540B20; both unused.
+    virtual HRESULT SetMaterial(Gfx_Material* material, Gfx_HeightFog* texture); // 540B20; both unused.
     virtual HRESULT Begin(UINT* passes); // 536440.
     virtual HRESULT End(); // 536460.
     virtual HRESULT Pass(UINT pass); // 536470; does not publish a current-pass field.

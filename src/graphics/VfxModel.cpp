@@ -11,17 +11,6 @@
 #include <string.h>
 #include <stdexcept>
 
-namespace Granny21
-{
-    // F3's4F497E pushes a hidden return buffer for this sixteen-byte POD result.
-    // The export's @0 decoration excludes the hidden return argument.
-    struct SystemClockSnapshot
-    {
-        DWORD words[4];
-    };
-    extern "C" __declspec(dllimport) SystemClockSnapshot __stdcall GrannyGetSystemSeconds();
-} // namespace Granny21
-
 namespace
 {
     bool DifferentName(const std::string& first, const std::string& second)
@@ -360,8 +349,10 @@ namespace JE
     {
         VFX_EffectInstance::SetData(input);
         data = *static_cast<const VFX_ModelData*>(input);
-        Granny21::SystemClockSnapshot snapshot = Granny21::GrannyGetSystemSeconds();
-        memcpy(clockSnapshot, snapshot.words, sizeof(clockSnapshot));
+        Granny28::SystemClock snapshot{};
+        Granny28::GrannyGetSystemSeconds(&snapshot);
+        static_assert(sizeof(snapshot.Data) == sizeof(clockSnapshot));
+        memcpy(clockSnapshot, snapshot.Data, sizeof(clockSnapshot));
         bool modelChanged = false, skeletonChanged = false;
         if ((data.useShadowVolume != loadedShadow && !data.modelResource.name.empty()) ||
             DifferentName(data.modelResource.name, modelName))

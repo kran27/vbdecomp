@@ -47,6 +47,13 @@
 #include <stdint.h>
 #endif
 
+/* Pawn cells and on-disk addresses remain 32-bit on 64-bit hosts. */
+#if defined(UINTPTR_MAX) && UINTPTR_MAX > UINT32_MAX
+  #define AMX_WIDE_POINTERS 1
+#else
+  #define AMX_WIDE_POINTERS 0
+#endif
+
 #ifdef  __cplusplus
 extern  "C" {
 #endif
@@ -171,6 +178,11 @@ typedef struct __amx {
   cell alt              PACKED;
   cell reset_stk        PACKED;
   cell reset_hea        PACKED;
+  #if AMX_WIDE_POINTERS
+    /* Native callbacks cannot be stored in 32-bit AMX_FUNCSTUB::address. */
+    AMX_NATIVE *nativeFunctions PACKED;
+    int nativeFunctionCount PACKED;
+  #endif
   #if defined JIT
     /* support variables for the JIT */
     int reloc_size      PACKED; /* required temporary buffer for relocations */

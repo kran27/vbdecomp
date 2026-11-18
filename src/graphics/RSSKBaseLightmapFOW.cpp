@@ -261,16 +261,16 @@ DWORD Gfx_RS_SK_B_LM_FOW::PassCount()
 DWORD Gfx_RS_SK_B_LM_FOW::SelectTechnique(DWORD index)
 {
     if (index < g_RSSKBaseLightmapFOWState.description.Techniques &&
-        index != reinterpret_cast<DWORD>(g_RSSKBaseLightmapFOWState.technique))
+        index != g_RSSKBaseLightmapFOWState.technique)
     {
         g_RSSKBaseLightmapFOWState.techniqueChanged = 1;
-        g_RSSKBaseLightmapFOWState.technique = reinterpret_cast<LPCSTR>(index);
+        g_RSSKBaseLightmapFOWState.technique = index;
     }
     return index;
 }
 DWORD Gfx_RS_SK_B_LM_FOW::NextTechnique()
 {
-    DWORD next = reinterpret_cast<DWORD>(g_RSSKBaseLightmapFOWState.technique) + 1;
+    DWORD next = g_RSSKBaseLightmapFOWState.technique + 1;
     if (next >= g_RSSKBaseLightmapFOWState.description.Techniques)
     {
         next = 0;
@@ -290,7 +290,7 @@ HRESULT Gfx_RS_SK_B_LM_FOW::Pass(UINT pass)
     g_RSSKBaseLightmapFOWState.currentPass = pass;
     return g_RSSKBaseLightmapFOWState.effect->Pass(pass);
 }
-HRESULT Gfx_RS_SK_B_LM_FOW::SetMaterial(Gfx_Material* material, DWORD)
+HRESULT Gfx_RS_SK_B_LM_FOW::SetMaterial(Gfx_Material* material, Gfx_HeightFog* )
 {
     HRESULT result = D3DERR_INVALIDCALL;
     if (g_RSSKBaseLightmapFOWState.effect)

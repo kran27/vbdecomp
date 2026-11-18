@@ -20,7 +20,7 @@ int OCTREE::UpdateShape(OCTREE_Shape* shape) // 5B0880.
         currentShape->selectedObjects = NULL;
     }
     currentShape = shape;
-    shape->selectedObjects = reinterpret_cast<OctreeSpatialObject**>(scratch);
+    shape->selectedObjects = scratch;
     currentShape->queryCursor = 0;
     OctreeShapeNodeCache* cache = currentShape->cachedNodes;
     if (cache && cache->Node(0))
@@ -28,15 +28,15 @@ int OCTREE::UpdateShape(OCTREE_Shape* shape) // 5B0880.
         return 0;
     }
     currentShape->ClearNodes();
-    for (DWORD index = 0; reinterpret_cast<OctreeSpatialObject**>(scratch)[index]; ++index)
+    for (DWORD index = 0; scratch[index]; ++index)
     {
-        --reinterpret_cast<OctreeSpatialObject**>(scratch)[index]->references;
-        OctreeSpatialObject* object = reinterpret_cast<OctreeSpatialObject**>(scratch)[index];
+        --scratch[index]->references;
+        OctreeSpatialObject* object = scratch[index];
         if (!object->references)
         {
             delete object;
         }
-        reinterpret_cast<OctreeSpatialObject**>(scratch)[index] = NULL;
+        scratch[index] = NULL;
     }
     DWORD written = 0;
     while (node && level >= 0)
@@ -67,7 +67,7 @@ int OCTREE::UpdateShape(OCTREE_Shape* shape) // 5B0880.
                     {
                         do
                         {
-                            reinterpret_cast<OctreeSpatialObject**>(scratch)[written] = object;
+                            scratch[written] = object;
                             ++object->references;
                             object = object->next;
                             ++written;
@@ -79,7 +79,7 @@ int OCTREE::UpdateShape(OCTREE_Shape* shape) // 5B0880.
                         {
                             if (currentShape->ClassifyObject(object->center, object->extent))
                             {
-                                reinterpret_cast<OctreeSpatialObject**>(scratch)[written] = object;
+                                scratch[written] = object;
                                 ++object->references;
                                 ++written;
                             }
@@ -111,12 +111,15 @@ int OCTREE::UpdateShape(OCTREE_Shape* shape) // 5B0880.
         {
             traversal[level].nextChild = 0;
             node = node->parent;
-            // The original also reads the preceding frame when leaving the root.
-            classification = static_cast<volatile OctreeTraversal*>(traversal)[level - 1].classification;
+            // There is no previous traversal frame when leaving the root.
+            if (level > 0)
+            {
+                classification = traversal[level - 1].classification;
+            }
             --level;
         }
     }
-    reinterpret_cast<OctreeSpatialObject**>(scratch)[written] = NULL;
+    scratch[written] = NULL;
     return 0;
 }
 

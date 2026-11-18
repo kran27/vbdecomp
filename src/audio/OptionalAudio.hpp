@@ -4,9 +4,17 @@
 #include <mmsystem.h>
 #include <strmif.h>
 #include <control.h>
+// The DirectMusic Performance Layer is unavailable to the x64 build.
+#if !defined(_WIN64)
 #include <dmusicc.h>
 #undef INTERFACE
 #include <dmusici.h>
+#else
+struct IDirectMusicSegment;
+struct IDirectMusicAudioPath;
+struct IDirectMusicPerformance8;
+struct IDirectMusicLoader8;
+#endif
 #include <list>
 
 namespace JE

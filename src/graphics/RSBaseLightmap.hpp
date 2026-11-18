@@ -34,7 +34,7 @@ class Gfx_RS_B_LM : public Gfx_RenderStyle
     virtual DWORD NextTechnique(); // 0x536D30; actual virtual selection call.
     virtual BYTE UsesVertexShader(); // 0x536CC0.
     virtual DWORD PassCount(); // 0x536CD0.
-    virtual HRESULT SetMaterial(Gfx_Material* material, DWORD texture); // 0x53C290.
+    virtual HRESULT SetMaterial(Gfx_Material* material, Gfx_HeightFog* texture); // 0x53C290.
     virtual HRESULT Begin(UINT* passes); // 0x537BA0; selected instance effect.
     virtual HRESULT End(); // 0x537BC0.
     virtual HRESULT Pass(UINT pass); // 0x536CE0.

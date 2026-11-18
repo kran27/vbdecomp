@@ -116,7 +116,7 @@ void Gfx_LineSystem::BuildGeometry() // 50F060.
         } while (++i != values108.end());
     }
     mesh.vertices = vertices;
-    mesh.value10 = reinterpret_cast<DWORD>(indices);
+    mesh.value10 = indices;
     mesh.value00 = 0;
     mesh.value04 = DWORD(-1);
     mesh.SetVertexDesc(0x42, D3DXGetFVFVertexSize(0x42), vertexCount);
@@ -151,5 +151,5 @@ void Gfx_LineSystem::BuildGeometry() // 50F060.
     instances[0].SetMesh(&mesh);
     Gfx_PacketData* finalPacket = packet;
     Gfx_MeshInstance* finalInstances = instances;
-    finalInstances[0].value0C = reinterpret_cast<DWORD>(finalPacket);
+    finalInstances[0].value0C = finalPacket;
 }

@@ -115,10 +115,9 @@ void G3D_Texture::Read(FILE* stream) // 4D1050; unchecked FILE results are origi
 {
     std::string temporary;
     FILE* input = stream;
-    // The original reads the flag into the low byte of its parameter slot.
-    // Keep the saved stream pointer for every subsequent FILE operation.
-    fread(&stream, 1, 1, input);
-    BYTE bits = static_cast<BYTE>(reinterpret_cast<ULONG_PTR>(stream));
+    // Read the on-disk flag without modifying the FILE* pointer.
+    BYTE bits = 0;
+    fread(&bits, 1, 1, input);
     flags[0] = bits & 1;
     flags[1] = (bits >> 1) & 1;
     flags[2] = (bits & 4) != 0;

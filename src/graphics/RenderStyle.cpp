@@ -16,7 +16,7 @@ Gfx_RenderStyleController::Gfx_RenderStyleController(Gfx_RenderStyle* const* ini
 }
 
 HRESULT Gfx_RenderStyleController::SetMaterial(Gfx_Material* material, BYTE techniqueFlag, BYTE fogOfWar,
-                                               BYTE heightFogEnabled, DWORD heightFog)
+                                               BYTE heightFogEnabled, Gfx_HeightFog* heightFog)
 {
     activeIndex = 0;
     if (fogOfWar)
@@ -56,7 +56,7 @@ void Gfx_ResetLights()
     }
 }
 
-void Gfx_ApplyLights(const std::list<Gfx_Light*>* lights, const D3DXVECTOR4* extra, DWORD viewport)
+void Gfx_ApplyLights(const std::list<Gfx_Light*>* lights, const D3DXVECTOR4* extra, Gfx_Viewport* viewport)
 {
     if (lights)
     {
@@ -72,7 +72,7 @@ void Gfx_ApplyLights(const std::list<Gfx_Light*>* lights, const D3DXVECTOR4* ext
             Gfx_Light* light = *entry;
             if (g_GfxSystem->DebugLightsEnabled())
             {
-                g_GfxSystem->SubmitLight(light, reinterpret_cast<Gfx_Viewport*>(viewport));
+                g_GfxSystem->SubmitLight(light, viewport);
             }
             if (index < available)
             {

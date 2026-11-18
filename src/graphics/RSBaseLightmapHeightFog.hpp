@@ -10,7 +10,7 @@ struct Gfx_RS_BaseLightmapHeightFogState
     Gfx_DX9Effect* normal;
     Gfx_DX9Effect* factored;
     D3DXEFFECT_DESC description;
-    LPCSTR technique;
+    DWORD technique;
     BYTE usesShader, techniqueChanged;
     BYTE padding1A[2];
     DWORD passes, currentPass;
@@ -31,7 +31,7 @@ class Gfx_RS_B_LM_HeightFog : public Gfx_RenderStyle
     virtual DWORD NextTechnique(); // 537140.
     virtual BYTE UsesVertexShader(); // 5370D0.
     virtual DWORD PassCount(); // 5370E0.
-    virtual HRESULT SetMaterial(Gfx_Material* material, DWORD fogBits); // 53D970, RET8.
+    virtual HRESULT SetMaterial(Gfx_Material* material, Gfx_HeightFog* fogBits); // 53D970, RET8.
     virtual HRESULT Begin(UINT* passes); // 537BA0.
     virtual HRESULT End(); // 537BC0.
     virtual HRESULT Pass(UINT pass); // 5370F0.

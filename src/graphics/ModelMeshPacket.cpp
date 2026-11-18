@@ -7,7 +7,7 @@ Gfx_ModelMeshPkt::Gfx_ModelMeshPkt(Gfx_ModelMesh* mesh)
     source = mesh;
     packet = Gfx_CreatePacketData(geometry->value00);
     instance.SetMesh(geometry);
-    instance.value0C = reinterpret_cast<DWORD>(packet);
+    instance.value0C = packet;
     BYTE flags = static_cast<BYTE>(source->value24 & 6);
     if (!flags)
     {
@@ -44,7 +44,7 @@ void Gfx_ModelMeshPkt::CloneMaterials()
     Gfx_MeshData* model = instance.mesh;
     overrideMaterials = new Gfx_MaterialSet(model->materialSet);
     overrideMaterials->RebuildGroups();
-    instance.value04 = reinterpret_cast<DWORD>(overrideMaterials);
+    instance.value04 = overrideMaterials;
 }
 
 Gfx_Material* Gfx_ModelMeshPkt::GetMaterial(DWORD index)

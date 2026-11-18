@@ -310,7 +310,7 @@ namespace GUI
         geometry.indexCount = writtenIndices;
         geometry.mesh.value00 = 0;
         geometry.mesh.value04 = DWORD(-1);
-        geometry.mesh.value10 = reinterpret_cast<DWORD>(geometry.indices);
+        geometry.mesh.value10 = geometry.indices;
         geometry.mesh.SetVertexDesc(0x44, D3DXGetFVFVertexSize(0x44), writtenVertices);
         geometry.mesh.SetIndexDesc(2, geometry.indexCount);
         geometry.mesh.materialSet.count = 0;
@@ -336,7 +336,7 @@ namespace GUI
         geometry.mesh.materialSet.RebuildGroups();
         geometry.mesh.value04 = DWORD(-1);
         geometry.instances[0].SetMesh(&geometry.mesh);
-        geometry.instances[0].value0C = reinterpret_cast<DWORD>(geometry.packet);
+        geometry.instances[0].value0C = geometry.packet;
         geometry.active = 1;
         editDepthDirty = 1;
     }
@@ -579,7 +579,7 @@ namespace GUI
         geometry.indexCount = writtenIndices;
         geometry.mesh.value00 = 0;
         geometry.mesh.value04 = DWORD(-1);
-        geometry.mesh.value10 = reinterpret_cast<DWORD>(geometry.indices);
+        geometry.mesh.value10 = geometry.indices;
         geometry.mesh.SetVertexDesc(0x44, D3DXGetFVFVertexSize(0x44), writtenVertices);
         geometry.mesh.SetIndexDesc(2, geometry.indexCount);
         geometry.mesh.materialSet.count = 0;
@@ -605,7 +605,7 @@ namespace GUI
         geometry.mesh.materialSet.RebuildGroups();
         geometry.mesh.value04 = DWORD(-1);
         geometry.instances[0].SetMesh(&geometry.mesh);
-        geometry.instances[0].value0C = reinterpret_cast<DWORD>(geometry.packet);
+        geometry.instances[0].value0C = geometry.packet;
         geometry.active = 1;
         editDepthDirty = 1;
     }

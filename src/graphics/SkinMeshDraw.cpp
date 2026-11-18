@@ -363,7 +363,7 @@ void Gfx_SkinMesh::Render(UINT pass, std::list<Gfx_RenderSubmission16>* submissi
                     {
                         continue;
                     }
-                    controller->SetMaterial(material, 1, alphaFlag, materialFlag, reinterpret_cast<DWORD>(fog));
+                    controller->SetMaterial(material, 1, alphaFlag, materialFlag, fog);
                     UINT passes;
                     controller->styles[controller->activeIndex]->Begin(&passes);
                     for (UINT renderPass = 0; renderPass < passes; ++renderPass)
@@ -448,7 +448,7 @@ void Gfx_SkinMesh::Render(UINT pass, std::list<Gfx_RenderSubmission16>* submissi
                 {
                     continue;
                 }
-                controller->SetMaterial(material, 1, alphaFlag, materialFlag, reinterpret_cast<DWORD>(fog));
+                controller->SetMaterial(material, 1, alphaFlag, materialFlag, fog);
                 UINT passes;
                 controller->styles[controller->activeIndex]->Begin(&passes);
                 for (UINT renderPass = 0; renderPass < passes; ++renderPass)

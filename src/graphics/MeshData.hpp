@@ -6,6 +6,8 @@
 #include "Primitive.hpp"
 #include "Skinning.hpp"
 
+class Gfx_BasePacketData;
+
 // Recovered owned layouts used by GUI::Fragment; broader graphics/rendering
 // methods remain unresolved. Unknown scalar words stay uninitialized.
 class Gfx_MaterialSet
@@ -42,7 +44,8 @@ class Gfx_MeshData
     DWORD value04;
     DWORD value08;
     void* vertices; // +0C; Fragment points it at its embedded vertices.
-    DWORD value10, vertexFVF, vertexStride, vertexCount, value20, value24;
+    const void* value10; // Borrowed index buffer (was a 32-bit pointer word in the decompilation).
+	DWORD vertexFVF, vertexStride, vertexCount, value20, value24;
     Gfx_MaterialSet materialSet; // +28.
     DWORD primitiveCount; // +38.
     Gfx_Primitive* primitives; // +3C; owned array, element size52.
@@ -68,9 +71,9 @@ class Gfx_MeshInstance
     void AllocateSkinning(); // 0x4ABB70.
     void EnableMaterial(const std::string& name, BYTE enabled); // 49DC20; first name match.
     Gfx_MeshData* mesh;
-    DWORD value04; // +04; effective borrowed material-set override, stored as its raw word.
+    Gfx_MaterialSet* value04; // Borrowed material-set override, not a 32-bit integer.
     Gfx_MaterialSet* materialSet; // +08; independently owned material-set copy, when present.
-    DWORD value0C;
+    Gfx_BasePacketData* value0C; // Borrowed packet; never stored as a 32-bit integer.
     BYTE* primitiveFlags;
     BYTE ownsSkinning;
     Gfx_Skinning* skinning;

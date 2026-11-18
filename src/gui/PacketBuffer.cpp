@@ -40,7 +40,7 @@ void Gfx_UIPacketBuffer::ConfigureQuads(DWORD quadCount, LONG vertexCount, DWORD
     mesh.value00 = 0;
     mesh.value04 = 0xFFFFFFFF;
     mesh.vertices = vertices;
-    mesh.value10 = reinterpret_cast<DWORD>(indices); // Actual borrowed index pointer at +10.
+    mesh.value10 = indices; // Actual borrowed index pointer at +10.
     mesh.SetVertexDesc(0x144, D3DXGetFVFVertexSize(0x144), static_cast<DWORD>(vertexCount));
     mesh.SetIndexDesc(2, indexCount);
     primitive = mesh.SetPrimitiveCount(1);

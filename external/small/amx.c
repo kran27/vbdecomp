@@ -18,6 +18,11 @@
 #endif
 #include "osdefs.h"
 #include "amx.h"
+#include <stdlib.h>
+
+#if AMX_WIDE_POINTERS && (defined(ASM32) || defined(JIT))
+  #error The Pawn 32-bit assembly/JIT execution paths cannot run on a 64-bit host.
+#endif
 
 #if !defined LINUX  /* Linux GCC already has these types */
   typedef unsigned char  u_char;
@@ -256,7 +261,9 @@ int AMXAPI amx_Flags(AMX *amx,uint16_t *flags)
 int AMXAPI amx_Callback(AMX *amx, cell index, cell *result, cell *params)
 {
   AMX_HEADER *hdr;
+#if !AMX_WIDE_POINTERS
   AMX_FUNCSTUB *func;
+#endif
   AMX_NATIVE f;
 
   assert(amx!=NULL);
@@ -264,9 +271,17 @@ int AMXAPI amx_Callback(AMX *amx, cell index, cell *result, cell *params)
   assert(hdr!=NULL);
   assert(hdr->natives<=hdr->libraries);
   assert(index>=0 && index<(cell)NUMENTRIES(*hdr,natives,libraries));
+#if AMX_WIDE_POINTERS
+  if (index<0 || index>=amx->nativeFunctionCount || amx->nativeFunctions==NULL)
+    return AMX_ERR_NATIVE;
+  f=amx->nativeFunctions[index];
+  if (f==NULL)
+    return AMX_ERR_NATIVE;
+#else
   func=(AMX_FUNCSTUB *)(amx->base+(int)hdr->natives+(int)index*sizeof(AMX_FUNCSTUB));
   f=(AMX_NATIVE)func->address;
   assert(f!=NULL);
+#endif
 
   /* Note:
    *   params[0] == number of bytes for the additional parameters passed to the native function
@@ -292,10 +307,12 @@ int AMXAPI amx_Debug(AMX *amx)
   extern int AMXAPI asm_runJIT(void *sourceAMXbase, void *jumparray, void *compiledAMXbase);
 #endif
 
-#if defined BIT16
-  #define JUMPABS(base,ip)      ((cell *)(base+*ip))
-  #define RELOC_ABS(base, off)
-  #define RELOC_VALUE(base, v)
+#if defined BIT16 || AMX_WIDE_POINTERS
+  /* Wide pointers cannot be encoded in a 32-bit Pawn bytecode cell.
+   * Keep the script's code-relative jump targets unmodified instead. */
+  #define JUMPABS(base,ip)      ((cell *)((base)+(int)(*ip)))
+  #define RELOC_ABS(base, off)  ((void)0)
+  #define RELOC_VALUE(base, v)  (v)
 #else
   #define JUMPABS(base, ip)     ((cell *)*ip)
   #define RELOC_ABS(base, off)  *(ucell *)(base+(int)off) += (ucell)base
@@ -313,7 +330,7 @@ static int amx_BrowseRelocate(AMX *amx)
   OPCODE op;
   int debug;
   int last_sym_global = 0;
-  #if defined __GNUC__ || defined ASM32 || defined JIT
+  #if (defined __GNUC__ && !AMX_WIDE_POINTERS) || defined ASM32 || defined JIT
     ucell **opcode_list;
   #endif
   #if defined JIT
@@ -344,7 +361,7 @@ static int amx_BrowseRelocate(AMX *amx)
   if (debug)
     amx->flags=AMX_FLAG_BROWSE|AMX_FLAG_DEBUG;
 
-  #if defined __GNUC__ || defined ASM32 || defined JIT
+  #if (defined __GNUC__ && !AMX_WIDE_POINTERS) || defined ASM32 || defined JIT
     amx_Exec(amx, (cell *)&opcode_list, 0, 0);
   #endif
 
@@ -355,7 +372,7 @@ static int amx_BrowseRelocate(AMX *amx)
     if ((int)op>=256) {
       return AMX_ERR_INVINSTR;
     } /* if */
-    #if defined __GNUC__ || defined ASM32 || defined JIT
+    #if (defined __GNUC__ && !AMX_WIDE_POINTERS) || defined ASM32 || defined JIT
       /* relocate symbol */
       *(ucell **)(code+(int)cip) = opcode_list[op];
     #endif
@@ -683,6 +700,10 @@ int AMXAPI amx_Init(AMX *amx,void *program)
   amx->curline=0;
   amx->curfile=0;
   amx->data=NULL;
+#if AMX_WIDE_POINTERS
+  amx->nativeFunctions=NULL;
+  amx->nativeFunctionCount=NUMENTRIES(*hdr,natives,libraries);
+#endif
 
   /* also align all addresses in the public function, public variable and
    * public tag tables
@@ -717,9 +738,7 @@ int AMXAPI amx_Init(AMX *amx,void *program)
   } /* if */
 
   /* relocate call and jump instructions, optionally gather debug information */
-  amx_BrowseRelocate(amx);
-
-  return AMX_ERR_NONE;
+  return amx_BrowseRelocate(amx);
 }
 
 int AMXAPI amx_Clone(AMX *amxClone, AMX *amxSource, void *data)
@@ -752,6 +771,17 @@ int AMXAPI amx_Clone(AMX *amxClone, AMX *amxSource, void *data)
   amxClone->flags=amxSource->flags;
   amxClone->curline=0;
   amxClone->curfile=0;
+#if AMX_WIDE_POINTERS
+  amxClone->nativeFunctions=NULL;
+  amxClone->nativeFunctionCount=amxSource->nativeFunctionCount;
+  if (amxSource->nativeFunctions!=NULL && amxSource->nativeFunctionCount>0) {
+    size_t bytes=(size_t)amxSource->nativeFunctionCount*sizeof(AMX_NATIVE);
+    amxClone->nativeFunctions=(AMX_NATIVE *)malloc(bytes);
+    if (amxClone->nativeFunctions==NULL)
+      return AMX_ERR_MEMORY;
+    memcpy(amxClone->nativeFunctions,amxSource->nativeFunctions,bytes);
+  } /* if */
+#endif
 
   /* copy the data segment; the stack and the heap can be left uninitialized */
   assert(data!=NULL);
@@ -764,6 +794,18 @@ int AMXAPI amx_Clone(AMX *amxClone, AMX *amxSource, void *data)
    */
   * (cell *)(amxClone->data+(int)amxClone->stp) = 0;
 
+  return AMX_ERR_NONE;
+}
+
+int AMXAPI amx_Cleanup(AMX *amx)
+{
+  if (amx==NULL)
+    return AMX_ERR_PARAMS;
+#if AMX_WIDE_POINTERS
+  free(amx->nativeFunctions);
+  amx->nativeFunctions=NULL;
+  amx->nativeFunctionCount=0;
+#endif
   return AMX_ERR_NONE;
 }
 
@@ -1190,15 +1232,34 @@ int AMXAPI amx_Register(AMX *amx, AMX_NATIVE_INFO *list, int number)
   numnatives=NUMENTRIES(*hdr,natives,libraries);
 
   err=AMX_ERR_NONE;
+#if AMX_WIDE_POINTERS
+  if (amx->nativeFunctionCount!=numnatives)
+    return AMX_ERR_FORMAT;
+  if (numnatives>0 && amx->nativeFunctions==NULL) {
+    amx->nativeFunctions=(AMX_NATIVE *)calloc((size_t)numnatives,sizeof(AMX_NATIVE));
+    if (amx->nativeFunctions==NULL)
+      return AMX_ERR_MEMORY;
+  } /* if */
+#endif
   func=(AMX_FUNCSTUB *)(amx->base+(int)hdr->natives);
   for (i=0; i<numnatives; i++) {
+#if AMX_WIDE_POINTERS
+    if (amx->nativeFunctions[i]==NULL) {
+#else
     if (func->address==0) {
+#endif
       /* this function is not yet located */
       funcptr=(list!=NULL) ? findfunction(func->name,list,number) : NULL;
-      if (funcptr!=NULL)
+      if (funcptr!=NULL) {
+#if AMX_WIDE_POINTERS
+        amx->nativeFunctions[i]=funcptr;
+        func->address=1;  /* resolved marker; never a pointer */
+#else
         func->address=(uint32_t)funcptr;
-      else
+#endif
+      } else {
         err=AMX_ERR_NOTFOUND;
+      } /* if */
     } /* if */
     func++;
   } /* for */
@@ -1223,7 +1284,7 @@ AMX_NATIVE_INFO * AMXAPI amx_NativeInfo(char *name,AMX_NATIVE func)
 #define CHKSTACK()      if (stk>amx->stp) return AMX_ERR_STACKLOW
 #define CHKHEAP()       if (hea<amx->hlw) return AMX_ERR_HEAPLOW
 
-#if defined __GNUC__ && !defined ASM32
+#if defined __GNUC__ && !defined ASM32 && !AMX_WIDE_POINTERS
     /* GNU C version uses the "labels as values" extension to create
      * fast "indirect threaded" interpreter.
      */
@@ -3195,14 +3256,23 @@ int AMXAPI amx_Exec(AMX *amx, cell *retval, int index, int numparams, ...)
       break;
     case OP_SWITCH: {
       cell *cptr;
-
-      cptr=(cell *)*cip + 1;    /* +1, to skip the "casetbl" opcode */
-      cip=(cell *)*(cptr+1);    /* preset to "none-matched" case */
-      num=(int)*cptr;           /* number of records in the case table */
+#if AMX_WIDE_POINTERS
+      cptr=(cell *)(code+(int)*cip)+1; /* skip the "casetbl" opcode */
+      cip=(cell *)(code+(int)*(cptr+1)); /* default destination */
+#else
+      cptr=(cell *)*cip + 1;
+      cip=(cell *)*(cptr+1);
+#endif
+      num=(int)*cptr;
       for (cptr+=2; num>0 && *cptr!=pri; num--,cptr+=2)
         /* nothing */;
-      if (num>0)
-        cip=(cell *)*(cptr+1);  /* case found */
+      if (num>0) {
+#if AMX_WIDE_POINTERS
+        cip=(cell *)(code+(int)*(cptr+1));
+#else
+        cip=(cell *)*(cptr+1);
+#endif
+      } /* if */
       break;
     } /* case */
     case OP_SWAP_PRI:

@@ -105,7 +105,7 @@ void Gfx_ParticleSystem::BuildPointGeometry(Gfx_Camera* camera) // 51AE20.
         mesh.materialSet.RebuildGroups();
         mesh.value04 = 0xFFFFFFFF;
         batch.instances[0].SetMesh(&mesh);
-        batch.instances[0].value0C = reinterpret_cast<DWORD>(batch.packet);
+        batch.instances[0].value0C = batch.packet;
         batch.flag94 = 1;
         // Original point geometry neither allocates indices nor calls SetIndexDesc.
     }

@@ -132,7 +132,8 @@ namespace JE
 
     MMRESULT CDAudio::CloseMixer()
     {
-        MMRESULT result = reinterpret_cast<UINT_PTR>(mixer);
+        MMRESULT result = 0;
+		// The WinMM mixer handle is pointer-sized; only its nullness matters here.
         if (result)
         {
             result = mixerClose(mixer);

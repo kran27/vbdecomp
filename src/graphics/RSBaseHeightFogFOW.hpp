@@ -9,7 +9,7 @@ struct Gfx_RS_BaseHeightFogFOWState
     DWORD users;
     Gfx_DX9Effect* effect;
     D3DXEFFECT_DESC description;
-    LPCSTR technique;
+    DWORD technique;
     BYTE usesShader, techniqueChanged;
     BYTE padding16[2];
     DWORD passes, currentPass;
@@ -30,7 +30,7 @@ class Gfx_RS_Base_HFog_FOW : public Gfx_RenderStyle
     virtual DWORD NextTechnique(); // 537550.
     virtual BYTE UsesVertexShader(); // 5374B0.
     virtual DWORD PassCount(); // 5374C0.
-    virtual HRESULT SetMaterial(Gfx_Material* material, DWORD fogBits); // 53F360, RET8.
+    virtual HRESULT SetMaterial(Gfx_Material* material, Gfx_HeightFog* fogBits); // 53F360, RET8.
     virtual HRESULT Begin(UINT* passes); // 5374D0.
     virtual HRESULT End(); // 5374F0.
     virtual HRESULT Pass(UINT pass); // 537500.

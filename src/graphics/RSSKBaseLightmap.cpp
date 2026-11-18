@@ -124,7 +124,7 @@ HRESULT Gfx_RS_SK_B_LM::Initialize()
                 JE::FatalError("Gfx_RS_SK_B_LM::Create - Failed to find valid technique for B_LM normal (%x)\n",
                                queried);
             }
-            g_RSSKBaseLightmapState.technique = reinterpret_cast<DWORD>(selected.Index);
+            g_RSSKBaseLightmapState.technique = selected.Index;
             result = g_RSSKBaseLightmapState.normal->SetTechnique(selected.Index);
             if (selected.Name[0] == 's' && selected.Name[1] == 'h')
             {
@@ -167,7 +167,7 @@ HRESULT Gfx_RS_SK_B_LM::Initialize()
             result = g_RSSKBaseLightmapState.factored->FindNextValidTechnique(0, &selected);
             if (SUCCEEDED(result))
             {
-                g_RSSKBaseLightmapState.technique = reinterpret_cast<DWORD>(selected.Index);
+                g_RSSKBaseLightmapState.technique = selected.Index;
                 result = g_RSSKBaseLightmapState.factored->SetTechnique(selected.Index);
                 if (selected.Name[0] == 's' && selected.Name[1] == 'h')
                 {
@@ -196,7 +196,7 @@ HRESULT Gfx_RS_SK_B_LM::Initialize()
     return result;
 }
 
-HRESULT Gfx_RS_SK_B_LM::SetMaterial(Gfx_Material* material, DWORD)
+HRESULT Gfx_RS_SK_B_LM::SetMaterial(Gfx_Material* material, Gfx_HeightFog* )
 {
     HRESULT result = D3DERR_INVALIDCALL;
     BYTE useRGB = 0, useAlpha = 0;
@@ -338,7 +338,7 @@ HRESULT Gfx_RS_SK_B_LM::SetMaterial(Gfx_Material* material, DWORD)
             if (SUCCEEDED(result))
             {
                 g_RSSKBaseLightmapState.techniqueChanged = 0;
-                g_RSSKBaseLightmapState.technique = reinterpret_cast<DWORD>(selected.Index);
+                g_RSSKBaseLightmapState.technique = selected.Index;
                 g_RSSKBaseLightmapState.passes = selected.Passes;
                 result = effect->SetTechnique(selected.Index);
                 if (FAILED(result))

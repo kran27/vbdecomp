@@ -8,7 +8,7 @@ struct Gfx_RS_SK_B_LMFOWState
     DWORD users; // 70BD4C.
     Gfx_DX9Effect* effect;
     D3DXEFFECT_DESC description;
-    LPCSTR technique;
+    DWORD technique;
     BYTE usesShader, techniqueChanged;
     BYTE padding16[2];
     DWORD passes, currentPass;
@@ -29,7 +29,7 @@ class Gfx_RS_SK_B_LM_FOW : public Gfx_RenderStyle
     virtual DWORD NextTechnique(); // 537AA0.
     virtual BYTE UsesVertexShader(); // 537A00.
     virtual DWORD PassCount(); // 537A10.
-    virtual HRESULT SetMaterial(Gfx_Material* material, DWORD texture); // 542230.
+    virtual HRESULT SetMaterial(Gfx_Material* material, Gfx_HeightFog* texture); // 542230.
     virtual HRESULT Begin(UINT* passes); // 537A20.
     virtual HRESULT End(); // 537A40.
     virtual HRESULT Pass(UINT pass); // 537A50.

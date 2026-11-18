@@ -337,7 +337,7 @@ void Gfx_ParticleSystem::BuildQuadGeometry(Gfx_Camera* camera) // 0x51B1E0.
     mesh.vertices = batch.vertices;
     mesh.value00 = 0;
     mesh.value04 = static_cast<DWORD>(-1);
-    mesh.value10 = reinterpret_cast<DWORD>(batch.indices);
+    mesh.value10 = batch.indices;
     mesh.SetVertexDesc(0x142, D3DXGetFVFVertexSize(0x142), batch.vertexCount);
     mesh.SetIndexDesc(2, batch.indexCount);
     mesh.materialSet.count = 0;
@@ -367,7 +367,7 @@ void Gfx_ParticleSystem::BuildQuadGeometry(Gfx_Camera* camera) // 0x51B1E0.
     mesh.materialSet.RebuildGroups();
     mesh.value04 = static_cast<DWORD>(-1);
     batch.instances[0].SetMesh(&mesh);
-    batch.instances[0].value0C = reinterpret_cast<DWORD>(batch.packet);
+    batch.instances[0].value0C = batch.packet;
     batch.flag94 = 1;
 }
 

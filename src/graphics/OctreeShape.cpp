@@ -477,7 +477,10 @@ int OCTREE::CacheShape(OCTREE_Shape* shape) // 5B0730.
             traversal[level].nextChild = 0;
             node = node->parent;
             --level;
-            classification = traversal[level].classification;
+            if (level >= 0)
+            {
+                classification = traversal[level].classification;
+            }
         }
     }
     OctreeNode* end = NULL;
